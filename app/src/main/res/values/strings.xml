@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RecDeck App</string>
+    <string name="btn_continue_text">Continue</string>
+    <string name="intro_heading">Lorem ipsum dolor sit amet consectetur.</string>
 </resources>
