@@ -1,109 +1,120 @@
 package com.example.recdeckapp.ui.activities
 
-
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.recdeckapp.R
 import com.example.recdeckapp.adapter.IntroPagerAdapter
+import com.example.recdeckapp.databinding.ActivityIntroBinding
+import android.widget.LinearLayout
 
 
 class IntroActivity : AppCompatActivity() {
 
-    private lateinit var viewPager: ViewPager2
+    private lateinit var binding: ActivityIntroBinding
     private lateinit var adapter: IntroPagerAdapter
-    private lateinit var btnContinue: Button
-
-    private lateinit var indicatorContainer: LinearLayout // Container for custom indicators
+    lateinit var introContent: List<Pair<String, String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
-        // Set light status bar (means: dark icons)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white_light)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_intro)
+        binding = ActivityIntroBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        viewPager = findViewById(R.id.viewPager)
-        indicatorContainer = findViewById(R.id.indicatorContainer) // Add this LinearLayout in your XML
-        btnContinue = findViewById(R.id.btn_Continue)
+        introContent = listOf(
+            Pair(
+                getString(R.string.string_intro_Fragment1_title),
+                getString(R.string.string_intro_Fragment1_desc)
+            ), Pair(
+                getString(R.string.string_intro_Fragment2_title),
+                getString(R.string.string_intro_Fragment2_desc)
+            ), Pair(
+                getString(R.string.string_intro_Fragment3_title),
+                getString(R.string.string_intro_Fragment3_desc)
+            )
+        )
+        updateTitleAndDescription(0)
 
-        adapter = IntroPagerAdapter(this)
-        viewPager.adapter = adapter
+        adapter = IntroPagerAdapter(this, this)
+        binding.viewPager.adapter = adapter
 
-        setupIndicators() // Add this line to initialize the indicators
-        setCurrentIndicator(0) // Set initial indicator
+        setupIndicators()
+        setCurrentIndicator(0)
 
-        val btnSkip = findViewById<Button>(R.id.btnSkip)
-        btnSkip.setOnClickListener {
-            val intent = Intent(this@IntroActivity, MainActivity::class.java)
-            startActivity(intent)
+        binding.btnSkip.setOnClickListener {
+            startActivity(Intent(this@IntroActivity, MainActivity::class.java))
             finish()
         }
 
-        btnContinue.setOnClickListener {
-            if (viewPager.currentItem < adapter.itemCount - 1) {
-                // Go to next screen
-                viewPager.currentItem += 1
+        binding.btnContinue.setOnClickListener {
+            if (binding.viewPager.currentItem < adapter.itemCount - 1) {
+                binding.viewPager.currentItem += 1
             } else {
-                // Last screen → Go to Main/Login
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
         }
 
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
+                updateTitleAndDescription(position)
                 setCurrentIndicator(position)
-                if (position == adapter.itemCount - 1) {
-                    btnContinue.text = "Get Started"
-                } else {
-                    btnContinue.text = "Continue"
-                }
+
+                binding.btnContinue.text =
+                    if (position == adapter.itemCount - 1) "Get Started" else "Continue"
+
+                binding.btnSkip.visibility =
+                    if (position == adapter.itemCount - 1) View.GONE else View.VISIBLE
             }
         })
     }
 
-    fun setupIndicators() {
+    private fun updateTitleAndDescription(position: Int) {
+        if (position in introContent.indices) {
+            val (title, desc) = introContent[position]
+            binding.tvTitle.text = title
+            binding.tvDescription.text = desc
+        }
+    }
+
+    private fun setupIndicators() {
         val indicators = arrayOfNulls<ImageView>(adapter.itemCount)
         val layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
+            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
         )
         layoutParams.setMargins(8, 0, 8, 0)
 
         for (i in indicators.indices) {
             indicators[i] = ImageView(applicationContext)
-            indicators[i]?.let {
-                it.setImageResource(
+            indicators[i]?.apply {
+                setImageResource(
                     if (i == 0) R.drawable.rect_indicator_selected
                     else R.drawable.rect_indicator
                 )
-                it.layoutParams = layoutParams
-                indicatorContainer.addView(it)
+                this.layoutParams = layoutParams
+                binding.indicatorContainer.addView(this)
             }
         }
     }
 
-    fun setCurrentIndicator(index: Int) {
-        val childCount = indicatorContainer.childCount
+    private fun setCurrentIndicator(index: Int) {
+        val childCount = binding.indicatorContainer.childCount
         for (i in 0 until childCount) {
-            val imageView = indicatorContainer.getChildAt(i) as ImageView
-            if (i == index) {
-                imageView.setImageResource(R.drawable.rect_indicator_selected)
-            } else {
-                imageView.setImageResource(R.drawable.rect_indicator)
-            }
+            val imageView = binding.indicatorContainer.getChildAt(i) as ImageView
+            imageView.setImageResource(
+                if (i == index) R.drawable.rect_indicator_selected
+                else R.drawable.rect_indicator
+            )
         }
     }
 }
-

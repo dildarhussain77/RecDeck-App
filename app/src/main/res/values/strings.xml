@@ -2,4 +2,13 @@
     <string name="app_name">RecDeck App</string>
     <string name="btn_continue_text">Continue</string>
     <string name="intro_heading">Lorem ipsum dolor sit amet consectetur.</string>
+    <string name="intro_fragment_title_text">Title</string>
+    <string name="intro_fragment_description_text">Description</string>
+    <string name="btn_skip">Skip</string>
+    <string name="string_intro_Fragment1_title">Welcome to a smarter way to connect.</string>
+    <string name="string_intro_Fragment2_title">Your care, your people, your way.</string>
+    <string name="string_intro_Fragment3_title">A safe digital space for every moment.</string>
+    <string name="string_intro_Fragment1_desc">This app helps you stay in touch, stay informed, and live better every day. Smooth design, smart features, and support when you need it. Built for comfort and ease. Join us in creating a better digital world.</string>
+    <string name="string_intro_Fragment2_desc">From wellness tracking to real-time chats, manage everything with ease. Simple tools meet smart tech, crafted to serve your daily needs. Because staying connected shouldn’t be complicated — it should feel right.</string>
+    <string name="string_intro_Fragment3_desc">Security, support, and simplicity — all in one place. We protect your data and give you peace of mind. Whether you’re chatting, planning, or just checking in, we’ve got your back 24/7.</string>
 </resources>
