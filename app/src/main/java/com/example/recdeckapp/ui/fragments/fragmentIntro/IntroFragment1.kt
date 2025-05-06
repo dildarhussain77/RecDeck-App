@@ -14,13 +14,13 @@ class IntroFragment1 : Fragment() {
 
     companion object {
         fun newInstance(
-            mainImage: Int, title: String, desc: String,
+            eventFrames: Int,
         ): IntroFragment1 {
             val fragment = IntroFragment1()
             val bundle = Bundle().apply {
-                putInt("mainImage", mainImage)
-                putString("title", title)
-                putString("desc", desc)
+
+                putInt("eventFrames", eventFrames)
+
             }
             fragment.arguments = bundle
             return fragment
@@ -29,7 +29,7 @@ class IntroFragment1 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentIntro1Binding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,9 +38,9 @@ class IntroFragment1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            binding.centerLogo.setImageResource(it.getInt("mainImage"))
-            binding.title1.text = it.getString("title")
-            binding.desc1.text = it.getString("desc")
+
+            binding.eventFrames.setImageResource(it.getInt("eventFrames"))
+
         }
     }
 

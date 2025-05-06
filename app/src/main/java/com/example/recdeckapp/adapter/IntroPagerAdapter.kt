@@ -1,5 +1,6 @@
 package com.example.recdeckapp.adapter
 
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -8,36 +9,32 @@ import com.example.recdeckapp.ui.fragments.fragmentIntro.IntroFragment1
 import com.example.recdeckapp.ui.fragments.fragmentIntro.IntroFragment2
 import com.example.recdeckapp.ui.fragments.fragmentIntro.IntroFragment3
 
-class IntroPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+
+class IntroPagerAdapter(fa: FragmentActivity, private val context: Context) :
+    FragmentStateAdapter(fa) {
 
     override fun getItemCount(): Int = 3
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> IntroFragment1.newInstance(
-                R.drawable.profile,
-                "Lorem ipsum dolor sit amet consectetur.",
-                "Lorem ipsum dolor sit amet consectetur. In eros neque ac pharetra cursus duis pellentesque faucibus. Massa lacus posuere malesuada lorem pretium. Augue ut mollis quis arcu. Mi ac aliquam non adipiscing magna.",
+                R.drawable.event_frames,
             )
 
             1 -> IntroFragment2.newInstance(
-                R.drawable.profile,
-                "Lorem ipsum dolor sit amet consectetur.",
-                "Lorem ipsum dolor sit amet consectetur. In eros neque ac pharetra cursus duis pellentesque faucibus. Massa lacus posuere malesuada lorem pretium. Augue ut mollis quis arcu. Mi ac aliquam non adipiscing magna."
+                R.drawable.profiles_frames,
             )
 
             2 -> IntroFragment3.newInstance(
-                R.drawable.profile,
-                R.drawable.profile,
-                R.drawable.profile,
-                "Lorem ipsum dolor sit amet consectetur.",
-                "Lorem ipsum dolor sit amet consectetur. In eros neque ac pharetra cursus duis pellentesque faucibus. Massa lacus posuere malesuada lorem pretium. Augue ut mollis quis arcu. Mi ac aliquam non adipiscing magna."
-            )
+                R.drawable.chats_frames,
+
+                )
+
             else -> IntroFragment1.newInstance(
-                R.drawable.profile,
-                "Lorem ipsum dolor sit amet consectetur.",
-                "Lorem ipsum dolor sit amet consectetur. In eros neque ac pharetra cursus duis pellentesque faucibus. Massa lacus posuere malesuada lorem pretium. Augue ut mollis quis arcu. Mi ac aliquam non adipiscing magna."
-            )
+
+                R.drawable.event_frames,
+
+                )
         }
     }
 }

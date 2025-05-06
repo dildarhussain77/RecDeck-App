@@ -15,27 +15,25 @@ class IntroFragment2 : Fragment() {
     companion object {
         fun newInstance(
             mainImage: Int,
-            title: String,
-            desc: String,
         ): IntroFragment2 {
             val fragment = IntroFragment2()
             val bundle = Bundle().apply {
                 putInt("mainImage", mainImage)
-                putString("title", title)
-                putString("desc", desc)
             }
             fragment.arguments = bundle
             return fragment
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentIntro2Binding.inflate(inflater, container, false)
 
         arguments?.let {
             binding.profileImage.setImageResource(it.getInt("mainImage"))
-            binding.title2.text = it.getString("title")
-            binding.desc2.text = it.getString("desc")
         }
 
         return binding.root

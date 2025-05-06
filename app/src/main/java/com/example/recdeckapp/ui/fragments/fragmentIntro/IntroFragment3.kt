@@ -15,34 +15,29 @@ class IntroFragment3 : Fragment() {
 
     companion object {
         fun newInstance(
-            profile1ImageRes: Int,
-            profile2ImageRes: Int,
-            profile3ImageRes: Int,
-            title: String,
-            desc: String
-        ): IntroFragment3 {
+            chatFrames: Int,
+
+            ): IntroFragment3 {
             val fragment = IntroFragment3()
             val bundle = Bundle().apply {
-                putInt("profile1Image", profile1ImageRes)
-                putInt("profile2Image", profile2ImageRes)
-                putInt("profile3Image", profile3ImageRes)
-                putString("title", title)
-                putString("desc", desc)
+                putInt("chatFrames", chatFrames)
+
             }
             fragment.arguments = bundle
             return fragment
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentIntro3Binding.inflate(inflater, container, false)
 
         arguments?.let {
-            binding.profile1Image.setImageResource(it.getInt("profile1Image"))
-            binding.profile2Image.setImageResource(it.getInt("profile2Image"))
-            binding.profile3Image.setImageResource(it.getInt("profile3Image"))
-            binding.title3.text = it.getString("title")
-            binding.desc3.text = it.getString("desc")
+            binding.chatFrames.setImageResource(it.getInt("chatFrames"))
+
         }
 
         return binding.root
