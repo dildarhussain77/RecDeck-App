@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">RecDeck App</string>
-    <string name="btn_continue_text">Continue</string>
+    <string name="stringBtnContinue">Continue</string>
+    <string name="stringLogin">Login</string>
+    <string name="stringSignup">Sign Up</string>
     <string name="intro_heading">Lorem ipsum dolor sit amet consectetur.</string>
     <string name="intro_fragment_title_text">Title</string>
     <string name="intro_fragment_description_text">Description</string>
@@ -11,4 +13,45 @@
     <string name="string_intro_Fragment1_desc">This app helps you stay in touch, stay informed, and live better every day. Smooth design, smart features, and support when you need it. Built for comfort and ease. Join us in creating a better digital world.</string>
     <string name="string_intro_Fragment2_desc">From wellness tracking to real-time chats, manage everything with ease. Simple tools meet smart tech, crafted to serve your daily needs. Because staying connected shouldn’t be complicated — it should feel right.</string>
     <string name="string_intro_Fragment3_desc">Security, support, and simplicity — all in one place. We protect your data and give you peace of mind. Whether you’re chatting, planning, or just checking in, we’ve got your back 24/7.</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="login_username_email_hint">Enter your email address</string>
+    <string name="loginHeading">Login to your account!</string>
+    <string name="haveAccount">Don’t have an account?</string>
+    <string name="alreadyHaveAccount">Already have an account!</string>
+    <string name="stringSignUp">Sign Up</string>
+    <string name="stringEmialAddress">Email Address</string>
+    <string name="stringPassword">Password</string>
+    <string name="signupHeading">Sign Up</string>
+    <string name="stringChooseUserType">Choose your User Type to Create an Account!</string>
+    <string name="stringOrganiserCradDesc">Lorem ipsum dolor sit amet consectetur. Ultrices sed ultrices purus arcu mauris.</string>
+    <string name="stringOrganiserCradTitile">Organiser</string>
+    <string name="stringFacilityCradTitile">Facility</string>
+    <string name="stringFacilityCradDesc">Lorem ipsum dolor sit amet consectetur. Ultrices sed ultrices purus arcu mauris.</string>
+    <string name="otpHeading">OTP Verification</string>
+    <string name="stringOtpVerifyCodeHeading">Enter the 6 digit verification code we sent to you email John••••@gmail.com.</string>
+    <string name="stringResend">Resend</string>
+    <string name="stringTime">01:00</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="stringFullNameSignup">Full Name</string>
+    <string name="stringEnterFullNameHint">Enter your full name</string>
+    <string name="stringEnterPassSignUp1">Enter password</string>
+    <string name="stringConfirmPassword">Confirm Password</string>
+    <string name="stringConfirmPassSignUp1">Confirm password</string>
+    <string name="stringIam18Years">I am 18 Years of age or Older.</string>
+    <string name="stringLocationSignUp1">Location</string>
+    <string name="stringSetProfileHeading">Set your Profile</string>
+    <string name="stringDateOfBirth">Date of Birth</string>
+    <string name="stringDoBformatHintSignUp2">DD/MM/YYYY</string>
+    <string name="stringGender">Gender</string>
+    <string name="stringSelectGender">Select</string>
+    <string name="stringUploadFileHeading">Upload Files</string>
+    <string name="stringDescOfFilesFormat">File formats are PNG,JPG, PDF \nFile size: 5MB max</string>
+    <string name="stringCamera">Camera</string>
+    <string name="stringGallery">Gallery</string>
+    <string name="signUpSuccessfulHeading">Sign Up Successfully!</string>
+    <string name="stringVerifySuccessful">A verification link has been sent to your \nemail Address johndeo12@gmail.com, Click the link to verify your account.</string>
+    <string name="stringCityHint">City</string>
+    <string name="stringCountryHint">Country</string>
 </resources>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    tools:context=".ui.activities.LoginActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_115sdp"
+            >
+            <!-- Profile Picture with Camera Icon -->
+            <RelativeLayout
+                android:id="@+id/relativeLayoutProfileSignUp2"
+                android:layout_width="@dimen/_77sdp"
+                android:layout_height="@dimen/_75sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <!-- Circle Avatar -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profilePictureSignUp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_user_profile"
+                    android:scaleType="centerCrop"
+                    />
+
+                <!-- Camera Icon -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/cameraIconSignUp2"
+                    android:layout_width="@dimen/_27sdp"
+                    android:layout_height="@dimen/_27sdp"
+                    android:layout_alignBottom="@id/profilePictureSignUp2"
+                    android:layout_alignEnd="@id/profilePictureSignUp2"
+                    android:src="@drawable/ic_camera"
+                    android:padding="4dp" />
+            </RelativeLayout>
+
+            <!-- Title -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSetProfileHeading2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/stringSetProfileHeading"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"
+                app:fontFamily="@font/nunito_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutProfileSignUp2" />
+
+            <!-- Date of Birth -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateOfBirthSignUp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_22sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringDateOfBirth"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSetProfileHeading2" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutDoBSignUp2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDateOfBirthSignUp2">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etDoBSignUp2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_39sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/stringDoBformatHintSignUp2"
+                    android:inputType="none"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="@dimen/_11ssp"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                     />
+
+                <ImageView
+                    android:id="@+id/ivToggleDoBCalenderSignUp2"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/ic_calendar" />
+            </RelativeLayout>
+
+            <!-- Gender -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGenderSignUp2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringGender"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutDoBSignUp2" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/genderAutoTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvGenderSignUp2"
+                android:hint=""
+                app:hintEnabled="false">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_39sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:inputType="none"
+                    android:hint="@string/stringSelectGender"
+                    android:textColorHint="@color/light_grey"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_regular"
+                    android:paddingHorizontal="@dimen/_9sdp"
+                    android:textSize="@dimen/_11ssp"
+                    android:drawableEnd="@drawable/ic_arrow_down"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignUpForm2Continue"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_38sdp"
+                android:layout_marginTop="@dimen/_155sdp"
+                android:background="@drawable/bg_button"
+                android:backgroundTint="@color/primary_main"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringBtnContinue"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genderAutoTv" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

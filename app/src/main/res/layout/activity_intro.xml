@@ -80,11 +80,11 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_Continue"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="@dimen/_38sdp"
         android:background="@drawable/bg_button"
         android:backgroundTint="@color/primary_main"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/btn_continue_text"
+        android:text="@string/stringBtnContinue"
         android:textColor="@color/white"
         android:textSize="@dimen/_11ssp"
         android:textAllCaps="false"

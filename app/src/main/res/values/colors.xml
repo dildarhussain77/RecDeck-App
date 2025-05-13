@@ -4,6 +4,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_light">#FFFFFF</color>
     <color name="primary_main">#0067B8</color>
+    <color name="otp_line_color">#038CF8</color>
     <color name="grey_color">#E6E6E6</color>
+    <color name="light_grey">#717171</color>
+    <color name="tick_unselected">#D9D9D9</color> <!-- Grey color -->
+    <color name="tick_selected">#4CAF50</color> <!-- Green color -->
+    <color name="red">#FA7281</color>
 
 </resources>

@@ -51,7 +51,7 @@ class IntroActivity : AppCompatActivity() {
         setCurrentIndicator(0)
 
         binding.btnSkip.setOnClickListener {
-            startActivity(Intent(this@IntroActivity, MainActivity::class.java))
+            startActivity(Intent(this@IntroActivity, LoginActivity::class.java))
             finish()
         }
 
@@ -59,7 +59,7 @@ class IntroActivity : AppCompatActivity() {
             if (binding.viewPager.currentItem < adapter.itemCount - 1) {
                 binding.viewPager.currentItem += 1
             } else {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
         }
