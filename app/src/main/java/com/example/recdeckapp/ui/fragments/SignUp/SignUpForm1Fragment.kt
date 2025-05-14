@@ -1,4 +1,4 @@
-package com.example.recdeckapp.ui.fragments.fragmentIntro
+package com.example.recdeckapp.ui.fragments.SignUp
 
 import android.graphics.Bitmap
 import android.graphics.BitmapShader
@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.InsetDrawable
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
@@ -29,6 +30,7 @@ class SignUpForm1Fragment : Fragment(R.layout.fragment_sign_up_form1) {
     private var _binding: FragmentSignUpForm1Binding? = null
     private val binding get() = _binding!!
 
+    private var isPasswordVisible = false
     private var isTickSelected = false
 
 
@@ -68,6 +70,17 @@ class SignUpForm1Fragment : Fragment(R.layout.fragment_sign_up_form1) {
 
         setupFieldListeners()  // Set up text listeners to update the button state
 
+        binding.ivBackArrowSignUp1.bringToFront()
+        binding.ivBackArrowSignUp1.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        // Set click listener using binding
+        binding.ivTogglePasswordSignUp1.setOnClickListener {
+            togglePasswordVisibility()
+
+        }
+
 
         // Tick icon toggle
         binding.icTick.setOnClickListener {
@@ -84,6 +97,22 @@ class SignUpForm1Fragment : Fragment(R.layout.fragment_sign_up_form1) {
 
         binding.btnSignUpForm1Continue.setOnClickListener {
             (activity as SignupActivity).switchFragment(SignUpForm2Fragment())
+        }
+    }
+
+    private fun togglePasswordVisibility() {
+        if (isPasswordVisible) {
+            binding.etSignUp1Password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.ivTogglePasswordSignUp1.setImageResource(R.drawable.ic_visibility_off)
+        } else {
+            binding.etSignUp1Password.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.ivTogglePasswordSignUp1.setImageResource(R.drawable.ic_visibility)
+        }
+        isPasswordVisible = !isPasswordVisible
+
+        // Safely setting the cursor position
+        binding.etSignUp1Password.text?.let {
+            binding.etSignUp1Password.setSelection(it.length)
         }
     }
 

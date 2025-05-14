@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.recdeckapp.R
-import com.example.recdeckapp.ui.fragments.fragmentIntro.IntroFragment1
-import com.example.recdeckapp.ui.fragments.fragmentIntro.IntroFragment2
-import com.example.recdeckapp.ui.fragments.fragmentIntro.IntroFragment3
+import com.example.recdeckapp.ui.fragments.IntroFragments.IntroFragment1
+import com.example.recdeckapp.ui.fragments.IntroFragments.IntroFragment2
+import com.example.recdeckapp.ui.fragments.IntroFragments.IntroFragment3
 
 
 class IntroPagerAdapter(fa: FragmentActivity, private val context: Context) :

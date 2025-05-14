@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.recdeckapp"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -63,6 +63,10 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     implementation ("com.google.android.material:material:1.9.0")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    implementation ("androidx.recyclerview:recyclerview:1.3.1")
+    implementation ("androidx.cardview:cardview:1.0.0")
 
 
 }

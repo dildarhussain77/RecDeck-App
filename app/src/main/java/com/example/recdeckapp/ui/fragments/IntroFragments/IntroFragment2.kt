@@ -1,4 +1,4 @@
-package com.example.recdeckapp.ui.fragments.fragmentIntro
+package com.example.recdeckapp.ui.fragments.IntroFragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

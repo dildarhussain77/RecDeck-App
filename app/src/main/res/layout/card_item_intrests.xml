@@ -1,0 +1,38 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardViewIntrests"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@drawable/bg_card_border"
+    android:layout_margin="@dimen/_4sdp"
+    app:cardCornerRadius="@dimen/_16sdp"
+    android:clickable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white_light"
+        >
+
+        <ImageView
+            android:id="@+id/imageViewIntrests"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_90sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/india"/>
+
+        <TextView
+            android:id="@+id/titleTextIntrests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_6sdp"
+            android:gravity="center"
+            android:fontFamily="@font/nunito_bold"
+            android:text="Title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

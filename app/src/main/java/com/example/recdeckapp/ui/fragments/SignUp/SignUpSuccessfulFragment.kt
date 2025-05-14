@@ -1,4 +1,4 @@
-package com.example.recdeckapp.ui.fragments.fragmentIntro
+package com.example.recdeckapp.ui.fragments.SignUp
 
 import android.os.Bundle
 import android.view.View
@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.recdeckapp.R
 import com.example.recdeckapp.databinding.FragmentSignUpSuccessfulBinding
-import com.example.recdeckapp.ui.activities.SignupActivity
 
 class SignUpSuccessfulFragment : Fragment(R.layout.fragment_sign_up_successful) {
 
@@ -16,6 +15,11 @@ class SignUpSuccessfulFragment : Fragment(R.layout.fragment_sign_up_successful) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSignUpSuccessfulBinding.bind(view)
+
+        binding.ivBackArrowSignUpSuccess.bringToFront()
+        binding.ivBackArrowSignUpSuccess.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
 
         // Button click listener
         binding.btnSignSucessfulUpContinue.setOnClickListener {

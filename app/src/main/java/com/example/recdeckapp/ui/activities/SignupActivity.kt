@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.recdeckapp.R
 import com.example.recdeckapp.databinding.ActivitySignupBinding
-import com.example.recdeckapp.ui.fragments.fragmentIntro.UserTypeFragment
+import com.example.recdeckapp.ui.fragments.SignUp.UserTypeFragment
 
 class SignupActivity : AppCompatActivity() {
 

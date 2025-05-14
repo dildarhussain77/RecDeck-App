@@ -54,4 +54,15 @@
     <string name="stringVerifySuccessful">A verification link has been sent to your \nemail Address johndeo12@gmail.com, Click the link to verify your account.</string>
     <string name="stringCityHint">City</string>
     <string name="stringCountryHint">Country</string>
+    <string name="stringInterestIn">What are your interest in?</string>
+    <string name="stringSelectMultipleIntrest">You can select Multiple interests</string>
+    <string name="stringDescSignUp3">Browse through an array of enticing events and select the ones that spark your curiosity. Dive into unforgettable experiences tailored just for you.</string>
+    <string name="stringAlmostDoneHeading">Almost There!</string>
+    <string name="stringReqDocsHeading2">Required Documents</string>
+    <string name="stringReqDocsDesc">Complete the sign-up process by uploading your facility\'s we need following documents. This helps us verify your legitimacy and ensures a smooth registration experience for you.</string>
+    <string name="stringIdPassNum">ID/Passport Number</string>
+    <string name="stringIdPassNumHint">ABC 123456789</string>
+    <string name="stringReqDocsFormate">File Formats are PNG, JPG, PDf, \n5MB max file size</string>
+    <string name="stringUploadFileHere">Upload your files here</string>
+    <string name="stringInnerUpload">+Upload</string>
 </resources>

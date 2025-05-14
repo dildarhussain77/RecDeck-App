@@ -1,12 +1,15 @@
-package com.example.recdeckapp.ui.fragments.fragmentIntro
+package com.example.recdeckapp.ui.fragments.SignUp
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.recdeckapp.R
 import com.example.recdeckapp.databinding.FragmentUserTypeBinding
+import com.example.recdeckapp.ui.activities.LoginActivity
 import com.example.recdeckapp.ui.activities.SignupActivity
 
 class UserTypeFragment : Fragment(R.layout.fragment_user_type) {
@@ -26,6 +29,11 @@ class UserTypeFragment : Fragment(R.layout.fragment_user_type) {
         binding.btnSignUpUserSelectContinue.isEnabled = false
         binding.btnSignUpUserSelectContinue.alpha = 0.5f
 
+        binding.ivBackArrowUserType.bringToFront()
+        binding.ivBackArrowUserType.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
 
         // Organizer Card Click
         binding.cardOrganizer.setOnClickListener {
@@ -41,7 +49,12 @@ class UserTypeFragment : Fragment(R.layout.fragment_user_type) {
 
         // Move to Form 1 on button click using binding
         binding.btnSignUpUserSelectContinue.setOnClickListener {
-            (activity as SignupActivity).switchFragment(SignUpForm1Fragment())
+            (activity as SignupActivity).switchFragment(AttachDocsFragment())
+        }
+
+        binding.tvLoginClick.setOnClickListener {
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 

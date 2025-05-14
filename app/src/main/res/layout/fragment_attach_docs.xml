@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    tools:context=".ui.activities.SignupActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBackArrowAttachDocs"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:src="@drawable/ic_back_arrow"
+        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:padding="@dimen/_3sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:contentDescription="Back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"  />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/_13sdp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnAttachDocsContinue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivBackArrowAttachDocs">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAlmostDoneHeading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringAlmostDoneHeading"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/attachDocsLogo"
+                android:layout_width="@dimen/_52sdp"
+                android:layout_height="@dimen/_52sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAlmostDoneHeading"
+                app:srcCompat="@drawable/ic_attach_docs" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvReqDocsHeading2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringReqDocsHeading2"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/attachDocsLogo" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvReqDocsDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:fontFamily="@font/nunito_regular"
+                android:gravity="center"
+                android:text="@string/stringReqDocsDesc"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReqDocsHeading2" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvIdPassNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringIdPassNum"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReqDocsDesc" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etIdPassNum"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_39sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="@string/stringIdPassNumHint"
+                android:inputType="text"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIdPassNum" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_63sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:paddingVertical="@dimen/_13sdp"
+                android:paddingHorizontal="@dimen/_11sdp"
+                android:background="@drawable/dotted_border"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etIdPassNum" >
+
+                <!-- File Upload Icon -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageUpload"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/ic_upload"
+                    android:contentDescription="Upload Icon" />
+
+                <!-- Upload Text -->
+                <LinearLayout
+                    android:layout_toEndOf="@id/imageUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/uploadText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringUploadFileHere"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nunito_bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/fileFormatText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringReqDocsFormate"
+                        android:textSize="@dimen/_8ssp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:textColor="@color/light_grey" />
+                </LinearLayout>
+
+                <!-- Upload Button -->
+                <Button
+                    android:id="@+id/btnUpload"
+                    android:layout_width="@dimen/_72sdp"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:backgroundTint="@color/primary_main"
+                    android:text="@string/stringInnerUpload"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8ssp"
+                    android:fontFamily="@font/nunito_regular"/>
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAttachDocsContinue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginTop="@dimen/_167sdp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/primary_main"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringBtnContinue"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

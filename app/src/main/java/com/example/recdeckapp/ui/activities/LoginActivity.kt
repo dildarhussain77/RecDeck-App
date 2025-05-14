@@ -109,10 +109,6 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-
-
-
-
         binding.tvSignupClick.setOnClickListener {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)

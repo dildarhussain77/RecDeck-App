@@ -1,4 +1,4 @@
-package com.example.recdeckapp.ui.fragments.fragmentIntro
+package com.example.recdeckapp.ui.fragments.SignUp
 
 import android.Manifest
 import android.app.Activity
@@ -45,6 +45,12 @@ class SignUpForm2Fragment : Fragment(R.layout.fragment_sign_up_form2) {
         binding.btnSignUpForm2Continue.isEnabled = false
         binding.btnSignUpForm2Continue.alpha = 0.5f
 
+
+        binding.ivBackArrowSignUp2.bringToFront()
+        binding.ivBackArrowSignUp2.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         // Open Bottom Dialog on Camera Icon Click
         binding.cameraIconSignUp2.setOnClickListener {
             showBottomSheetDialog()
@@ -71,6 +77,12 @@ class SignUpForm2Fragment : Fragment(R.layout.fragment_sign_up_form2) {
         // Date Picker for Date of Birth
         binding.etDoBSignUp2.setOnClickListener {
             val calendar = Calendar.getInstance()
+            // Set a minimum age limit (e.g., 100 years back)
+            val minCalendar = Calendar.getInstance().apply {
+                add(Calendar.YEAR, -100) // 100 years back from today
+            }
+
+            // Create DatePickerDialog
             val datePicker = DatePickerDialog(
                 requireContext(),
                 { _, year, month, dayOfMonth ->
@@ -82,13 +94,20 @@ class SignUpForm2Fragment : Fragment(R.layout.fragment_sign_up_form2) {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)
             )
+
+            // 🌟 Set the maximum date to today to avoid future dates
+            datePicker.datePicker.maxDate = calendar.timeInMillis
+
+            // 🌟 Set the minimum date to 100 years back (optional)
+            datePicker.datePicker.minDate = minCalendar.timeInMillis
+
             datePicker.show()
         }
 
+
         // Submit the form using binding
         binding.btnSignUpForm2Continue.setOnClickListener {
-            (activity as SignupActivity).switchFragment(SignUpSuccessfulFragment())
-            //Toast.makeText(requireContext(), "Sign Up Successful!", Toast.LENGTH_SHORT).show()
+            (activity as SignupActivity).switchFragment(SignUpForm3Fragment())
             //requireActivity().finish()  // Close activity after submission
         }
     }

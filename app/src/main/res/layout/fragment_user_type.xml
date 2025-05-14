@@ -6,11 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_light"
-    tools:context=".ui.activities.LoginActivity">
+    tools:context=".ui.activities.SignupActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBackArrowUserType"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:src="@drawable/ic_back_arrow"
+        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:padding="@dimen/_3sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:contentDescription="Back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:paddingHorizontal="@dimen/_13sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +64,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvChooseUserType"
-                android:layout_width="@dimen/_180sdp"
+                android:layout_width="@dimen/_175sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:fontFamily="@font/nunito_regular"
