@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvEventDetail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white_light"
+    app:cardCornerRadius="@dimen/_24sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clEventDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvEventImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_17sdp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_120sdp"
+                android:id="@+id/ivEventImage"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/basket_ball" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/ivSaveEvent"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            app:cardCornerRadius="@dimen/_20sdp"
+            android:layout_margin="@dimen/_8sdp"
+            app:cardElevation="0dp"
+            android:backgroundTint="@color/white_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_un_saved"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEventName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:paddingVertical="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintTop_toBottomOf="@+id/cvEventImage"
+            tools:text="@string/stringEventNameTitle" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivEventDate"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:src="@drawable/ic_notebook"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvEventName" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEventDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@+id/ivEventDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvEventName"
+            tools:text="12 Friday, 2023, 11:30PM - 12:00PM" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAttendees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivEventDate">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAttendeeOne"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/football"
+                android:backgroundTint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAttendeeTwo"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/football"
+                android:layout_marginStart="@dimen/_minus10sdp"
+                android:backgroundTint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAttendeeOne"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAttendeeThree"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/football"
+                android:layout_marginStart="@dimen/_minus10sdp"
+                android:backgroundTint="@color/primary_main"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAttendeeTwo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivAttendeeFour"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/football"
+                android:layout_marginStart="@dimen/_minus10sdp"
+                android:backgroundTint="@color/red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAttendeeThree"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvAttendeesStrength"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/black"
+            tools:text="@string/_22_attendees"
+            app:layout_constraintTop_toTopOf="@+id/clAttendees"
+           app:layout_constraintBottom_toBottomOf="@+id/clAttendees"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            app:layout_constraintStart_toEndOf="@id/clAttendees"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvEventPrice"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textSize="@dimen/_11sdp"
+            android:textColor="@color/primary_main"
+            tools:text="@string/sar_2_00_per_head"
+            app:layout_constraintTop_toTopOf="@+id/clAttendees"
+            app:layout_constraintBottom_toBottomOf="@+id/clAttendees"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

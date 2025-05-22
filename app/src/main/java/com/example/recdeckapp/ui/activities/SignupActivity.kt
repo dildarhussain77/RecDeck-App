@@ -1,28 +1,33 @@
 package com.example.recdeckapp.ui.activities
 
-import android.os.Build
+import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
-import android.view.View
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+
 import androidx.fragment.app.Fragment
 import com.example.recdeckapp.R
 import com.example.recdeckapp.databinding.ActivitySignupBinding
-import com.example.recdeckapp.ui.fragments.SignUp.UserTypeFragment
+import com.example.recdeckapp.ui.fragments.SignUp.SignupRoleSelectionFragment
+import com.example.recdeckapp.utils.StatusBarUtils
+import com.example.recdeckapp.viewmodel.SignupViewModel
 
 class SignupActivity : AppCompatActivity() {
 
     // View Binding object for activity_signup.xml
     private lateinit var binding: ActivitySignupBinding
 
+    // ViewModel shared between all fragments
+    val signupViewModel: SignupViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white_light)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
+        StatusBarUtils.setLightStatusBar(this, R.color.white_light)
 
         // Initializing view binding
         binding = ActivitySignupBinding.inflate(layoutInflater)
@@ -31,10 +36,25 @@ class SignupActivity : AppCompatActivity() {
         // Load the first fragment when activity is created
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(binding.signupFragmentContainer.id, UserTypeFragment())
-                .commit()
+                .replace(binding.signupFragmentContainer.id, SignupRoleSelectionFragment()).commit()
         }
 
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (ev.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+                    v.clearFocus()
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.windowToken, 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     // Method to switch fragments

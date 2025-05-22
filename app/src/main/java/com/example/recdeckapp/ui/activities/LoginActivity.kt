@@ -1,18 +1,23 @@
 package com.example.recdeckapp.ui.activities
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.recdeckapp.R
 import com.example.recdeckapp.RetrofitClient.LoginRetrofitClient
-import com.example.recdeckapp.dataClass.LoginRequest
-import com.example.recdeckapp.dataClass.LoginResponse
+import com.example.recdeckapp.data.network.LoginRequest
+import com.example.recdeckapp.data.network.LoginResponse
 import com.example.recdeckapp.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setFieldFocusListeners()
 
         // Set click listener using binding
         binding.ivTogglePassword.setOnClickListener {
@@ -118,13 +125,30 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        if (ev.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(ev.rawX.toInt(), ev.rawY.toInt())) {
+                    v.clearFocus()
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.windowToken, 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+
+
     private fun togglePasswordVisibility() {
         if (isPasswordVisible) {
             binding.etLoginPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-            binding.ivTogglePassword.setImageResource(R.drawable.ic_visibility_off)
+            binding.ivTogglePassword.setImageResource(R.drawable.ic_visibility)
         } else {
             binding.etLoginPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
-            binding.ivTogglePassword.setImageResource(R.drawable.ic_visibility)
+            binding.ivTogglePassword.setImageResource(R.drawable.ic_visibility_off)
         }
         isPasswordVisible = !isPasswordVisible
 
@@ -136,6 +160,34 @@ class LoginActivity : AppCompatActivity() {
 
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun setFieldFocusListeners() {
+        binding.etLoginEmail.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.etLoginEmail.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_focused)
+            } else {
+                val email = binding.etLoginEmail.text.toString().trim()
+                if (email.isNotEmpty() && isValidEmail(email)) {
+                    binding.etLoginEmail.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_focused)
+                } else {
+                    binding.etLoginEmail.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text)
+                }
+            }
+        }
+
+        binding.etLoginPassword.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.etLoginPassword.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_focused)
+            } else {
+                val password = binding.etLoginPassword.text.toString().trim()
+                if (password.isNotEmpty() && password.length >= 6) {
+                    binding.etLoginPassword.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_focused)
+                } else {
+                    binding.etLoginPassword.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text)
+                }
+            }
+        }
     }
 
     private fun validateInputs(): Boolean {
@@ -159,6 +211,9 @@ class LoginActivity : AppCompatActivity() {
             binding.tvEmailError.visibility = View.VISIBLE
             binding.etLoginEmail.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_error)
             isValid = false
+        } else {
+            // If valid, set blue background
+            binding.etLoginEmail.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_focused)
         }
 
         if (password.isEmpty()) {
@@ -171,6 +226,9 @@ class LoginActivity : AppCompatActivity() {
             binding.tvPasswordError.visibility = View.VISIBLE
             binding.etLoginPassword.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_error)
             isValid = false
+        } else {
+            // If valid, set blue background
+            binding.etLoginPassword.background = ContextCompat.getDrawable(this, R.drawable.bg_edit_text_focused)
         }
 
         return isValid

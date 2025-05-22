@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    tools:context=".ui.activities.SignupActivity">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivBackArrowSignUp1"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:src="@drawable/ic_back_arrow"
+        android:layout_marginStart="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:padding="@dimen/_3sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:contentDescription="Back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"  />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/_13sdp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUpForm1Continue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_70sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSignUp1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringSignUp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFullNameSignup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringFullNameSignup"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSignUp1" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etFullNameSignUp1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_39sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="@string/stringEnterFullNameHint"
+                android:inputType="text"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
+                android:textSize="@dimen/_11ssp"
+                android:maxLength="40"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFullNameSignup" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEmailAddressSignUp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringEmialAddress"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etFullNameSignUp1" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSignUp1Email"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_39sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="@string/login_username_email_hint"
+                android:inputType="textEmailAddress"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:maxLength="50"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmailAddressSignUp1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPasswordSignUp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringPassword"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSignUp1Email" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutPass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPasswordSignUp1">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSignUp1Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_39sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/stringEnterPassSignUp1"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="@dimen/_11ssp" />
+
+                <ImageView
+                    android:id="@+id/ivTogglePasswordSignUp1"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_4sdp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:src="@drawable/ic_visibility" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvConfirmPasswordSignUp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringConfirmPassword"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutPass" />
+
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSignUp1ConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_39sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="@string/stringConfirmPassSignUp1"
+                android:inputType="textPassword"
+                android:maxLength="20"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmPasswordSignUp1" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLocationSignUp1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringLocationSignUp1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSignUp1ConfirmPassword" />
+
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutCountriesCities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLocationSignUp1">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white_light"
+                    android:hint=""
+                    app:hintEnabled="false"
+                    >
+
+                    <AutoCompleteTextView
+                        android:id="@+id/countryAutoComplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_39sdp"
+                        android:hint="@string/stringCountryHint"
+                        android:textColorHint="@color/light_grey"
+                        android:textColor="@color/black"
+                        android:paddingHorizontal="@dimen/_8sdp"
+                        android:background="@drawable/bg_autocomplete"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:textSize="@dimen/_11ssp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:fontFamily="@font/nunito_regular"
+                        android:focusable="false"
+                        android:clickable="true"
+                        android:inputType="none"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cityAutoTv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:background="@color/white_light"
+                    android:layout_weight="1.5"
+                    android:hint=""
+                    app:hintEnabled="false"
+                    >
+
+                    <AutoCompleteTextView
+                        android:id="@+id/cityAutoComplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_39sdp"
+                        android:hint="@string/stringCityHint"
+                        android:textColorHint="@color/light_grey"
+                        android:textColor="@color/black"
+                        android:background="@drawable/bg_edit_text"
+                        android:drawableEnd="@drawable/ic_arrow_down"
+                        android:paddingHorizontal="@dimen/_8sdp"
+                        android:textSize="@dimen/_11ssp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:fontFamily="@font/nunito_regular"
+
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:inputType="none"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LinearLayoutIam18Years"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LinearLayoutCountriesCities">
+
+                <!-- Tick Icon -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/icTick"
+                    android:src="@drawable/ic_tick_unselected"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    />
+
+                <!-- TextView -->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvIam18Years"
+                    android:text="@string/stringIam18Years"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_10sdp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUpForm1Continue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginTop="@dimen/_51sdp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/primary_main"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringBtnContinue"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11ssp"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

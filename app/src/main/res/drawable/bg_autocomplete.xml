@@ -1,0 +1,3 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Focused state -->    <item android:state_focused="true" android:drawable="@drawable/bg_edit_text_focused"/>
+    <!-- Default (unfocused) state -->    <item android:drawable="@drawable/bg_edit_text"/></selector>

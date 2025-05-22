@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/_13sdp"
+    tools:context=".ui.activities.DashBoardActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_skip_button"
+            android:backgroundTint="@color/white"
+            android:padding="@dimen/_6sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/ic_profile"
+                app:layout_constraintStart_toEndOf="@+id/ivMenu"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/ivNotification"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/ic_notification"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/white"
+        android:paddingVertical="@dimen/_7sdp"
+        android:paddingHorizontal="@dimen/_7sdp"
+        app:layout_constraintEnd_toStartOf="@+id/ivFilter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clActionBar">
+
+        <ImageView
+            android:id="@+id/ivSearch"
+            android:layout_width="@dimen/_19sdp"
+            android:layout_height="@dimen/_19sdp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/queryText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:autofillHints="@null"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:hint="@string/search_events"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivSearch"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/ivFilter"
+        android:layout_width="@dimen/_34sdp"
+        android:layout_height="@dimen/_34sdp"
+        android:src="@drawable/ic_filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clActionBar"
+        app:layout_constraintTop_toTopOf="@+id/clSearch" />
+
+    <TextView
+        android:id="@+id/tvExploreEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/explore_events"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clSearch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_7sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvExploreEvents"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_events" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEventDetails"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/item_event_detail"
+        app:layout_constraintTop_toBottomOf="@id/rvEvents" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCreateEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_23sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/primary_main"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_13sdp"
+        android:paddingVertical="@dimen/_11sdp"
+        android:text="@string/create_event"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

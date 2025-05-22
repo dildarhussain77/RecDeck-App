@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@android:color/white"
+    android:layout_marginBottom="@dimen/_8sdp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivFileIcon"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:src="@drawable/ic_file"
+        android:background="@drawable/rounded_image"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_8sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivTickIcon"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:src="@drawable/ic_tick_green_circle"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/tvFileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stringFileName"
+            android:textSize="@dimen/_9ssp"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textColor="@color/primary_main"/>
+
+        <TextView
+            android:id="@+id/tvFileSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stringFileSize"
+            android:textSize="@dimen/_8ssp"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/light_grey"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/removeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivcloseIcon"
+            android:layout_width="@dimen/_13sdp"
+            android:layout_height="@dimen/_13sdp"
+            android:src="@drawable/ic_close_circle"
+            android:layout_marginEnd="@dimen/_4sdp"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stringRemove"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_9ssp"
+            android:fontFamily="@font/nunito_regular"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

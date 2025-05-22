@@ -1,7 +1,7 @@
 package com.example.recdeckapp.ApiServices
 
-import com.example.recdeckapp.dataClass.LoginRequest
-import com.example.recdeckapp.dataClass.LoginResponse
+import com.example.recdeckapp.data.network.LoginRequest
+import com.example.recdeckapp.data.network.LoginResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

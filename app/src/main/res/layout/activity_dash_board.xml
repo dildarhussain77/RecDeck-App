@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_grey"
+    tools:context=".ui.activities.DashBoardActivity">
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/dashBoardFragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/clBottomSheet"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet"
+
+        android:paddingVertical="@dimen/_13sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <!-- contsraint layout for event fragment -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clEvents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clMyBookings"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivEvents"
+                android:layout_width="@dimen/_19sdp"
+                android:layout_height="@dimen/_19sdp"
+                android:src="@drawable/ic_events"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEvents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:text="@string/events"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivEvents"
+                app:layout_constraintStart_toStartOf="@+id/ivEvents"
+                app:layout_constraintTop_toBottomOf="@+id/ivEvents"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- contsraint layout for my booking fragment -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clMyBookings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/clEvents"
+            app:layout_constraintEnd_toStartOf="@+id/clPitches"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/clEvents"
+            app:layout_constraintTop_toTopOf="@+id/clEvents">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMyBookings"
+                android:layout_width="@dimen/_19sdp"
+                android:layout_height="@dimen/_19sdp"
+                android:src="@drawable/ic_calender_booking"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMyBookings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:text="@string/stringMybookings"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivMyBookings"
+                app:layout_constraintStart_toStartOf="@+id/ivMyBookings"
+                app:layout_constraintTop_toBottomOf="@+id/ivMyBookings"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- contsraint layout for pitches fragment -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clPitches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clChats"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/clMyBookings"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivPitches"
+                android:layout_width="@dimen/_19sdp"
+                android:layout_height="@dimen/_19sdp"
+                android:src="@drawable/ic_pitches"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPitches"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:text="@string/pitches"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivPitches"
+                app:layout_constraintStart_toStartOf="@+id/ivPitches"
+                app:layout_constraintTop_toBottomOf="@+id/ivPitches"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- contsraint layout for chats fragment -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clChats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/clGroups"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/clPitches"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivChats"
+                android:layout_width="@dimen/_19sdp"
+                android:layout_height="@dimen/_19sdp"
+                android:src="@drawable/ic_chat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvChats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:text="@string/chats"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivChats"
+                app:layout_constraintStart_toStartOf="@+id/ivChats"
+                app:layout_constraintTop_toBottomOf="@+id/ivChats"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- contsraint layout for groups fragment -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clGroups"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/clChats"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivGroups"
+                android:layout_width="@dimen/_19sdp"
+                android:layout_height="@dimen/_19sdp"
+                android:src="@drawable/ic_group"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvGroups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:text="@string/groups"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintEnd_toEndOf="@+id/ivGroups"
+                app:layout_constraintStart_toStartOf="@+id/ivGroups"
+                app:layout_constraintTop_toBottomOf="@+id/ivGroups"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

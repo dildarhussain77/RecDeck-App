@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/white_light"
+    android:background="@drawable/rounded_top"
+    android:padding="@dimen/_15sdp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCloseAndBackBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_13sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Close Icon -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Close Icon -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackArrowFilterSheet"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFilterHeading"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:text="@string/stringFilters"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18ssp"
+        app:fontFamily="@font/nunito_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clCloseAndBackBar" />
+
+
+    <!-- Event Category -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEventCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringEventCategory"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFilterHeading" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eventCategoryAutoTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventCategory"
+        android:hint=""
+        app:hintEnabled="false">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteEventCategory"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_39sdp"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="none"
+            android:hint="@string/stringSelect"
+            android:textColorHint="@color/light_grey"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito_regular"
+            android:paddingHorizontal="@dimen/_9sdp"
+            android:textSize="@dimen/_11ssp"
+            android:drawableEnd="@drawable/ic_arrow_down"
+            android:clickable="true"
+            android:focusable="true"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+    <!-- Distance -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringDistance"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventCategoryAutoTv" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/distanceAutoTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDistance"
+        android:hint=""
+        app:hintEnabled="false">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteDistance"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_39sdp"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="none"
+            android:hint="@string/stringSelect"
+            android:textColorHint="@color/light_grey"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito_regular"
+            android:paddingHorizontal="@dimen/_9sdp"
+            android:textSize="@dimen/_11ssp"
+            android:drawableEnd="@drawable/ic_arrow_down"
+            android:clickable="true"
+            android:focusable="true"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- Pitch -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringPitch"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceAutoTv" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PitchAutoTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitch"
+        android:hint=""
+        app:hintEnabled="false">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompletePitch"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_39sdp"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="none"
+            android:hint="@string/stringSelectPitch"
+            android:textColorHint="@color/light_grey"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito_regular"
+            android:paddingHorizontal="@dimen/_9sdp"
+            android:textSize="@dimen/_11ssp"
+            android:drawableEnd="@drawable/ic_arrow_down"
+            android:clickable="true"
+            android:focusable="true"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- Date of Birth -->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDateOfBirthSignUp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringDateOfBirth"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PitchAutoTv" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutDOB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateOfBirthSignUp2">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etDoBSignUp2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_39sdp"
+            android:background="@drawable/bg_edit_text"
+            android:fontFamily="@font/nunito_regular"
+            android:hint="@string/stringSelectDate"
+            android:inputType="none"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/light_grey"
+            android:textSize="@dimen/_11ssp"
+            android:focusable="false"
+            android:cursorVisible="false"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivToggleDoBCalenderSignUp2"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_4sdp"
+            android:src="@drawable/ic_calendar" />
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_36sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayoutDOB">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tvReset"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_34sdp"
+            android:background="@drawable/bg_button_outline"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringReset"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.48" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tvApply"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_34sdp"
+            android:background="@drawable/bg_button_outline"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringApply"
+            android:textAllCaps="false"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintWidth_percent="0.48" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

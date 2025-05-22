@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom DatePicker Theme -->
+    <style name="CustomDatePicker" parent="ThemeOverlay.Material3.MaterialCalendar">
+
+        <!-- Header background and text color -->
+        <item name="colorPrimary">@color/primary_main</item> <!-- Top heading background -->
+        <item name="colorOnPrimary">@color/white_light</item>       <!-- Heading text color -->
+
+        <!-- Selected day text and background color -->
+        <item name="colorSecondaryContainer">@color/primary_main</item> <!-- Selected day background -->
+        <item name="colorOnSecondaryContainer">@color/white_light</item>      <!-- Selected day text -->
+
+        <!-- Day number color -->
+        <item name="colorOnSurfaceVariant">@color/white_light</item> <!-- Day number text color -->
+
+        <!-- Today text color -->
+        <item name="colorPrimaryContainer">@color/primary_main</item> <!-- Today date text color -->
+
+        <!-- Background color -->
+        <item name="android:colorBackground">@color/white_light</item> <!-- Light/White background -->
+    </style>
+
+    <style name="HintTextStyle" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">@dimen/_11ssp</item> <!-- Change the size as needed -->
+        <item name="android:textColorHint">@color/light_grey</item>
+    </style>
+
+
+</resources>

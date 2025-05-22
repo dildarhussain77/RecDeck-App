@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="@dimen/_10sdp"
+    android:paddingHorizontal="@dimen/_10sdp"
+    android:paddingBottom="@dimen/_7sdp"
+    android:background="@drawable/bg_card_border"
+    android:backgroundTint="@color/white_light">
+
+    <TextView
+        android:id="@+id/tvEventDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/stringEventFees"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <TextView
+        android:id="@+id/tvEventPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/sar_2_00_per_head"
+        android:textColor="@color/primary_main"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventDes"
+
+        />
+
+    <TextView
+        android:id="@+id/tvEventDateLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/date_time"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventPrice" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEventDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:drawableStart="@drawable/ic_notebook"
+        android:drawablePadding="@dimen/_6sdp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="@string/stringDateFormat"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventDateLabel" />
+
+
+    <TextView
+        android:id="@+id/tvEventHost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/hosted_by"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventDate" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivHostImage"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:src="@drawable/hockey"
+        android:backgroundTint="@color/primary_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventHost" />
+
+    <TextView
+        android:id="@+id/tvEventHostName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/john_deo"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHostImage"
+        app:layout_constraintStart_toEndOf="@+id/ivHostImage"
+        app:layout_constraintTop_toTopOf="@+id/ivHostImage" />
+
+    <TextView
+        android:id="@+id/tvAttendees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/attendees"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/ivHostImage" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAttendees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAttendees">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAttendeeOne"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:src="@drawable/cricket"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAttendeeTwo"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:src="@drawable/swimming_pool"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivAttendeeOne"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAttendeeThree"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:src="@drawable/horse_ride"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivAttendeeTwo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivAttendeeFour"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:src="@drawable/basket_ball"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivAttendeeThree"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAttendeesStrength"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:background="@drawable/bg_skip_button"
+            android:backgroundTint="@color/bg_grey"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="@string/_22_attendees"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivAttendeeFour"
+            app:layout_constraintTop_toTopOf="parent"
+
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/tvEventFeeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/total_event_fee"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/clAttendees" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTotalFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/sar_10_000"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEventFeeLabel"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTotalPerPersonFee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/sar_2_00_per_head"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/tvTotalFee"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalFee"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalFee"
+
+        />
+
+
+
+    <TextView
+        android:id="@+id/tvAttendeesLimitLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/attendees_limit"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalFee" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAttendeesLimit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/_10_members_only"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAttendeesLimitLabel"
+        />
+
+
+    <TextView
+        android:id="@+id/tvEventCancelLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/event_cancelation_fee"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAttendeesLimit" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCancelDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/_10"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEventCancelLabel"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCancelTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/fed_blue"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/_1_hours_before_event"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@+id/tvCancelDiscount"
+        app:layout_constraintTop_toTopOf="@+id/tvCancelDiscount"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCancelDiscount"
+        />
+
+
+    <TextView
+        android:id="@+id/tvEventTypeLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/stringEventType"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvCancelDiscount" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEventType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/one_time"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEventTypeLabel"
+        />
+
+
+    <TextView
+        android:id="@+id/tvEventLocationLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/stringLocationSignUp1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventType" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEventLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="@dimen/_5sdp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/location_name"
+        android:textColor="@color/primary_main"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventLocationLabel" />
+
+    <TextView
+        android:id="@+id/tvGroupDetailLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/group_details"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvEventLocation" />
+
+
+    <TextView
+        android:id="@+id/tvGroupTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/group_title_here"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGroupDetailLabel" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clGroupMembers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGroupTitle">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivMemberOne"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:src="@drawable/football"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivMemberTwo"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:src="@drawable/swimming_pool"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivMemberOne"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivMemberThree"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:src="@drawable/table_tennis"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivMemberTwo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivMemberFour"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:src="@drawable/horse_ride"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivMemberThree"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMembersStrength"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_minus10sdp"
+            android:background="@drawable/bg_skip_button"
+            android:backgroundTint="@color/bg_grey"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="@string/_22_attendees"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivMemberFour"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

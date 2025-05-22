@@ -1,38 +1,39 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardViewIntrests"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:background="@drawable/bg_card_border"
     android:layout_margin="@dimen/_4sdp"
     app:cardCornerRadius="@dimen/_16sdp"
-    android:clickable="true">
+    app:cardElevation="@dimen/_1sdp"
+    app:cardBackgroundColor="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/white_light"
-        >
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/imageViewIntrests"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_90sdp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/india"/>
+            android:src="@drawable/hockey"
+            android:contentDescription="Interest icon"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/titleTextIntrests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/_6sdp"
+            android:textSize="@dimen/_11ssp"
             android:gravity="center"
             android:fontFamily="@font/nunito_bold"
-            android:text="Title"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_11sdp"/>
+            android:textColor="@color/black"/>
+
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

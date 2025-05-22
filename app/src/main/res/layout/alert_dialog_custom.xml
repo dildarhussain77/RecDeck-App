@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_16sdp"
+    android:background="@drawable/dialog_background">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivCross"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cross_black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_alert"
+        android:layout_marginTop="@dimen/_9sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAlerDialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stringAlert"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:textSize="@dimen/_17ssp"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/primary_main"
+        app:layout_constraintTop_toBottomOf="@+id/ivAlert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvAlerDialogMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stringAlertMessage"
+        android:textSize="@dimen/_13ssp"
+        android:fontFamily="@font/nunito_regular"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogMessage"
+        >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tvNo"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_34sdp"
+            app:layout_constraintWidth_percent="0.48"
+            android:text="@string/stringNo"
+            android:textAllCaps="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/bg_button_outline"
+            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tvYes"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_34sdp"
+            app:layout_constraintWidth_percent="0.48"
+            android:text="@string/stringYes"
+            android:textAllCaps="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/bg_button_outline"
+            android:textSize="@dimen/_13ssp"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
