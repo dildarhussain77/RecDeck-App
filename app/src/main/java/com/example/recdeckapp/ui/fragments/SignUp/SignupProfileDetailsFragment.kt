@@ -1,39 +1,30 @@
 package com.example.recdeckapp.ui.fragments.SignUp
 
-import android.Manifest
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore
-import android.provider.Settings
-import android.text.Editable
-import android.text.TextWatcher
+import android.text.InputType
+import android.util.Log
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
+import android.widget.AutoCompleteTextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import com.example.recdeckapp.R
-import com.example.recdeckapp.data.UserRole
-import com.example.recdeckapp.databinding.BottomSheetFileUploadBinding
-import com.example.recdeckapp.databinding.DialogPermissionBinding
+import com.example.recdeckapp.ui.activities.BaseActivity
+import com.example.recdeckapp.data.userRole.UserRole
 import com.example.recdeckapp.databinding.FragmentSignupProfileDetailsBinding
 import com.example.recdeckapp.ui.activities.SignupActivity
-import com.example.recdeckapp.viewmodel.SignupViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.example.recdeckapp.ui.fragments.baseFragment.BaseMediaFragment
+import com.example.recdeckapp.utils.BackPressHelper
+import com.example.recdeckapp.utils.DropdownUtils
+import com.example.recdeckapp.utils.MediaPickerUtils
+import com.example.recdeckapp.utils.TextFieldDescUtils
+import com.example.recdeckapp.utils.switchFragment
+import com.example.recdeckapp.viewmodel.SignupDataViewModel
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -41,28 +32,19 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_details) {
+class SignupProfileDetailsFragment : BaseMediaFragment() {
 
     // Declare binding object
     private var _binding: FragmentSignupProfileDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val CAMERA_REQUEST_CODE = 100
-    private val GALLERY_REQUEST_CODE = 101
-
-    // Flags to check form completion
-    private var isImageSelected = false
     private var isDateSelected = false
     private var isGenderSelected = false
-
     private var isDatePickerShowing = false
-
     private var isDescValid = false
 
-    private var selectedRole: UserRole? = null
-    private lateinit var signupViewModel: SignupViewModel
-
-
+    private lateinit var signupDataViewModel: SignupDataViewModel
+    private var imageUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -77,55 +59,38 @@ class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_d
         _binding = FragmentSignupProfileDetailsBinding.bind(view)
 
         // Access the ViewModel from the Activity scope
-        signupViewModel = (activity as SignupActivity).signupViewModel
+        signupDataViewModel = (activity as SignupActivity).signupDataViewModel
 
-        signupViewModel.selectedRole.observe(viewLifecycleOwner) { role ->
-            selectedRole = role
-            when (role) {
-                UserRole.ORGANIZER -> {
-                    showOrganizerFields()
-                    hideFacilityFields()
-                }
-                UserRole.FACILITY -> {
-                    showFacilityFields()
-                    hideOrganizerFields()
-                }
-                else -> {
-                    // Optional: Hide both if no role selected
-                }
-            }
-            checkFormCompletion() // <-- Trigger validation after role change
-        }
-
-        binding.etDescSignUp2.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                isDescValid = !s.isNullOrBlank()
-                checkFormCompletion()
+        val role = signupDataViewModel.selectedRole
+        when(role){
+            UserRole.ORGANIZER -> {
+                showOrganizerFields()
+                hideFacilityFields()
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-
-        // Initially disable the continue button
-        binding.btnSignUpForm2Continue.isEnabled = false
-        binding.btnSignUpForm2Continue.alpha = 0.5f
-
-
-        binding.ivBackArrowSignUp2.bringToFront()
-        binding.ivBackArrowSignUp2.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            UserRole.FACILITY->{
+                showFacilityFields()
+                hideOrganizerFields()
+            }
+            else -> {
+            }
         }
+
+        BackPressHelper.handleBackPress(this, binding.ivBackArrowSignUp2)
+        binding.etDoBSignUp2.showSoftInputOnFocus = false
+        checkFormCompletion()
+        setFieldFocusListeners()
+        setupGenderDropdown()
+        setupDescCharCount()
+        setOnClickListener()
+    }
+
+    private fun setOnClickListener(){
 
         // Open Bottom Dialog on Camera Icon Click
         binding.cameraIconSignUp2.setOnClickListener {
-            showBottomSheetDialog()
+            showMediaPickerBottomSheet(showFilePicker = false) // Only show camera and gallery
         }
-
-
-        setFieldFocusListeners()
-        setupGenderDropdown()
-        setupDescCharacterCounter()
 
         binding.etDoBSignUp2.setOnClickListener {
             if (!isDatePickerShowing) {
@@ -139,10 +104,47 @@ class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_d
             }
         }
 
-        // Submit the form using binding
+        binding.autoCompleteGender.setOnClickListener {
+            // Manually show the dropdown when clicked
+            binding.autoCompleteGender.showDropDown()
+        }
+
+        // Initially disable the continue button
+        binding.btnSignUpForm2Continue.isEnabled = false
+        binding.btnSignUpForm2Continue.alpha = 0.5f
         binding.btnSignUpForm2Continue.setOnClickListener {
-            (activity as SignupActivity).switchFragment(SignupInterestSelectionFragment())
-            //requireActivity().finish()  // Close activity after submission
+
+            val role = signupDataViewModel.selectedRole
+            when(role){
+                UserRole.ORGANIZER ->{
+
+                    signupDataViewModel.dob = binding.etDoBSignUp2.text.toString()
+                    signupDataViewModel.gender = binding.autoCompleteGender.text.toString()
+                    signupDataViewModel.profilePicPath = imageUri.toString()
+                    Log.e("SignupProfile", "continueButtonHandling: 145 dob=${signupDataViewModel.dob}, gender= ${signupDataViewModel.gender}, imageUrl = ${signupDataViewModel.profilePicPath}" )
+                }
+                UserRole.FACILITY ->{
+                    signupDataViewModel.description = binding.etDescSignUp2.text.toString()
+                    signupDataViewModel.profilePicPath = imageUri.toString()
+                    Log.e("SignupProfile", "continueButtonHandling: 145 desc = ${signupDataViewModel.description}, imageUrl = ${signupDataViewModel.profilePicPath}" )
+
+                }
+                else -> {
+
+                }
+            }
+            (activity as FragmentActivity).switchFragment(R.id.signupFragmentContainer, SignupInterestSelectionFragment())
+        }
+    }
+
+    private fun setupDescCharCount(){
+        TextFieldDescUtils.setupDescWatcher(
+            binding.etDescSignUp2,
+            binding.tvDescCharCount,
+            maxLength = 600
+        ) { isValid ->
+            isDescValid = isValid
+            checkFormCompletion()
         }
     }
 
@@ -199,75 +201,108 @@ class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_d
 
     private fun setupGenderDropdown() {
         // Gender options
-        val genderOptions = listOf("Male", "Female")
+        DropdownUtils.setupDropdown(
+            context = requireContext(),
+            anchorView = binding.autoCompleteGender,
+            items = listOf("Male", "Female"),
+            itemLayoutRes = R.layout.gender_dropdown,
+            textViewId = R.id.genderNameTextView,
+            dropdownBgColorRes = R.color.white_light
+        ) { selected ->
+            isGenderSelected = selected.isNotEmpty()
+            checkFormCompletion()
+            // Clear focus after selection
+            binding.autoCompleteGender.clearFocus()
+        }
+        // Prevent keyboard from showing
+        binding.autoCompleteGender.inputType = InputType.TYPE_NULL
 
-        // Custom ArrayAdapter for the gender dropdown
-        val adapter = object : ArrayAdapter<String>(
-            requireContext(),
-            R.layout.gender_dropdown,  // Your custom layout for gender items
-            R.id.genderNameTextView,   // TextView ID from the custom layout
-            genderOptions
-        ) {
-            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = convertView ?: LayoutInflater.from(context)
-                    .inflate(R.layout.gender_dropdown, parent, false)
+        // Add focus and click listeners here
+        binding.autoCompleteGender.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                if (view.id == R.id.autoCompleteGender) {
+                    (view as? AutoCompleteTextView)?.showDropDown()
+                }
 
-                // Get the gender from the adapter
-                val gender = getItem(position) ?: return view
-                // Set the gender name to the TextView in the custom layout
-                view.findViewById<TextView>(R.id.genderNameTextView).text = gender
-
-                return view
-            }
-
-            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-                return getView(position, convertView, parent)
+                view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
+            } else {
+                validateFieldOnFocusLost(view)
             }
         }
 
-        // Set up the gender AutoCompleteTextView with the custom adapter
-        binding.autoCompleteGender.apply {
-            setAdapter(adapter)
-            setDropDownBackgroundResource(R.color.white_light)  // Custom dropdown background
+    }
 
-            // Show dropdown when focused or clicked
-            setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus) showDropDown()
+    private fun setFieldFocusListeners() {
+        val fields = listOf(
+            binding.autoCompleteGender,
+            binding.etDoBSignUp2,
+            binding.etDescSignUp2
+        )
+
+        for (field in fields) {
+            field.setOnFocusChangeListener { view, hasFocus ->
+                if (hasFocus) {
+                    // When field gains focus, set to focused background
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
+                    Log.d("FocusDebug", "Gender field focus changed: $hasFocus")
+
+
+                    if (view.id == R.id.etDoBSignUp2) {
+                        showDatePicker()
+                    }
+
+                } else {
+                    // When field loses focus, validate and set appropriate background
+                    validateFieldOnFocusLost(view)
+
+                }
             }
-            // Show all options when clicked
-            setOnClickListener {
-                (adapter as ArrayAdapter<*>).filter.filter(null) // Clear any filter
-                showDropDown()
-            }
-            // Handle item selection
-            setOnItemClickListener { parent, view, position, id ->
-                val selectedGender = parent.getItemAtPosition(position).toString()
-                isGenderSelected = true
-                checkFormCompletion()
-                Toast.makeText(requireContext(), "Selected: $selectedGender", Toast.LENGTH_SHORT).show()
-            }
+
         }
     }
 
+    private fun validateFieldOnFocusLost(view: View) {
+        when (view.id) {
 
-
-    private fun setFieldFocusListeners() {
-        val fields = listOf(binding.autoCompleteGender, binding.etDoBSignUp2)
-        for (field in fields) {
-            field.setOnFocusChangeListener { _, hasFocus ->
-                val text = field.text.toString().trim()
-                val background =
-                    if (hasFocus || text.isNotEmpty()) R.drawable.bg_edit_text_focused else R.drawable.bg_edit_text
-                field.background = ContextCompat.getDrawable(requireContext(), background)
+            R.id.etDoBSignUp2 -> {
+                val password = binding.etDoBSignUp2.text.toString().trim()
+                if (password.isEmpty()) {
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
+                    (activity as? BaseActivity)?.showToast("Please pick Date of Birth")
+                } else {
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
+                }
             }
+
+            R.id.autoCompleteGender -> {
+                val text = binding.autoCompleteGender.text.toString().trim()
+                if (text.isEmpty()) {
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
+                    (activity as? BaseActivity)?.showToast("Please select a gender")
+                } else {
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
+                }
+            }
+
+            R.id.etDescSignUp2 -> {
+                val password = binding.etDescSignUp2.text.toString().trim()
+                if (password.isEmpty()) {
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
+                    (activity as? BaseActivity)?.showToast("Please Enter Description")
+                } else {
+                    view.background = ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
+                }
+            }
+
         }
     }
 
     // Method to check if all fields are completed
     private fun checkFormCompletion() {
-        when (selectedRole) {
+        val role = signupDataViewModel.selectedRole
+        when (role) {
             UserRole.ORGANIZER -> {
-                if (isImageSelected && isDateSelected && isGenderSelected) {
+                if (isDateSelected && isGenderSelected) {
                     binding.btnSignUpForm2Continue.isEnabled = true
                     binding.btnSignUpForm2Continue.alpha = 1.0f
                 } else {
@@ -275,8 +310,9 @@ class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_d
                     binding.btnSignUpForm2Continue.alpha = 0.5f
                 }
             }
+
             UserRole.FACILITY -> {
-                if (isImageSelected && isDescValid) {
+                if (isDescValid) {
                     binding.btnSignUpForm2Continue.isEnabled = true
                     binding.btnSignUpForm2Continue.alpha = 1.0f
                 } else {
@@ -284,6 +320,7 @@ class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_d
                     binding.btnSignUpForm2Continue.alpha = 0.5f
                 }
             }
+
             else -> {
                 binding.btnSignUpForm2Continue.isEnabled = false
                 binding.btnSignUpForm2Continue.alpha = 0.5f
@@ -291,183 +328,33 @@ class SignupProfileDetailsFragment : Fragment(R.layout.fragment_signup_profile_d
         }
     }
 
-
-    private fun showBottomSheetDialog() {
-        val bottomSheetDialog = BottomSheetDialog(requireContext())
-        val bottomSheetBinding = BottomSheetFileUploadBinding.inflate(LayoutInflater.from(context))
-
-        // Close the BottomSheet when the close icon is clicked
-        bottomSheetBinding.ivClose.setOnClickListener {
-            bottomSheetDialog.dismiss()
-        }
-
-        bottomSheetBinding.imgCameraBottomDialog.setOnClickListener {
-            checkCameraPermission()
-            bottomSheetDialog.dismiss()
-        }
-
-        bottomSheetBinding.imgGalleryBottomDialog.setOnClickListener {
-            openGallery()
-            bottomSheetDialog.dismiss()
-        }
-
-        bottomSheetDialog.setContentView(bottomSheetBinding.root)
-        bottomSheetDialog.show()
-    }
-
-    private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            openCamera()
-        } else if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.CAMERA)) {
-            // Show a dialog explaining why the permission is needed
-            showPermissionRationaleDialog()
-        } else {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE
-            )
-        }
-    }
-
-    private fun showPermissionRationaleDialog() {
-        val dialogBinding = DialogPermissionBinding.inflate(layoutInflater)
-
-        val alertDialog = AlertDialog.Builder(requireContext())
-            .setView(dialogBinding.root)
-            .create()
-
-        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        dialogBinding.tvMessage.text = "Camera permission is required. Please enable it from settings."
-        dialogBinding.tvGoToSetting.text = "Go to Settings"
-        dialogBinding.tvCancel.text = "Cancel"
-
-        dialogBinding.tvGoToSetting.setOnClickListener {
-            // Open app settings to enable permission manually
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            val uri = Uri.fromParts("package", requireContext().packageName, null)
-            intent.data = uri
-            startActivity(intent)
-            alertDialog.dismiss()
-        }
-
-        dialogBinding.tvCancel.setOnClickListener {
-            alertDialog.dismiss()
-        }
-
-        alertDialog.show()
-    }
-
-    private fun openCamera() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
-    }
-
-//    private fun checkGalleryPermission() {
-//        if (ContextCompat.checkSelfPermission(
-//                requireContext(),
-//                Manifest.permission.READ_EXTERNAL_STORAGE
-//            ) == PackageManager.PERMISSION_GRANTED
-//        ) {
-//            openGallery()
-//        }
-//        else {
-//            ActivityCompat.requestPermissions(
-//                requireActivity(),
-//                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-//                GALLERY_REQUEST_CODE
-//            )
-//        }
-//    }
-
-
-    private fun openGallery() {
-        val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE)
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK && data != null) {
-            when (requestCode) {
-                CAMERA_REQUEST_CODE -> {
-                    val imageBitmap = data?.extras?.get("data") as? android.graphics.Bitmap
-                    binding.profilePictureSignUp2.setImageBitmap(imageBitmap)
-                    isImageSelected = true
-                    checkFormCompletion()
-                    Toast.makeText(requireContext(), "Image Captured!", Toast.LENGTH_SHORT).show()
-                }
-
-
-                GALLERY_REQUEST_CODE -> {
-                    val imageUri: Uri? = data?.data
-                    binding.profilePictureSignUp2.setImageURI(imageUri)
-                    isImageSelected = true
-                    checkFormCompletion()
-                    Toast.makeText(requireContext(), "Image Selected!", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_REQUEST_CODE) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                openCamera()
-            } else {
-                Toast.makeText(requireContext(), "Camera Permission Denied", Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
-//        if (requestCode == GALLERY_REQUEST_CODE) {
-//            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-//                openGallery()
-//            } else {
-//                Toast.makeText(requireContext(), "Camera Permission Denied", Toast.LENGTH_SHORT)
-//                    .show()
-//            }
-//        }
-    }
-
-    // Add this new method to your fragment
-    private fun setupDescCharacterCounter() {
-        binding.etDescSignUp2.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                val currentLength = s?.length ?: 0
-                binding.tvDescCharCount.text = "$currentLength/600"
-
-                // Optional: Update validation state if you need bio to be validated
-                isDescValid = currentLength in 1..600 // Or whatever your validation rules are
+        MediaPickerUtils.handleActivityResult(
+            requestCode,
+            resultCode,
+            data,
+            requireContext(),
+            onImageSelected = { uri ->
+                // Handle image selection
+                imageUri = uri
+                binding.profilePictureSignUp2.setImageURI(uri)
                 checkFormCompletion()
+            },
+            onFileSelected = { uri ->
+                // Not needed in this fragment
             }
-        })
+        )
     }
-
 
     override fun onResume() {
         super.onResume()
-        // Refresh or update any necessary data when fragment resumes
-        checkFormCompletion()
-
-        // Optionally, update any UI elements that may have changed
-        if (isImageSelected) {
-            binding.profilePictureSignUp2.visibility = View.VISIBLE
-        }
-        if (isDateSelected) {
-            binding.etDoBSignUp2.alpha = 1.0f
-        }
-        if (isGenderSelected) {
-            binding.autoCompleteGender.alpha = 1.0f
+        // Check if image is already selected and show it again
+        if (imageUri != null) {
+            binding.profilePictureSignUp2.setImageURI(imageUri) // update with your imageView id
+            checkFormCompletion()
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

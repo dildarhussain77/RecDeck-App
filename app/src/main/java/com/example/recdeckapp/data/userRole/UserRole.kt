@@ -1,7 +1,6 @@
-package com.example.recdeckapp.data
+package com.example.recdeckapp.data.userRole
 
 enum class UserRole {
-    NONE,
     ORGANIZER,
     FACILITY
 }

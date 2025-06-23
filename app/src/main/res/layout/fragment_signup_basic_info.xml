@@ -8,7 +8,6 @@
     android:background="@color/white_light"
     tools:context=".ui.activities.SignupActivity">
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivBackArrowSignUp1"
         android:layout_width="@dimen/_34sdp"
@@ -17,10 +16,6 @@
         android:layout_marginStart="@dimen/_13sdp"
         android:layout_marginTop="@dimen/_22sdp"
         android:padding="@dimen/_3sdp"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:contentDescription="Back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"  />
 
@@ -36,7 +31,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_70sdp">
+            android:layout_marginTop="@dimen/_70sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSignUp1"
@@ -73,12 +72,13 @@
                 android:background="@drawable/bg_edit_text"
                 android:fontFamily="@font/nunito_regular"
                 android:hint="@string/stringEnterFullNameHint"
-                android:inputType="text"
+                android:inputType="textCapWords"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/_11ssp"
-                android:maxLength="40"
+                android:maxLength="50"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFullNameSignup" />
@@ -125,7 +125,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etSignUp1Email" />
 
-            <RelativeLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/relativeLayoutPass"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -148,9 +148,13 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
-                    android:textSize="@dimen/_11ssp" />
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivTogglePasswordSignUp1"
                     android:layout_width="@dimen/_24sdp"
                     android:layout_height="@dimen/_24sdp"
@@ -160,8 +164,12 @@
                     android:padding="@dimen/_4sdp"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:src="@drawable/ic_visibility" />
-            </RelativeLayout>
+                    android:src="@drawable/ic_visibility"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvConfirmPasswordSignUp1"
@@ -175,25 +183,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutPass" />
 
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/etSignUp1ConfirmPassword"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_39sdp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/relativeLayoutConfirmPass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_6sdp"
-                android:background="@drawable/bg_edit_text"
-                android:fontFamily="@font/nunito_regular"
-                android:hint="@string/stringConfirmPassSignUp1"
-                android:inputType="textPassword"
-                android:maxLength="20"
-                android:paddingHorizontal="@dimen/_10sdp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/light_grey"
-                android:textSize="@dimen/_11ssp"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvConfirmPasswordSignUp1" />
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmPasswordSignUp1">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etSignUp1ConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_39sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/nunito_regular"
+                    android:hint="@string/stringConfirmPassSignUp1"
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/light_grey"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivToggleConfirmPasswordSignUp"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_4sdp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:src="@drawable/ic_visibility"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLocationSignUp1"
@@ -205,7 +238,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etSignUp1ConfirmPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutConfirmPass"/>
 
 
             <LinearLayout
@@ -241,8 +274,6 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:fontFamily="@font/nunito_regular"
-                        android:focusable="false"
-                        android:clickable="true"
                         android:inputType="none"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -272,11 +303,9 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:fontFamily="@font/nunito_regular"
-
-                        android:clickable="true"
-                        android:focusable="false"
                         android:inputType="none"
                         />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -285,12 +314,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/LinearLayoutIam18Years"
-                android:layout_width="match_parent"
+                android:id="@+id/llTick"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/LinearLayoutCountriesCities">
 

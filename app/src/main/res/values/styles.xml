@@ -5,20 +5,23 @@
 
         <!-- Header background and text color -->
         <item name="colorPrimary">@color/primary_main</item> <!-- Top heading background -->
-        <item name="colorOnPrimary">@color/white_light</item>       <!-- Heading text color -->
+        <item name="colorOnPrimary">@color/black</item>       <!-- Heading text color -->
 
         <!-- Selected day text and background color -->
-        <item name="colorSecondaryContainer">@color/primary_main</item> <!-- Selected day background -->
-        <item name="colorOnSecondaryContainer">@color/white_light</item>      <!-- Selected day text -->
+        <item name="colorSecondaryContainer">@color/primary_main
+        </item> <!-- Selected day background -->
+        <item name="colorOnSecondaryContainer">@color/white_light
+        </item>      <!-- Selected day text -->
 
         <!-- Day number color -->
-        <item name="colorOnSurfaceVariant">@color/white_light</item> <!-- Day number text color -->
+        <item name="colorOnSurfaceVariant">@color/black</item> <!-- Day number text color -->
 
         <!-- Today text color -->
         <item name="colorPrimaryContainer">@color/primary_main</item> <!-- Today date text color -->
 
         <!-- Background color -->
-        <item name="android:colorBackground">@color/white_light</item> <!-- Light/White background -->
+        <item name="android:colorBackground">@color/white_light
+        </item> <!-- Light/White background -->
     </style>
 
     <style name="HintTextStyle" parent="TextAppearance.AppCompat.Body1">
@@ -27,4 +30,41 @@
     </style>
 
 
+    <!-- Add these styles to your styles.xml -->
+    <style name="MyCalendarViewStyle" parent="@android:style/Widget.CalendarView">
+        <item name="android:showWeekNumber">false</item>
+        <item name="android:firstDayOfWeek">2</item> <!-- Monday -->
+        <item name="android:focusedMonthDateColor">@color/black</item>
+        <item name="android:unfocusedMonthDateColor">#888888</item>
+        <item name="android:selectedWeekBackgroundColor">@color/primary_main</item>
+        <item name="android:weekSeparatorLineColor">#E0E0E0</item>
+        <item name="android:weekDayTextAppearance">@style/CalendarWeekDayText</item>
+        <item name="android:dateTextAppearance">@style/CalendarDateText</item>
+    </style>
+
+    <style name="CalendarWeekDayText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CalendarDateText" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Add these colors to your colors.xml if missing -->
+    <color name="calendar_unfocused">#888888</color>
+    <color name="calendar_selected_bg">#E3F2FD</color>
+    <color name="calendar_divider">#E0E0E0</color>
+
+    <!--timer-->
+    <style name="CustomDatePickerDialog" parent="@style/ThemeOverlay.MaterialComponents.Dialog">
+        <item name="colorSecondary">@color/primary_main</item>
+        <item name="colorPrimary">@color/black</item> <!-- button text color -->
+    </style>
+
+
 </resources>
+
+

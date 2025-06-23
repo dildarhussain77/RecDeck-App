@@ -16,7 +16,6 @@
         android:layout_height="match_parent"
         android:layout_margin="@dimen/_10sdp">
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cvEventImage"
             android:layout_width="match_parent"
@@ -45,11 +44,14 @@
             app:cardCornerRadius="@dimen/_20sdp"
             android:layout_margin="@dimen/_8sdp"
             app:cardElevation="0dp"
+            android:clickable="true"
+            android:focusable="true"
             android:backgroundTint="@color/white_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icSaveEvent"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
                 android:paddingTop="@dimen/_2sdp"
@@ -96,6 +98,21 @@
             app:layout_constraintStart_toEndOf="@+id/ivEventDate"
             app:layout_constraintTop_toBottomOf="@+id/tvEventName"
             tools:text="12 Friday, 2023, 11:30PM - 12:00PM" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEventStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:drawableStart="@drawable/ic_close_circle"
+            android:drawablePadding="@dimen/_5sdp"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEventDate"
+            app:layout_constraintEnd_toEndOf="parent"
+
+
+            tools:text="EventCancel"/>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clAttendees"
@@ -165,6 +182,7 @@
             android:layout_marginHorizontal="@dimen/_5sdp"
             app:layout_constraintStart_toEndOf="@id/clAttendees"
             />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"

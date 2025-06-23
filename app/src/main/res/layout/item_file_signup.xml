@@ -1,19 +1,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
+    android:layout_marginBottom="@dimen/_8sdp"
     android:background="@android:color/white"
-    android:layout_marginBottom="@dimen/_8sdp">
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivFileIcon"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvFileIcon"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:src="@drawable/ic_file"
-        android:background="@drawable/rounded_image"
-        android:scaleType="centerCrop"
-        />
+        app:cardCornerRadius="@dimen/_11sdp"
+        app:cardElevation="0dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivFileIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_image"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_file" />
+
+    </androidx.cardview.widget.CardView>
+
 
     <LinearLayout
         android:layout_width="0dp"
@@ -26,26 +36,32 @@
             android:id="@+id/ivTickIcon"
             android:layout_width="@dimen/_13sdp"
             android:layout_height="@dimen/_13sdp"
-            android:src="@drawable/ic_tick_green_circle"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_tick_green_circle" />
 
         <TextView
             android:id="@+id/tvFileName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stringFileName"
-            android:textSize="@dimen/_9ssp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:fontFamily="@font/nunito_semi_bold"
-            android:textColor="@color/primary_main"/>
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="@string/stringFileName"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_9ssp" />
 
         <TextView
             android:id="@+id/tvFileSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stringFileSize"
-            android:textSize="@dimen/_8ssp"
             android:fontFamily="@font/nunito_regular"
-            android:textColor="@color/light_grey"/>
+            android:text="@string/stringFileSize"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/_8ssp" />
     </LinearLayout>
 
     <LinearLayout
@@ -54,21 +70,37 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivcloseIcon"
-            android:layout_width="@dimen/_13sdp"
-            android:layout_height="@dimen/_13sdp"
-            android:src="@drawable/ic_close_circle"
-            android:layout_marginEnd="@dimen/_4sdp"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_close_circle"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/nunito_regular"
+            android:padding="@dimen/_5sdp"
             android:text="@string/stringRemove"
             android:textColor="@color/red"
-            android:textSize="@dimen/_9ssp"
-            android:fontFamily="@font/nunito_regular"/>
+            android:textSize="@dimen/_9ssp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvchangeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/bg_button_blue_outline"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:text="@string/string_change"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone"
+
+            />
 
     </LinearLayout>
 

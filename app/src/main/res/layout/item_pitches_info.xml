@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/groupInfoContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_13sdp"
+    android:layout_marginBottom="@dimen/_9sdp"
+    android:background="@drawable/group_info_bg"
+    android:backgroundTint="@color/white_light"
+    android:foreground="@drawable/bg_card_border"
+    android:padding="@dimen/_6sdp">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvPitchesImage"
+        android:layout_width="@dimen/_95sdp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="@dimen/_13sdp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPitchesImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAvailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_skip_button"
+            android:backgroundTint="@color/white_light"
+            android:drawableStart="@drawable/ic_dot_circle"
+            android:drawablePadding="@dimen/_4sdp"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_13sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="@string/stringAvailable"
+            android:textColor="@color/green"
+            android:textSize="@dimen/_9sdp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNotAvailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_skip_button"
+            android:backgroundTint="@color/white_light"
+            android:drawableStart="@drawable/ic_dot_circle"
+            android:drawablePadding="@dimen/_4sdp"
+            android:drawableTint="@color/red"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_13sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="@string/stringNotAvailable"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cvPitchesImage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPitchesName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/stringPitchesName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPitchesPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/stringPitchesPrice"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPitchesName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPitchesLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="@dimen/_4sdp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:fontFamily="@font/nunito_regular"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:text="@string/stringPitchesLocation"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPitchesPrice" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPitchesTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringPitchTiming"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPitchesLocation" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPitchesTimeShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringPitchTiming"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPitchesTime" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnViewDetails"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_button_outline"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringViewDetails"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPitchesTimeShow" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_button_outline"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/nunito_regular"
+            android:text="@string/string_delete_pitch"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnViewDetails"
+            app:layout_constraintTop_toBottomOf="@+id/tvPitchesTimeShow" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

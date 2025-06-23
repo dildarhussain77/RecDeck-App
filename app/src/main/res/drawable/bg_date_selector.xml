@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true" android:state_enabled="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/primary_main" />
+        </shape>
+    </item>
+    <item android:state_enabled="true">
+        <ripple android:color="@color/primary_main">
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@android:color/transparent" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

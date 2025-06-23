@@ -18,7 +18,6 @@ class EventsViewModel : ViewModel() {
     val selectedEventType: LiveData<EventType> = _selectedEventType
 
     private val _events = MutableLiveData<List<EventCategory>>()
-    val events: LiveData<List<EventCategory>> = _events
 
     private val _selectedEvents = MediatorLiveData<List<Event>>()
     val selectedEvents: LiveData<List<Event>> = _selectedEvents
@@ -53,7 +52,7 @@ class EventsViewModel : ViewModel() {
 
         fun dummyEventList(type: EventType) = List(5) {
             Event(
-                imageResId = R.drawable.golf,
+                imageResId = R.drawable.img_football,
                 //name = "${type.displayName} Event ${it + 1}",
                 name = "Lorem ipsum dolor sit amet consectetur",
 

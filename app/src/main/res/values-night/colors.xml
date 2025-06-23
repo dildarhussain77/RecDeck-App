@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode colors -->
+    <color name="black">#FF000000</color>
+    <color name="calendar_other_month">#666666</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_light">#FFFFFF</color>
+    <color name="primary_main">#0067B8</color>
+</resources>

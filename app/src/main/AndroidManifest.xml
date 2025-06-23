@@ -9,15 +9,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- For Android 9 and below -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- For Android 11 and above -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
         android:allowBackup="true"
-
-
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -28,20 +25,38 @@
         android:theme="@style/Theme.RecDeckApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.EventDetailActivity"
+            android:name=".ui.activities.PitchCreationActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.activities.ProfileActivity"
             android:exported="true" />
         <activity
+            android:name=".ui.activities.EventCreationActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.activities.GroupCreationActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.activities.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.EventDetailActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".ui.activities.DashBoardActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".ui.activities.OtpActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.SignupActivity"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity
             android:name=".ui.activities.LoginActivity"
             android:exported="true"
@@ -49,7 +64,6 @@
         <activity
             android:name=".ui.activities.IntroActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.activities.SplashScreenActivity"
             android:exported="true">
@@ -58,7 +72,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ui.activities.MainActivity"

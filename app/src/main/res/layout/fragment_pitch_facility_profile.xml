@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_light"
+    android:paddingTop="@dimen/_8sdp"
+    tools:context=".ui.fragments.createPitches.PitchFacilityProfileFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFacilityProfileImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/string_facility_profile_image_escription"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:paddingHorizontal="@dimen/_13sdp"
+        app:layout_constraintBottom_toTopOf="@+id/btnFacilityProfileContinue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_18sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Profile Picture with Camera Icon -->
+            <RelativeLayout
+                android:id="@+id/relativeLayoutFacilityProfile"
+                android:layout_width="@dimen/_77sdp"
+                android:layout_height="@dimen/_75sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Circle Avatar -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ivFacilityProfilePicture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_user_profile" />
+
+                <!-- Camera Icon -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/cameraIconPitch"
+                    android:layout_width="@dimen/_27sdp"
+                    android:layout_height="@dimen/_27sdp"
+                    android:layout_alignEnd="@id/ivFacilityProfilePicture"
+                    android:layout_alignBottom="@id/ivFacilityProfilePicture"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_camera" />
+            </RelativeLayout>
+
+            <!-- Title -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSetProfileHeading2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/stringSetProfileHeading"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18ssp"
+                app:fontFamily="@font/nunito_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutFacilityProfile" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFacilityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/string_facility_name"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSetProfileHeading2" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etFacilityName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_39sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:background="@drawable/bg_edit_text"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                android:fontFamily="@font/nunito_regular"
+                android:hint="@string/string_enter_your_facility_name_hint"
+                android:inputType="textCapWords"
+                android:maxLength="50"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/light_grey"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFacilityName" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnFacilityProfileContinue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/primary_main"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringBtnContinue"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

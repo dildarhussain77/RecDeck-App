@@ -1,6 +1,5 @@
 package com.example.recdeckapp.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat

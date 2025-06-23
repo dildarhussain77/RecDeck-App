@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/_8sdp"
+    android:background="@color/white_light"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.createEvents.EventDescFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvEventDescAndImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringEventDescAndImage"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEventDescContinue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEventDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringDescriptions"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/lldesc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_6sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEventDesc">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etEventDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/light_grey"
+                    android:padding="@dimen/_13sdp"
+                    android:maxLength="600"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textSize="@dimen/_11ssp"
+                    android:textColor="@color/black"
+                    android:gravity="start"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="@string/stringDescWriteHere"
+                    android:inputType="textMultiLine"
+                    android:lines="5"
+                    android:maxLines="10"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescCharCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:text="@string/stringCharactersLimit"
+                    android:textColor="@color/light_grey"
+                    android:textAlignment="textEnd"/>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEventProfileImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/stringEventImage"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lldesc" />
+
+            <RelativeLayout
+                android:id="@+id/uploadLayoutCreateEvent"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_63sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:paddingHorizontal="@dimen/_11sdp"
+                android:background="@drawable/dotted_border"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEventProfileImage" >
+
+                <!-- File Upload Icon -->
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageUpload"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/ic_upload"
+                    android:contentDescription="Upload Icon" />
+
+
+                <!-- Upload Text -->
+                <LinearLayout
+                    android:layout_toEndOf="@id/imageUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/uploadText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringUploadFileHere"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nunito_bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/fileFormatText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stringReqDocsFormate"
+                        android:textSize="@dimen/_8ssp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:textColor="@color/light_grey" />
+                </LinearLayout>
+
+                <!-- Upload Button -->
+                <Button
+                    android:id="@+id/btnUpload"
+                    android:layout_width="@dimen/_72sdp"
+                    android:layout_height="@dimen/_29sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:backgroundTint="@color/primary_main"
+                    android:text="@string/stringInnerUpload"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8ssp"
+                    android:clickable="false"
+                    android:fontFamily="@font/nunito_regular"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/fileContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/uploadLayoutCreateEvent"
+                >
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEventDescContinue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/primary_main"
+        android:layout_marginHorizontal="@dimen/_13sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringBtnContinue"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

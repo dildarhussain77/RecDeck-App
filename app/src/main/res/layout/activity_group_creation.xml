@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/_13sdp"
+    android:background="@color/white_light"
+    tools:context=".ui.activities.GroupCreationActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clCreateGroupBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/_13sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBackGroupCreate"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:clickable="true"
+            android:focusable="true"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGroupDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/stringCreateEvent"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivBackGroupCreate"
+            app:layout_constraintStart_toEndOf="@+id/ivBackGroupCreate"
+            app:layout_constraintTop_toTopOf="@+id/ivBackGroupCreate"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCreateGroupCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button_red_outline"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_13sdp"
+            android:paddingVertical="@dimen/_11sdp"
+            android:text="@string/stringCancelx"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_9sdp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_7sdp"
+            android:paddingEnd="@dimen/_13sdp"
+            android:paddingStart="@dimen/_13sdp"
+            app:layout_constraintTop_toTopOf="@+id/tvGroupDetail"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stringStep1"
+            android:fontFamily="@font/nunito_regular"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGroupDetail"/>
+
+        <com.example.recdeckapp.ui.views.StepIndicatorView
+            android:id="@+id/stepIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            app:layout_constraintTop_toBottomOf="@+id/tvSteps"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/GroupCreationFragmentContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/clCreateGroupBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

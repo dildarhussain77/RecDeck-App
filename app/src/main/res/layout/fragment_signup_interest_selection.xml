@@ -17,10 +17,6 @@
         android:layout_marginStart="@dimen/_13sdp"
         android:layout_marginTop="@dimen/_22sdp"
         android:padding="@dimen/_3sdp"
-        android:clickable="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:contentDescription="Back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"  />
 
@@ -91,7 +87,7 @@
 
         >
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recyclerViewSignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/_13sdp"

@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:backgroundTint="@color/white_light"
@@ -43,23 +44,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUploadFileHeading2" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginVertical="@dimen/_24sdp"
-        android:paddingHorizontal="@dimen/_50sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvDescOfFileFormat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/white_light"
-        >
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDescOfFileFormat">
 
         <LinearLayout
+            android:id="@+id/llCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/llGallery"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -69,39 +72,38 @@
                 android:layout_width="@dimen/_47sdp"
                 android:layout_height="@dimen/_47sdp"
                 android:src="@drawable/ic_camera_large"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCameraBottomDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/stringCamera"
                 android:padding="@dimen/_3sdp"
+                android:text="@string/stringCamera"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
                 app:fontFamily="@font/nunito_regular"
-                android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/imgCameraBottomDialog"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                />
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgCameraBottomDialog" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llGallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginStart="@dimen/_68sdp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/llfile"
+            app:layout_constraintStart_toEndOf="@+id/llCamera"
             app:layout_constraintTop_toTopOf="parent">
 
             <!-- Open Camera Option -->
-
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgGalleryBottomDialog"
                 android:layout_width="@dimen/_47sdp"
@@ -115,8 +117,8 @@
                 android:id="@+id/tvGalleryBottomDialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/stringGallery"
                 android:padding="@dimen/_3sdp"
+                android:text="@string/stringGallery"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13ssp"
                 app:fontFamily="@font/nunito_regular"
@@ -126,11 +128,48 @@
 
                 />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/llGallery"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Open Camera Option -->
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgFileBottomDialog"
+                android:layout_width="@dimen/_47sdp"
+                android:layout_height="@dimen/_47sdp"
+                android:src="@drawable/ic_gallery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFileBottomDialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_3sdp"
+                android:text="@string/stringFile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:fontFamily="@font/nunito_regular"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgFileBottomDialog"
+
+                />
 
         </LinearLayout>
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

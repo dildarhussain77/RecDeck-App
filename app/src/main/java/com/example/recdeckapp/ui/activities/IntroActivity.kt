@@ -6,12 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.recdeckapp.R
 import com.example.recdeckapp.adapter.IntroPagerAdapter
 import com.example.recdeckapp.databinding.ActivityIntroBinding
 import android.widget.LinearLayout
+import com.example.recdeckapp.utils.StatusBarUtils
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 
 class IntroActivity : AppCompatActivity() {
@@ -21,12 +22,12 @@ class IntroActivity : AppCompatActivity() {
     lateinit var introContent: List<Pair<String, String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        window.statusBarColor = ContextCompat.getColor(this, R.color.white_light)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
+
+        // Show splash screen
+//        installSplashScreen()
 
         super.onCreate(savedInstanceState)
+        StatusBarUtils.setLightStatusBar(this, R.color.white_light)
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
