@@ -23,6 +23,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlin.math.abs
+import kotlin.math.min
 
 class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
 
@@ -54,12 +55,6 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
         _binding = PitchesDetailsBottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    private val images = listOf(
-        R.drawable.cricket,
-        R.drawable.swimming_pool,
-        R.drawable.horse_ride
-    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -93,14 +88,7 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
             .placeholder(R.drawable.ic_image)
             .into(binding.ivHost)
 
-        // Pitch documents images (assuming pitch.pitchDocPaths is List<String>)
-        //setUpSlider(pitch.pitchDocPaths)
         setUpAutoScrollAdapter(pitch.pitchDocPaths)
-    }
-
-    private fun setUpSlider(imagePaths: List<String>) {
-        val adapter = SliderAdapter(imagePaths) // ✅ using updated one
-        binding.viewPager.adapter = adapter
     }
 
 
@@ -118,14 +106,20 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
         val adapter = SliderAdapter(imageUris)
         binding.viewPager.adapter = adapter
         Log.e("TAG", "setUpAutoScrollAdapter: ${imageUris.size}")
-        binding.viewPager.offscreenPageLimit = imageUris.size
+        // Fix: Only set offscreenPageLimit if there are items, and use a reasonable limit
+        if (imageUris.isNotEmpty()) {
+            binding.viewPager.offscreenPageLimit =
+                min(imageUris.size, 3) // Limit to max 3 pages to avoid performance issues
+        } else {
+            binding.viewPager.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
+        }
         binding.viewPager.clipToPadding = false
         binding.viewPager.clipChildren = false
 
         val compositePageTransformer = CompositePageTransformer().apply {
             addTransformer(MarginPageTransformer(20))
             addTransformer { page, position ->
-                val scale = 0.85f + (1 - abs(position)) * 0.15f
+                val scale = 0.75f + (1 - abs(position)) * 0.25f
                 page.scaleY = scale
             }
         }

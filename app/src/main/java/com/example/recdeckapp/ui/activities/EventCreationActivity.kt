@@ -69,28 +69,37 @@ class EventCreationActivity : BaseActivity() {
     private fun loadEventForEditing() {
         binding.pgBarEventCreation.visibility = View.VISIBLE
 
+
+
         lifecycleScope.launch {
             try {
                 // Load event data first
-                val loaded = eventCreationViewModel.loadEventForEditing(eventIdToEdit)
+                val loaded = withContext(Dispatchers.IO) {
+                    eventCreationViewModel.loadEventForEditing(eventIdToEdit)
+                }
+                Log.d(
+                    "EditingCheck",
+                    "Activity received loaded interests = ${eventCreationViewModel.selectedInterests.map { it.name }}"
+                )
 
-                if (loaded != null) {
-                    withContext(Dispatchers.Main) {
+                withContext(Dispatchers.Main) {
+                    if (loaded != null) {
                         // pop back stack
                         supportFragmentManager.popBackStack(
                             null,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
                         )
 
-                        // load fragment AFTER UI is safe
+                        // Now open the fragment AFTER interests are surely set
                         loadInitialFragment(
                             binding.EventCreationFragmentContainer.id,
                             SelectCategoryEventFragment()
                         )
+                    } else {
+                        showToast("Failed to load event")
                     }
-                } else {
-                    showToast("Failed to load event")
                 }
+
             } catch (e: Exception) {
                 showToast("Error loading event data")
             } finally {

@@ -94,15 +94,30 @@ class SelectCategoryEventFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Restore previously selected interests from ViewModel
-        val selectedInterests = eventCreationViewModel.selectedInterests.map { it.name }
 
-        cardAdapter.items.forEach { item ->
-            item.isSelected = selectedInterests.contains(item.title)
+        Log.d(
+            "EditingCheck",
+            "onResume - selectedInterests from ViewModel = ${eventCreationViewModel.selectedInterests.map { it.name }}"
+        )
+
+        if (::cardAdapter.isInitialized) {
+            val selectedInterests = eventCreationViewModel.selectedInterests.map { it.name }
+
+            cardAdapter.items.forEach { item ->
+                item.isSelected = selectedInterests.contains(item.title)
+            }
+
+            cardAdapter.notifyDataSetChanged()
+            updateSelectionCounter(eventCreationViewModel.selectedInterests.size)
+
+            Log.d(
+                "EditingCheck",
+                "onResume - selectedInterests from ViewModel = ${eventCreationViewModel.selectedInterests.map { it.name }}"
+            )
+
+        } else {
+            Log.w("SelectCategoryEvent", "cardAdapter not initialized yet in onResume()")
         }
-
-        cardAdapter.notifyDataSetChanged()
-        updateSelectionCounter(eventCreationViewModel.selectedInterests.size)
     }
 
     override fun onDestroyView() {

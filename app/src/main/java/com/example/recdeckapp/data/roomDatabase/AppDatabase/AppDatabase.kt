@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.recdeckapp.data.roomDatabase.dao.EventDao
 import com.example.recdeckapp.data.roomDatabase.dao.GroupDao
@@ -41,9 +42,8 @@ import kotlinx.coroutines.launch
         PitchEntity::class,
         PitchInterestCrossRef::class
     ],
-    version = 8  // Incremented version number
+    version = 8
 )
-
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
@@ -54,6 +54,15 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
+
+        // Define your migration here in the companion object
+        private val MIGRATION_7_8 = object : Migration(7, 8) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Add schema changes if any
+                // No need to repopulate here as we'll handle it in the callback
+            }
+        }
+
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -62,7 +71,8 @@ abstract class AppDatabase : RoomDatabase() {
                     "recdeck_dp"
                 )
                     .addCallback(DatabaseCallback(context))
-                    .fallbackToDestructiveMigration() // Only for development!
+                    .addMigrations(MIGRATION_7_8)
+                    .fallbackToDestructiveMigration() // Remove this in production
                     .build()
                 INSTANCE = instance
                 instance
@@ -75,22 +85,27 @@ abstract class AppDatabase : RoomDatabase() {
     ) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-
-            // Using IO dispatcher because database operations shouldn't run on main thread
             CoroutineScope(Dispatchers.IO).launch {
-                val database = getDatabase(context)
-                populateInitialInterests(database.userDao())
+                populateInitialInterests(context)
             }
         }
 
-        private suspend fun populateInitialInterests(dao: UserDao) {
-            // First check if interests already exist
-            val existingCount = dao.getInterestsCount()
-            if (existingCount == 0) {
-                // Sample data
-                val defaultInterests = InterestItemsProvider.getDefaultInterestItemsAppDatabase()
-                dao.insertInterests(defaultInterests)
+        override fun onOpen(db: SupportSQLiteDatabase) {
+            super.onOpen(db)
+            // Check if we need to repopulate interests when DB opens
+            CoroutineScope(Dispatchers.IO).launch {
+                val database = AppDatabase.getDatabase(context)
+                val existingCount = database.userDao().getInterestsCount()
+                if (existingCount == 0) {
+                    populateInitialInterests(context)
+                }
             }
+        }
+
+        private suspend fun populateInitialInterests(context: Context) {
+            val database = AppDatabase.getDatabase(context)
+            val defaultInterests = InterestItemsProvider.getDefaultInterestItemsAppDatabase()
+            database.userDao().insertInterests(defaultInterests)
         }
     }
 }

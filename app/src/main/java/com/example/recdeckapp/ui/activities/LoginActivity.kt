@@ -78,7 +78,7 @@ class LoginActivity : BaseActivity() {
         }
 
         binding.tvForgotPass.setOnClickListener {
-            val intent = Intent(this, DashBoardActivity::class.java)
+            val intent = Intent(this, OtpActivity::class.java)
             startActivity(intent)
         }
 

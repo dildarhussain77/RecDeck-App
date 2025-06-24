@@ -29,6 +29,9 @@ interface UserDao {
     @Query("SELECT * FROM interests")
     suspend fun getAllInterests(): List<InterestEntity>
 
+    @Query("SELECT categoryId FROM interests")
+    suspend fun getAllInterestIds(): List<Int>
+
     @Query("SELECT COUNT(*) FROM interests")
     suspend fun getInterestsCount(): Int
 

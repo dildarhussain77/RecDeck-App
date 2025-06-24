@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,13 +49,19 @@ class FragmentPitches : Fragment() {
         _binding = FragmentPitchesBinding.bind(view)
 
         setOnClickListener()
+        loadUserPitches()
 
+
+    }
+
+    private fun loadUserPitches() {
         val userId = SessionManager.getUserId(requireContext())
         eventCreationViewModel.getUsedPitchIds { usedIds ->
 
             pitchCreationViewModel.getAllUserPitches(userId) { allPitches ->
 
                 val updatedPitches = allPitches.map { pitch ->
+
                     if (usedIds.contains(pitch.pitchId) &&
                         (!eventCreationViewModel.isEditing || pitch.pitchId != eventCreationViewModel.pitchId)
                     ) {
@@ -79,8 +86,14 @@ class FragmentPitches : Fragment() {
                             sheet.show(parentFragmentManager, "PitchesDetails")
                         },
                         onDeleteClick = { selectedPitch ->
-
                             if (!selectedPitch.isPitchAvailable) {
+                                Log.d("PitchDebugs", "INSIDE IF BLOCK — Pitch unavailable")
+                                Toast.makeText(
+                                    requireContext(),
+                                    "This pitch is already assigned to an event and cannot be deleted.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
                                 (activity as? BaseActivity)?.showToast("This pitch is already assigned to an event and cannot be deleted.")
                                 return@PitchesListAdapter
                             }
@@ -101,7 +114,6 @@ class FragmentPitches : Fragment() {
                         }
                     )
 
-
                     binding.rvPitchesList.apply {
                         layoutManager = LinearLayoutManager(requireContext())
                         adapter = pitchesListAdapter
@@ -110,6 +122,7 @@ class FragmentPitches : Fragment() {
                 }
             }
         }
+
     }
 
     private fun setOnClickListener() {
@@ -152,6 +165,7 @@ class FragmentPitches : Fragment() {
                 binding.rvPitchesList.scrollToPosition(selectedIndex)
             }
         }
+        loadUserPitches()
     }
 
     override fun onDestroyView() {

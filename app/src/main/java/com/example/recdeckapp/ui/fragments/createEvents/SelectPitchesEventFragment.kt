@@ -1,5 +1,6 @@
 package com.example.recdeckapp.ui.fragments.createEvents
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.example.recdeckapp.adapter.PitchesListAdapter
 import com.example.recdeckapp.databinding.FragmentSelectPitchesEventBinding
 import com.example.recdeckapp.ui.BottomSheet.PitchesDetailsBottomSheet
 import com.example.recdeckapp.ui.activities.EventCreationActivity
+import com.example.recdeckapp.ui.activities.PitchCreationActivity
 import com.example.recdeckapp.utils.SessionManager
 import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.EventCreationViewModel
@@ -51,7 +53,18 @@ class SelectPitchesEventFragment : Fragment() {
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(4)
         activity?.updateTopBarForFragment(3)
+        setOnClickListener()
+        loadUserPitches()
+    }
 
+    private fun setOnClickListener() {
+        binding.tvCreatePitch.setOnClickListener {
+            val intent = Intent(requireContext(), PitchCreationActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun loadUserPitches() {
         val userId = SessionManager.getUserId(requireContext())
         eventCreationViewModel.getUsedPitchIds { usedIds ->
 
@@ -106,6 +119,7 @@ class SelectPitchesEventFragment : Fragment() {
                         layoutManager = LinearLayoutManager(requireContext())
                         adapter = pitchesListAdapter
                     }
+                    checkEmptyState()
 
                     if (eventCreationViewModel.isEditing && eventCreationViewModel.pitchId != -1) {
                         val selectedIndex = updatedPitches.indexOfFirst {
@@ -118,7 +132,17 @@ class SelectPitchesEventFragment : Fragment() {
                 }
             }
         }
+    }
 
+
+    private fun checkEmptyState() {
+        if (pitchesListAdapter.itemCount == 0) {
+            binding.clEmptyPitches.visibility = View.VISIBLE
+            binding.tvCreatePitch.visibility = View.VISIBLE
+        } else {
+            binding.clEmptyPitches.visibility = View.GONE
+            binding.tvCreatePitch.visibility = View.GONE
+        }
     }
 
     override fun onResume() {
@@ -134,8 +158,7 @@ class SelectPitchesEventFragment : Fragment() {
                 binding.rvPitchesList.scrollToPosition(selectedIndex)
             }
         }
-
-
+        loadUserPitches()
     }
 
 

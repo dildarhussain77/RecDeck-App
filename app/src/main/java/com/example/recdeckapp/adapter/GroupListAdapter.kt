@@ -47,11 +47,13 @@ class GroupListAdapter(
                     Log.e("CLICK", "ADAPTER: 57")
                     tvNotAvailable.visibility = View.GONE
                     root.isEnabled = true
+                    //root.alpha = 1.0f
 
                 } else {
                     Log.e("CLICK", "ADAPTER: 64")
                     tvNotAvailable.visibility = View.VISIBLE
                     root.isEnabled = false
+                    //root.alpha = 0.5f
                 }
 
                 // Highlight selected group
@@ -69,10 +71,18 @@ class GroupListAdapter(
                     )
                 }
                 root.setOnClickListener {
+                    Log.e(
+                        "GROUP_CLICK",
+                        "Clicked group: ${group.groupName}, Available: ${group.isGroupAvailable}"
+                    )
                     if (group.isGroupAvailable) {
                         selectedGroupId = group.groupId
                         notifyDataSetChanged() // Refresh selection
                         onItemClick(group)
+                        Log.e(
+                            "GROUP_CLICK",
+                            "Group: ${group.groupName}, isAvailable: ${group.isGroupAvailable}"
+                        )
                     } else {
                         Log.e("GROUP_CLICK", "Group is not available, click ignored")
                     }

@@ -17,7 +17,7 @@ interface EventDao {
     @Insert
     suspend fun insertEvent(group: EventEntity): Long
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEventInterestsCrossRef(refs: List<EventInterestCrossRef>)
 
     @Transaction
@@ -32,9 +32,17 @@ interface EventDao {
     @Query("SELECT pitchId FROM events") // Adjust your table name
     suspend fun getUsedPitchIds(): List<Int>
 
+    @Query("SELECT groupId FROM events") // Adjust your table name
+    suspend fun getUsedGroupIds(): List<Int>
+
     @Transaction
     @Query("SELECT * FROM events WHERE creatorUserId = :userId")
     suspend fun getEventsCreatedByUser(userId: Int): List<EventWithInterests>
+
+    @Transaction
+    @Query("SELECT * FROM events WHERE eventId = :eventId")
+    suspend fun getEventWithInterests(eventId: Int): EventWithInterests?
+
 
     @Query("SELECT * FROM events WHERE creatorUserId = :userId")
     suspend fun getAllEventsByUser(userId: Int): List<EventEntity>

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.example.recdeckapp.databinding.FragmentGroupsBinding
 import com.example.recdeckapp.ui.activities.GroupCreationActivity
 import com.example.recdeckapp.utils.AlertDialogUtils
 import com.example.recdeckapp.utils.SessionManager
+import com.example.recdeckapp.viewmodel.EventCreationViewModel
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
 class FragmentGroups : Fragment() {
@@ -22,10 +24,12 @@ class FragmentGroups : Fragment() {
     private val binding get() = _binding!!
     private lateinit var groupListAdapter: GroupListAdapter
     private lateinit var groupCreationViewModel: GroupCreationViewModel
+    private lateinit var eventCreationViewModel: EventCreationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         groupCreationViewModel = ViewModelProvider(this).get(GroupCreationViewModel::class.java)
+        eventCreationViewModel = ViewModelProvider(this).get(EventCreationViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -40,42 +44,65 @@ class FragmentGroups : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGroupsBinding.bind(view)
 
+        setOnClickListener()
+        loadUserGroups()
+    }
+
+    private fun loadUserGroups() {
 
         val userId = SessionManager.getUserId(requireContext())
 
-        groupCreationViewModel.getAllUserGroups(userId) { groups ->
-            Log.d("FragmentGroups", "Received ${groups.size} groups")
+        eventCreationViewModel.getUsedGroupIds { usedGroupIds ->
 
-            requireActivity().runOnUiThread {
-                groupListAdapter = GroupListAdapter(
-                    groupList2 = groups,
-                    onItemClick = {
-                    },
-                    onDeleteClick = { selectedGroup ->
-                        AlertDialogUtils.showCancelDialog(
-                            requireContext(),
-                            message = "Are you sure you want to delete this group?",
-                            onYesClicked = {
-                                groupCreationViewModel.deleteGroup(selectedGroup.groupId) {
-                                    val index = groupListAdapter.removeGroup(selectedGroup)
-                                    if (index != -1) {
-                                        groupListAdapter.notifyItemRemoved(index)
-                                        checkEmptyState()
+            groupCreationViewModel.getAllUserGroups(userId) { groups ->
+                Log.d("FragmentGroups", "Received ${groups.size} groups")
+
+                val updatedGroups = groups.map { group ->
+                    group.copy(isGroupAvailable = group.groupId !in usedGroupIds)
+                }
+
+                requireActivity().runOnUiThread {
+                    groupListAdapter = GroupListAdapter(
+                        groupList2 = updatedGroups,
+                        onItemClick = {
+                        },
+                        onDeleteClick = { selectedGroup ->
+
+                            if (!selectedGroup.isGroupAvailable) {
+                                Log.d("PitchDebugs", "INSIDE IF BLOCK — Pitch unavailable")
+                                Toast.makeText(
+                                    requireContext(),
+                                    "This Group is already assigned to an event and cannot be deleted.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                //(activity as? BaseActivity)?.showToast("This pitch is already assigned to an event and cannot be deleted.")
+                                return@GroupListAdapter
+                            }
+                            AlertDialogUtils.showCancelDialog(
+                                requireContext(),
+                                message = "Are you sure you want to delete this group?",
+                                onYesClicked = {
+                                    groupCreationViewModel.deleteGroup(selectedGroup.groupId) {
+                                        val index = groupListAdapter.removeGroup(selectedGroup)
+                                        if (index != -1) {
+                                            groupListAdapter.notifyItemRemoved(index)
+                                            checkEmptyState()
+                                        }
                                     }
-                                }
-                            },
-                        )
-                    }
-                )
-                checkEmptyState()
+                                },
+                            )
+                        }
+                    )
+                    checkEmptyState()
 
-                binding.rvGroupList.adapter = groupListAdapter
-                binding.rvGroupList.layoutManager = LinearLayoutManager(requireContext())
+                    binding.rvGroupList.adapter = groupListAdapter
+                    binding.rvGroupList.layoutManager = LinearLayoutManager(requireContext())
 
-
+                }
             }
         }
-        setOnClickListener()
+
     }
 
     private fun setOnClickListener() {
@@ -104,6 +131,11 @@ class FragmentGroups : Fragment() {
         } else {
             binding.clEmptyGroups.visibility = View.GONE
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadUserGroups() //
     }
 
     override fun onDestroyView() {

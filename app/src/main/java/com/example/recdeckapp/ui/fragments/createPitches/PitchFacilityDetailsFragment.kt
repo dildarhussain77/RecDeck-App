@@ -53,9 +53,9 @@ class PitchFacilityDetailsFragment : Fragment() {
         binding.etStartTime.showSoftInputOnFocus = false
         binding.etEndTime.showSoftInputOnFocus = false
         setOnClickListener()
-//        setFieldFocusListeners()
-//        setupFieldListeners()
-//        updateButtonState()
+        setFieldFocusListeners()
+        setupFieldListeners()
+        updateButtonState()
         TimePicker()
 
         TextFieldDescUtils.setupDescWatcher(
@@ -70,35 +70,29 @@ class PitchFacilityDetailsFragment : Fragment() {
 
     private fun setOnClickListener() {
         binding.btnFacilityDetailContinue.setOnClickListener {
-//            if (validateAllFields()) {
-//                (activity as FragmentActivity).switchFragment(
-//                    R.id.PitchCreationFragmentContainer,
-//                    PitchFacilityProfileFragment()
-//                )
-//            }
-//            else {
-//            (activity as? BaseActivity)?.showToast("Please fill all fields")
-//            }
+            if (validateAllFields()) {
 
-            // Send data to ViewModel
-            pitchCreationViewModel.pitchName = binding.etPitchName.text.toString().trim()
-            pitchCreationViewModel.pitchStartTime = binding.etStartTime.text.toString().trim()
-            pitchCreationViewModel.pitchEndTime = binding.etEndTime.text.toString().trim()
-            pitchCreationViewModel.pitchDescription =
-                binding.ettvFacilityDesc.text.toString().trim()
-            Log.e(
-                "PitchCreation",
-                "user id=${pitchCreationViewModel.creatorUserId}," +
-                        "pitchName=${pitchCreationViewModel.pitchName}," +
-                        "pitchStartTime=${pitchCreationViewModel.pitchStartTime}," +
-                        "pitchEndTime=${pitchCreationViewModel.pitchEndTime}," +
-                        "pitchDescription=${pitchCreationViewModel.pitchDescription},"
-            )
-            (activity as FragmentActivity).switchFragment(
-                R.id.PitchCreationFragmentContainer,
-                PitchFacilityProfileFragment()
-            )
-
+                // Send data to ViewModel
+                pitchCreationViewModel.pitchName = binding.etPitchName.text.toString().trim()
+                pitchCreationViewModel.pitchStartTime = binding.etStartTime.text.toString().trim()
+                pitchCreationViewModel.pitchEndTime = binding.etEndTime.text.toString().trim()
+                pitchCreationViewModel.pitchDescription =
+                    binding.ettvFacilityDesc.text.toString().trim()
+                Log.e(
+                    "PitchCreation",
+                    "user id=${pitchCreationViewModel.creatorUserId}," +
+                            "pitchName=${pitchCreationViewModel.pitchName}," +
+                            "pitchStartTime=${pitchCreationViewModel.pitchStartTime}," +
+                            "pitchEndTime=${pitchCreationViewModel.pitchEndTime}," +
+                            "pitchDescription=${pitchCreationViewModel.pitchDescription},"
+                )
+                (activity as FragmentActivity).switchFragment(
+                    R.id.PitchCreationFragmentContainer,
+                    PitchFacilityProfileFragment()
+                )
+            } else {
+                (activity as? BaseActivity)?.showToast("Please fill all fields")
+            }
         }
     }
 
@@ -118,8 +112,8 @@ class PitchFacilityDetailsFragment : Fragment() {
     private fun setFieldFocusListeners() {
         val fields = listOf(
             binding.etPitchName,
-            binding.etStartTime,
-            binding.etEndTime,
+//            binding.etStartTime,
+//            binding.etEndTime,
             binding.ettvFacilityDesc
         )
 

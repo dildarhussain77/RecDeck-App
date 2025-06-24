@@ -1,5 +1,6 @@
 package com.example.recdeckapp.ui.activities
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -18,7 +19,6 @@ class OtpActivity : AppCompatActivity() {
     private lateinit var countDownTimer: CountDownTimer
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,16 +35,36 @@ class OtpActivity : AppCompatActivity() {
 
         // Set listener to check if PinView is filled or not
         otpPinView.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence?, start: Int, count: Int, after: Int) {
+            override fun beforeTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
                 // Optional: You can handle this if needed
             }
 
-            override fun onTextChanged(charSequence: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(
+                charSequence: CharSequence?,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
                 // If all boxes are filled, change the line color to blue
                 if (charSequence?.length == otpPinView.itemCount) {
-                    otpPinView.setLineColor(ContextCompat.getColor(this@OtpActivity, R.color.otp_line_color))  // Change to Blue
+                    otpPinView.setLineColor(
+                        ContextCompat.getColor(
+                            this@OtpActivity,
+                            R.color.otp_line_color
+                        )
+                    )  // Change to Blue
                 } else {
-                    otpPinView.setLineColor(ContextCompat.getColor(this@OtpActivity, R.color.light_grey)) // Change back to Grey
+                    otpPinView.setLineColor(
+                        ContextCompat.getColor(
+                            this@OtpActivity,
+                            R.color.light_grey
+                        )
+                    ) // Change back to Grey
                 }
             }
 
@@ -63,7 +83,11 @@ class OtpActivity : AppCompatActivity() {
             startCountDownTimer()
             //enableOtpInputs(true)
         }
-
+        binding.btnOtpContinue.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun startCountDownTimer() {
@@ -91,16 +115,6 @@ class OtpActivity : AppCompatActivity() {
         }
         countDownTimer.start()
     }
-
-    // Enable or disable the entire PinView input
-//    private fun enableOtpInput(enable: Boolean) {
-//        binding.pinViewOtp.isEnabled = enable
-//    }
-
-    // Reset the OTP input field
-//    private fun resetOtpInput() {
-//        binding.pinViewOtp.text?.clear()
-//    }
 
     // Optionally, stop the timer if needed, such as when the OTP is verified or activity is destroyed
     override fun onDestroy() {

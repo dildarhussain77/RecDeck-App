@@ -14,7 +14,6 @@ import com.example.recdeckapp.databinding.ItemPitchesInfoBinding
 
 class PitchesListAdapter(
     val pitchList2: List<PitchEntity>,
-    //private val pitchList: MutableList<PitchEntity>,
     private val onItemClick: (PitchEntity) -> Unit,
     private val preselectedPitchId: Int = -1, // Add this parameter
     private val onDetailClick: (PitchEntity) -> Unit,
@@ -98,6 +97,10 @@ class PitchesListAdapter(
                 }
                 btnDelete.visibility = if (shouldHideDeleteButton) View.GONE else View.VISIBLE
                 btnDelete.setOnClickListener {
+                    Log.d(
+                        "PitchDebugs",
+                        "Delete button clicked - Availability: ${pitch.isPitchAvailable}"
+                    )
                     onDeleteClick(pitch)
                 }
 

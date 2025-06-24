@@ -53,12 +53,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:fontFamily="@font/nunito_regular"
-                android:text="@string/stringOtpVerifyCodeHeading"
                 android:gravity="center"
+                android:text="@string/stringOtpVerifyCodeHeading"
                 android:textColor="@color/light_grey"
                 android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvOtp" />
 
 
@@ -67,12 +67,12 @@
                 style="@style/PinWidget.PinView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:cursorVisible="true"
-                android:inputType="number"
                 android:layout_marginTop="@dimen/_31sdp"
+                android:cursorVisible="true"
+                android:fontFamily="@font/nunito_regular"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
-                android:fontFamily="@font/nunito_regular"
                 app:cursorColor="@color/black"
                 app:cursorWidth="@dimen/_1sdp"
                 app:hideLineWhenFilled="false"
@@ -81,45 +81,44 @@
                 app:itemRadius="@dimen/_11sdp"
                 app:itemSpacing="@dimen/_6sdp"
                 app:itemWidth="@dimen/_39sdp"
-                app:lineWidth="@dimen/_1sdp"
-                app:viewType="rectangle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvOtpVerifyCodeHeading"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvOtpVerifyCodeHeading"
+                app:lineWidth="@dimen/_1sdp"
+                app:viewType="rectangle" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvOtpTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/stringTime"
-                android:visibility="visible"
-                android:textSize="@dimen/_13ssp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/nunito_semi_bold"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/nunito_semi_bold"
                 android:gravity="center"
+                android:text="@string/stringTime"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/otpPinView"/>
+                app:layout_constraintTop_toBottomOf="@+id/otpPinView" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvResendClick"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/nunito_semi_bold"
                 android:text="@string/stringResend"
                 android:textColor="@color/primary_main"
-                android:layout_marginTop="@dimen/_16sdp"
                 android:textSize="@dimen/_13ssp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvOtpTimer"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvOtpTimer" />
 
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSignUpContinue"
+                android:id="@+id/btnOtpContinue"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_38sdp"
                 android:layout_marginTop="@dimen/_140sdp"

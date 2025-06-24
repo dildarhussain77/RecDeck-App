@@ -50,43 +50,56 @@ class SelectGroupsEventFragment : Fragment() {
         activity?.updateTopBarForFragment(4)
         val userId = SessionManager.getUserId(requireContext())
 
-        groupCreationViewModel.getAllUserGroups(userId) { groups ->
-            requireActivity().runOnUiThread {
-                groupListAdapter = GroupListAdapter(
-                    groupList2 = groups,
-                    preselectedGroupId = if (eventCreationViewModel.isEditing) eventCreationViewModel.groupId else -1,
-                    onItemClick = {
-                        if (it.isGroupAvailable) {
-                            eventCreationViewModel.groupId = it.groupId
-                            (activity as FragmentActivity).switchFragment(
-                                R.id.EventCreationFragmentContainer,
-                                EventPaymentFragment()
-                            )
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "This group is already assigned.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+        eventCreationViewModel.getUsedGroupIds { usedGroupIds ->
+
+            groupCreationViewModel.getAllUserGroups(userId) { groups ->
+                // 🛠 Step 3: Mark availability based on usage
+                val currentGroupId = eventCreationViewModel.groupId
+                val updatedGroups = groups.map { group ->
+                    val isUsedByOthers =
+                        group.groupId in usedGroupIds && group.groupId != currentGroupId
+                    group.copy(isGroupAvailable = !isUsedByOthers)
+                }
+                requireActivity().runOnUiThread {
+                    groupListAdapter = GroupListAdapter(
+                        groupList2 = updatedGroups,
+                        preselectedGroupId = if (eventCreationViewModel.isEditing) eventCreationViewModel.groupId else -1,
+                        onItemClick = {
+                            if (it.isGroupAvailable) {
+                                eventCreationViewModel.groupId = it.groupId
+                                (activity as FragmentActivity).switchFragment(
+                                    R.id.EventCreationFragmentContainer,
+                                    EventPaymentFragment()
+                                )
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "This group is already assigned.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        },
+                        onDeleteClick = {},
+                        shouldHideDeleteButton = true
+                    )
+
+                    binding.rvGroupList.adapter = groupListAdapter
+                    binding.rvGroupList.layoutManager = LinearLayoutManager(requireContext())
+
+                    // Scroll to selected group if editing
+                    if (eventCreationViewModel.isEditing && eventCreationViewModel.groupId != -1) {
+                        val selectedIndex =
+                            groups.indexOfFirst { it.groupId == eventCreationViewModel.groupId }
+                        if (selectedIndex != -1) {
+                            binding.rvGroupList.scrollToPosition(selectedIndex)
                         }
-                    },
-                    onDeleteClick = {},
-                    shouldHideDeleteButton = true
-                )
-
-                binding.rvGroupList.adapter = groupListAdapter
-                binding.rvGroupList.layoutManager = LinearLayoutManager(requireContext())
-
-                // Scroll to selected group if editing
-                if (eventCreationViewModel.isEditing && eventCreationViewModel.groupId != -1) {
-                    val selectedIndex =
-                        groups.indexOfFirst { it.groupId == eventCreationViewModel.groupId }
-                    if (selectedIndex != -1) {
-                        binding.rvGroupList.scrollToPosition(selectedIndex)
                     }
                 }
             }
+
         }
+
+
     }
 
     override fun onDestroyView() {

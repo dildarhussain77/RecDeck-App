@@ -55,9 +55,9 @@ class EventDetailsFragment : Fragment() {
         binding.etStartTime.showSoftInputOnFocus = false
         binding.etEndTime.showSoftInputOnFocus = false
         setOnClickListener()
-//        setFieldFocusListeners()
-//        setupFieldListeners()
-//        updateButtonState()
+        setFieldFocusListeners()
+        setupFieldListeners()
+        updateButtonState()
 
         if (eventCreationViewModel.isEditing) {
             // Pre-populate fields with existing data
@@ -96,32 +96,29 @@ class EventDetailsFragment : Fragment() {
             val isValid = validateAllFields()
             Log.e("VALIDATE", "validateAllFields() returned: $isValid")
             // Validate all fields before proceeding
+            if (validateAllFields()) {
+                // Send data to ViewModel
+                eventCreationViewModel.eventName = binding.etEventName.text.toString().trim()
+                eventCreationViewModel.memberLimit =
+                    binding.etNoOfEventMem.text.toString().trim().toIntOrNull() ?: 0
+                eventCreationViewModel.eventDate = binding.etSelectDate.text.toString().trim()
+                eventCreationViewModel.eventStartTime = binding.etStartTime.text.toString().trim()
+                eventCreationViewModel.eventEndTime = binding.etEndTime.text.toString().trim()
 
-//            groupCreationViewModel.creatorUserId = SessionManager.getUserId(requireContext())
-//            Log.e("GroupCreation", "User ID continue ButtonHandling: 48 user id=${groupCreationViewModel.creatorUserId},")
-
-            // Send data to ViewModel
-            eventCreationViewModel.eventName = binding.etEventName.text.toString().trim()
-            eventCreationViewModel.memberLimit =
-                binding.etNoOfEventMem.text.toString().trim().toIntOrNull() ?: 0
-            eventCreationViewModel.eventDate = binding.etSelectDate.text.toString().trim()
-            eventCreationViewModel.eventStartTime = binding.etStartTime.text.toString().trim()
-            eventCreationViewModel.eventEndTime = binding.etEndTime.text.toString().trim()
-
-            Log.e(
-                "EventCreation",
-                "Group Details continue ButtonHandling: 118 eventName=${eventCreationViewModel.eventName}, " +
-                        "memberLimit= ${eventCreationViewModel.memberLimit}, " +
-                        "eventDate = ${eventCreationViewModel.eventDate}," +
-                        "eventStartTime = ${eventCreationViewModel.eventStartTime}" +
-                        "eventEndTime = ${eventCreationViewModel.eventEndTime}"
-            )
-            (activity as FragmentActivity).switchFragment(
-                R.id.EventCreationFragmentContainer,
-                EventDescFragment()
-            )
+                Log.e(
+                    "EventCreation",
+                    "Group Details continue ButtonHandling: 118 eventName=${eventCreationViewModel.eventName}, " +
+                            "memberLimit= ${eventCreationViewModel.memberLimit}, " +
+                            "eventDate = ${eventCreationViewModel.eventDate}," +
+                            "eventStartTime = ${eventCreationViewModel.eventStartTime}" +
+                            "eventEndTime = ${eventCreationViewModel.eventEndTime}"
+                )
+                (activity as FragmentActivity).switchFragment(
+                    R.id.EventCreationFragmentContainer,
+                    EventDescFragment()
+                )
+            }
         }
-
     }
 
     private fun TimePicker() {
@@ -143,8 +140,8 @@ class EventDetailsFragment : Fragment() {
             binding.etEventName,
             binding.etNoOfEventMem,
             binding.etSelectDate,
-            binding.etStartTime,
-            binding.etEndTime
+//            binding.etStartTime,
+//            binding.etEndTime
         )
 
         for (field in fields) {

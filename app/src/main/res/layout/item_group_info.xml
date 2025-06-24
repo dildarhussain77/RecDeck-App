@@ -3,19 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/groupInfoContainer"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_105sdp"
+    android:layout_height="@dimen/_110sdp"
     android:layout_marginHorizontal="@dimen/_13sdp"
     android:layout_marginBottom="@dimen/_9sdp"
     android:background="@drawable/group_info_bg"
     android:backgroundTint="@color/white_light"
     android:foreground="@drawable/bg_card_border"
-    android:paddingHorizontal="@dimen/_6sdp">
+    android:padding="@dimen/_6sdp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvGroupImage"
         android:layout_width="@dimen/_95sdp"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="@dimen/_6sdp"
+        android:layout_height="0dp"
         app:cardCornerRadius="@dimen/_13sdp"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,8 +90,7 @@
             android:id="@+id/btnDelete"
             android:layout_width="0dp"
             android:layout_height="@dimen/_23sdp"
-            android:layout_marginVertical="@dimen/_6sdp"
-            android:background="@drawable/bg_button_outline"
+            android:background="@drawable/bg_button_blue_outline"
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="@font/nunito_regular"
