@@ -11,7 +11,6 @@ import com.example.recdeckapp.data.roomDatabase.entities.PitchCreation.PitchInte
 
 @Dao
 interface PitchDao {
-
     @Insert
     suspend fun insertPitch(pitch: PitchEntity): Long
 

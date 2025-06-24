@@ -5,19 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="@dimen/_13sdp"
     android:background="@color/white_light"
+    android:paddingHorizontal="@dimen/_13sdp"
     tools:context=".ui.activities.SignupActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivBackArrowAttachDocs"
         android:layout_width="@dimen/_34sdp"
         android:layout_height="@dimen/_34sdp"
-        android:src="@drawable/ic_back_arrow"
         android:layout_marginTop="@dimen/_22sdp"
         android:padding="@dimen/_3sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"  />
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAlmostDoneHeading"
@@ -107,14 +107,13 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_63sdp"
         android:layout_marginTop="@dimen/_13sdp"
-        android:paddingHorizontal="@dimen/_11sdp"
         android:background="@drawable/dotted_border"
         android:clickable="true"
         android:focusable="true"
+        android:paddingHorizontal="@dimen/_11sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etIdPassNum" >
-
+        app:layout_constraintTop_toBottomOf="@+id/etIdPassNum">
         <!-- File Upload Icon -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageUpload"
@@ -123,37 +122,34 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/_8sdp"
-            android:src="@drawable/ic_upload"
-            android:contentDescription="Upload Icon" />
-
-
+            android:contentDescription="Upload Icon"
+            android:src="@drawable/ic_upload" />
         <!-- Upload Text -->
         <LinearLayout
-            android:layout_toEndOf="@id/imageUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true">
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/imageUpload"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/uploadText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
                 android:text="@string/stringUploadFileHere"
-                android:textSize="@dimen/_11ssp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/nunito_bold" />
+                android:textSize="@dimen/_11ssp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fileFormatText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/stringReqDocsFormate"
-                android:textSize="@dimen/_8ssp"
                 android:fontFamily="@font/nunito_regular"
-                android:textColor="@color/light_grey" />
+                android:text="@string/stringReqDocsFormate"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/_8ssp" />
         </LinearLayout>
-
         <!-- Upload Button -->
         <Button
             android:id="@+id/btnUpload"
@@ -162,11 +158,11 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:backgroundTint="@color/primary_main"
+            android:clickable="false"
+            android:fontFamily="@font/nunito_regular"
             android:text="@string/stringInnerUpload"
             android:textColor="@color/white"
-            android:textSize="@dimen/_8ssp"
-            android:clickable="false"
-            android:fontFamily="@font/nunito_regular"/>
+            android:textSize="@dimen/_8ssp" />
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -182,36 +178,30 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadLayout" />
-
-        <!-- Display selected files below the upload area -->
-
-        <LinearLayout
-            android:id="@+id/fileListContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_11sdp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvUploadDocsHeading"
-            >
-        </LinearLayout>
+    <!-- Display selected files below the upload area -->
+    <LinearLayout
+        android:id="@+id/fileListContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUploadDocsHeading"></LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAttachDocsContinue"
         android:layout_width="0dp"
         android:layout_height="@dimen/_38sdp"
+        android:layout_marginBottom="@dimen/_13sdp"
         android:background="@drawable/bg_button"
         android:backgroundTint="@color/primary_main"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/stringBtnContinue"
-        android:layout_marginBottom="@dimen/_13sdp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

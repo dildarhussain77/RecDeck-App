@@ -15,11 +15,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class SignupDataViewModel(application: Application) : AndroidViewModel(application) {
-
     private val userDao = AppDatabase.getDatabase(application).userDao()
-
     var selectedRole: UserRole? = null
-
     var fullName: String = ""
     var email: String = ""
     var password: String = ""
@@ -34,7 +31,6 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
     //  Facility Fields
     var description: String? = null
     var idOrPassport: String? = null
-
     var docFilePaths: List<String> = emptyList()
 
     // Interests
@@ -54,7 +50,6 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 Log.d("SignupDebug", "Signup Data: Name: $fullName, Email: $email")
-
                 // Prepare data
                 val user = UserEntity(
                     fullName = fullName,
@@ -65,7 +60,6 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
                     profilePicPath = profilePicPath,
                     role = selectedRole.toString()
                 )
-
                 val organizerDetails = if (selectedRole == UserRole.ORGANIZER) {
                     OrganizerDetailsEntity(
                         userId = 0, // Temporary, will be updated
@@ -73,7 +67,6 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
                         gender = gender
                     )
                 } else null
-
                 val facilityDetails = if (selectedRole == UserRole.FACILITY) {
                     FacilityDetailsEntity(
                         userId = 0, // Temporary
@@ -82,7 +75,6 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
                         documentFilePaths = docFilePaths
                     )
                 } else null
-
                 val interestEntities = selectedInterests.map {
                     InterestEntity(
                         categoryId = it.id,
@@ -90,7 +82,6 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
                         iconResId = it.imageResource
                     )
                 }
-
                 // Single transaction
                 userDao.insertUserWithInterests(
                     user = user,
@@ -98,13 +89,11 @@ class SignupDataViewModel(application: Application) : AndroidViewModel(applicati
                     facilityDetails = facilityDetails,
                     interests = interestEntities
                 )
-
                 // Verify
                 val insertedUser =
                     userDao.getUserByEmail(email) ?: throw Exception("User not found")
                 userId = insertedUser.userId
                 Log.d("SignupDebug", "User inserted with ID: $userId")
-
                 onResult(true)
             } catch (e: Exception) {
                 Log.e("SignupError", "Signup failed", e)

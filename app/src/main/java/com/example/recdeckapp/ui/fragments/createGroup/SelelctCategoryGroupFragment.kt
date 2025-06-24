@@ -18,19 +18,14 @@ import com.example.recdeckapp.utils.SessionManager
 import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
-
 class SelelctCategoryGroupFragment : Fragment() {
-
     private var _binding: FragmentSelelctCategoryGroupBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var cardAdapter: CardAdapterIntrest
     private lateinit var groupCreationViewModel: GroupCreationViewModel
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentSelelctCategoryGroupBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,21 +34,16 @@ class SelelctCategoryGroupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSelelctCategoryGroupBinding.bind(view)
-
         groupCreationViewModel = (activity as GroupCreationActivity).groupCreationViewModel
-
         setOnClickListener()
-
         // Show the step indicator
         val activity = requireActivity() as? GroupCreationActivity
         activity?.showStepIndicator(true)
         // Step indicator pe current step set karo
         activity?.updateStepIndicator(1) // example: if it's step 2
         activity?.updateTopBarForFragment(1)
-
         // Sample data
         val itemList = InterestItemsProvider.getDefaultInterestItems()
-
         // Initialize adapter
         cardAdapter = CardAdapterIntrest(
             items = itemList,
@@ -61,7 +51,6 @@ class SelelctCategoryGroupFragment : Fragment() {
         )
         // Optional: Listen for selection changes
         cardAdapter.setOnSelectionChangedListener { selectedItems ->
-
             groupCreationViewModel.selectedInterests = selectedItems.map {
                 InterestEntity(
                     categoryId = it.id,
@@ -72,7 +61,6 @@ class SelelctCategoryGroupFragment : Fragment() {
             // Update UI based on selections if needed
             updateSelectionCounter(selectedItems.size)
         }
-
         // Setting up RecyclerView with GridLayoutManager
         binding.rvSelectCategoryGroup.layoutManager =
             GridLayoutManager(requireContext(), 2) // 2 columns
@@ -110,11 +98,9 @@ class SelelctCategoryGroupFragment : Fragment() {
         super.onResume()
         // Restore previously selected interests from ViewModel
         val selectedInterests = groupCreationViewModel.selectedInterests.map { it.name }
-
         cardAdapter.items.forEach { item ->
             item.isSelected = selectedInterests.contains(item.title)
         }
-
         cardAdapter.notifyDataSetChanged()
         updateSelectionCounter(groupCreationViewModel.selectedInterests.size)
     }

@@ -69,7 +69,6 @@ object MediaPickerUtils {
         } else {
             Manifest.permission.READ_EXTERNAL_STORAGE
         }
-
         when {
             ContextCompat.checkSelfPermission(
                 activity,
@@ -129,13 +128,10 @@ object MediaPickerUtils {
         permission: String? = null
     ) {
         val dialogBinding = DialogPermissionBinding.inflate(LayoutInflater.from(activity))
-
         val alertDialog = AlertDialog.Builder(activity)
             .setView(dialogBinding.root)
             .create()
-
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
         dialogBinding.tvMessage.text =
             if (permission == Manifest.permission.READ_MEDIA_IMAGES || permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
                 activity.getString(R.string.stringPermissionInstructionMessage)
@@ -144,7 +140,6 @@ object MediaPickerUtils {
             }
         dialogBinding.tvGoToSetting.text = activity.getString(R.string.stringGoToSettings)
         dialogBinding.tvCancel.text = activity.getString(R.string.stringCancel)
-
         dialogBinding.tvGoToSetting.setOnClickListener {
             val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
             val uri = Uri.fromParts("package", activity.packageName, null)
@@ -152,11 +147,9 @@ object MediaPickerUtils {
             activity.startActivity(intent)
             alertDialog.dismiss()
         }
-
         dialogBinding.tvCancel.setOnClickListener {
             alertDialog.dismiss()
         }
-
         alertDialog.show()
     }
 
@@ -238,7 +231,6 @@ object MediaPickerUtils {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
             outputStream.flush()
             outputStream.close()
-
             return FileProvider.getUriForFile(
                 context,
                 "${context.packageName}.fileprovider",

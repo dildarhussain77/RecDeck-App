@@ -29,10 +29,9 @@ class EventDescFragment : BaseMediaFragment() {
     private var isValid = false
     private var selectedFile: Uri? = null
     private lateinit var eventCreationViewModel: EventCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentEventDescBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,17 +40,14 @@ class EventDescFragment : BaseMediaFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentEventDescBinding.bind(view)
-
         eventCreationViewModel = (activity as EventCreationActivity).eventCreationViewModel
         setOnClickListener()
         setFieldFocusListeners()
         setupFieldListeners()
         updateButtonState()
-
         if (eventCreationViewModel.isEditing) {
             // Pre-populate fields with existing data
             binding.etEventDesc.setText(eventCreationViewModel.eventDescription)
-
             // Load image with FileDisplayUtils style
             eventCreationViewModel.eventImageUrl?.let { imageUrl ->
                 val uri = Uri.parse(imageUrl)
@@ -59,7 +55,6 @@ class EventDescFragment : BaseMediaFragment() {
                 selectedFile = uri
             }
         }
-
         TextFieldDescUtils.setupDescWatcher(
             binding.etEventDesc,
             binding.tvDescCharCount,
@@ -68,7 +63,6 @@ class EventDescFragment : BaseMediaFragment() {
             //isDescValid = isValid
             //checkFormCompletion()
         }
-
         val activity = requireActivity() as? EventCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(3)
@@ -91,19 +85,16 @@ class EventDescFragment : BaseMediaFragment() {
                 showFilePicker = false
             )
         }
-
         binding.btnEventDescContinue.alpha = 0.5f
         binding.btnEventDescContinue.setOnClickListener {
             if (validateAllFields()) {
                 eventCreationViewModel.eventDescription = binding.etEventDesc.text.toString()
                 eventCreationViewModel.eventImageUrl = selectedFile?.toString()
-
                 Log.e(
                     "EventCreation",
                     "eventDescription continueButtonHandling: 85 rules=${eventCreationViewModel.eventDescription}," +
                             " eventImageUrl = ${eventCreationViewModel.eventImageUrl}"
                 )
-
                 (activity as FragmentActivity).switchFragment(
                     R.id.EventCreationFragmentContainer,
                     SelectPitchesEventFragment()
@@ -144,7 +135,6 @@ class EventDescFragment : BaseMediaFragment() {
             binding.fileContainer
         ) {
             selectedFile = null
-
             if (binding.fileContainer.childCount == 0) {
                 binding.uploadLayoutCreateEvent.visibility = View.VISIBLE
             }
@@ -158,10 +148,8 @@ class EventDescFragment : BaseMediaFragment() {
                 showGallery = true,
                 showFilePicker = false
             )
-
         }
     }
-
 
     private fun setFieldFocusListeners() {
         binding.etEventDesc.setOnFocusChangeListener { view, hasFocus ->
@@ -171,7 +159,6 @@ class EventDescFragment : BaseMediaFragment() {
             } else {
                 // When field loses focus, validate and set appropriate background
                 validateFieldOnFocusLost(view)
-
             }
         }
     }
@@ -201,7 +188,6 @@ class EventDescFragment : BaseMediaFragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate group Name
         val eventDesc = binding.etEventDesc.text.toString().trim()
         if (eventDesc.isEmpty()) {
@@ -209,8 +195,6 @@ class EventDescFragment : BaseMediaFragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
-
         return isAllValid
     }
 
@@ -222,16 +206,13 @@ class EventDescFragment : BaseMediaFragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etEventDesc.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {
@@ -242,13 +223,11 @@ class EventDescFragment : BaseMediaFragment() {
 
     private fun validateInputs(): Boolean {
         val groupRules = binding.etEventDesc.text.toString().trim()
-
         return groupRules.isNotEmpty()
     }
 
     override fun onResume() {
         super.onResume()
-
         if (selectedFile != null) {
             binding.fileContainer.removeAllViews()
             selectedFile?.let { uri ->

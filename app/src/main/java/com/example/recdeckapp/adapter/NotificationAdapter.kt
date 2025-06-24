@@ -1,17 +1,14 @@
 package com.example.recdeckapp.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.recdeckapp.R
 import com.example.recdeckapp.data.entities.NotificationModel
 import com.example.recdeckapp.databinding.NotificationItemBinding
 
 class NotificationAdapter(
     private val notificationList: List<NotificationModel>
 ) : RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
-
     inner class NotificationViewHolder(private val binding: NotificationItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(notification: NotificationModel) {
@@ -24,7 +21,8 @@ class NotificationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationViewHolder {
-        val view = NotificationItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view =
+            NotificationItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NotificationViewHolder(view)
     }
 

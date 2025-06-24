@@ -5,9 +5,9 @@
     android:id="@+id/cvEventDetail"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
     android:backgroundTint="@color/white_light"
     app:cardCornerRadius="@dimen/_24sdp"
-    android:layout_marginTop="@dimen/_10sdp"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,9 +27,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivEventImage"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_120sdp"
-                android:id="@+id/ivEventImage"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,12 +41,12 @@
             android:id="@+id/ivSaveEvent"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
-            app:cardCornerRadius="@dimen/_20sdp"
             android:layout_margin="@dimen/_8sdp"
-            app:cardElevation="0dp"
+            android:backgroundTint="@color/white_light"
             android:clickable="true"
             android:focusable="true"
-            android:backgroundTint="@color/white_light"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -54,17 +54,13 @@
                 android:id="@+id/icSaveEvent"
                 android:layout_width="@dimen/_16sdp"
                 android:layout_height="@dimen/_16sdp"
-                android:paddingTop="@dimen/_2sdp"
                 android:layout_gravity="center"
+                android:paddingTop="@dimen/_2sdp"
                 android:src="@drawable/ic_un_saved"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.cardview.widget.CardView>
-
-
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEventName"
@@ -77,7 +73,6 @@
             app:layout_constraintTop_toBottomOf="@+id/cvEventImage"
             tools:text="@string/stringEventNameTitle" />
 
-
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivEventDate"
             android:layout_width="@dimen/_13sdp"
@@ -85,7 +80,6 @@
             android:src="@drawable/ic_notebook"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvEventName" />
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEventDate"
@@ -109,10 +103,7 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/tvEventDate"
             app:layout_constraintEnd_toEndOf="parent"
-
-
-            tools:text="EventCancel"/>
-
+            tools:text="EventCancel" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clAttendees"
@@ -126,8 +117,8 @@
                 android:id="@+id/ivAttendeeOne"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/football"
                 android:backgroundTint="@color/black"
+                android:src="@drawable/football"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -136,9 +127,9 @@
                 android:id="@+id/ivAttendeeTwo"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/football"
                 android:layout_marginStart="@dimen/_minus10sdp"
                 android:backgroundTint="@color/white"
+                android:src="@drawable/football"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivAttendeeOne"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -147,57 +138,48 @@
                 android:id="@+id/ivAttendeeThree"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/football"
                 android:layout_marginStart="@dimen/_minus10sdp"
                 android:backgroundTint="@color/primary_main"
+                android:src="@drawable/football"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivAttendeeTwo"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/ivAttendeeFour"
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/football"
                 android:layout_marginStart="@dimen/_minus10sdp"
                 android:backgroundTint="@color/red"
+                android:src="@drawable/football"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivAttendeeThree"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tvAttendeesStrength"
-            android:fontFamily="@font/nunito_semi_bold"
-            android:textSize="@dimen/_10sdp"
-            android:textColor="@color/black"
-            tools:text="@string/_22_attendees"
-            app:layout_constraintTop_toTopOf="@+id/clAttendees"
-           app:layout_constraintBottom_toBottomOf="@+id/clAttendees"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            app:layout_constraintStart_toEndOf="@id/clAttendees"
-            />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvEventPrice"
+            android:layout_marginHorizontal="@dimen/_5sdp"
             android:fontFamily="@font/nunito_semi_bold"
-            android:textSize="@dimen/_11sdp"
-            android:textColor="@color/primary_main"
-            tools:text="@string/sar_2_00_per_head"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/clAttendees"
+            app:layout_constraintStart_toEndOf="@id/clAttendees"
             app:layout_constraintTop_toTopOf="@+id/clAttendees"
+            tools:text="@string/_22_attendees" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEventPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semi_bold"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toBottomOf="@+id/clAttendees"
             app:layout_constraintEnd_toEndOf="parent"
-            />
-
+            app:layout_constraintTop_toTopOf="@+id/clAttendees"
+            tools:text="@string/sar_2_00_per_head" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.cardview.widget.CardView>

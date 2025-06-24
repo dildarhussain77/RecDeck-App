@@ -11,7 +11,6 @@
     android:foreground="@drawable/bg_card_border"
     android:padding="@dimen/_6sdp">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cvPitchesImage"
         android:layout_width="@dimen/_95sdp"
@@ -27,9 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:scaleType="centerCrop"
-
-            />
+            android:scaleType="centerCrop" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAvailable"
@@ -68,10 +65,7 @@
             android:textColor="@color/red"
             android:textSize="@dimen/_9sdp"
             android:visibility="gone" />
-
-
     </androidx.cardview.widget.CardView>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -189,9 +183,5 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnViewDetails"
             app:layout_constraintTop_toBottomOf="@+id/tvPitchesTimeShow" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

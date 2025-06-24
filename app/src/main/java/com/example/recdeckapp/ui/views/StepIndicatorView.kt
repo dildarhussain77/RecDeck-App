@@ -12,11 +12,8 @@ class StepIndicatorView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs) {
-
     private var binding: ViewStepIndicatorBinding =
         ViewStepIndicatorBinding.inflate(LayoutInflater.from(context), this, true)
-
-
     private val indicatorContainer = binding.stepContainer
     private var indicators: List<View> = emptyList()
 

@@ -21,16 +21,14 @@ import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.PitchCreationViewModel
 
 class PitchFacilityProfileFragment : BaseMediaFragment() {
-
     private var _binding: FragmentPitchFacilityProfileBinding? = null
     private val binding get() = _binding!!
     private var isValid = false
     private var imageUri: Uri? = null
     private lateinit var pitchCreationViewModel: PitchCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentPitchFacilityProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,24 +37,18 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPitchFacilityProfileBinding.bind(view)
-
         pitchCreationViewModel = (activity as PitchCreationActivity).pitchCreationViewModel
-
-
         val activity = requireActivity() as? PitchCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(3)
         activity?.updateTopBarForFragment(2)
-
         setOnClickListener()
         setFieldFocusListeners()
         setupFieldListeners()
         updateButtonState()
-
     }
 
     private fun setOnClickListener() {
-
         // Open Bottom Dialog on Camera Icon Click
         binding.cameraIconPitch.setOnClickListener {
             showMediaPickerBottomSheet(
@@ -65,7 +57,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
                 showFilePicker = false
             )
         }
-
         binding.btnFacilityProfileContinue.setOnClickListener {
             if (validateAllFields()) {
                 pitchCreationViewModel.pitchFacilityName =
@@ -82,7 +73,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
                     PitchFacilityDocumentsFragment()
                 )
             }
-
         }
     }
 
@@ -109,7 +99,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
         val fields = listOf(
             binding.etFacilityName,
         )
-
         for (field in fields) {
             field.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
@@ -117,7 +106,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
                     view.background =
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
                     Log.d("FocusDebug", " field focus changed: $hasFocus")
-
                 } else {
                     // When field loses focus, validate and set appropriate background
                     validateFieldOnFocusLost(view)
@@ -128,7 +116,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
 
     private fun validateFieldOnFocusLost(view: View) {
         when (view.id) {
-
             R.id.etFacilityName -> {
                 val text = binding.etFacilityName.text.toString().trim()
                 if (text.isEmpty()) {
@@ -147,7 +134,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate pitch Name
         val facilityName = binding.etFacilityName.text.toString().trim()
         if (facilityName.isEmpty()) {
@@ -155,7 +141,6 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         return isAllValid
     }
 
@@ -167,16 +152,13 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etFacilityName.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {
@@ -207,6 +189,4 @@ class PitchFacilityProfileFragment : BaseMediaFragment() {
         // Memory leak avoid karne ke liye binding null kar do
         _binding = null
     }
-
-
 }

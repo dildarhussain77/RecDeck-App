@@ -5,9 +5,8 @@
     android:id="@+id/intro2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="@dimen/_14sdp"
-    android:background="@color/white_light">
-
+    android:background="@color/white_light"
+    android:paddingVertical="@dimen/_14sdp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/profileImage"
@@ -19,6 +18,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

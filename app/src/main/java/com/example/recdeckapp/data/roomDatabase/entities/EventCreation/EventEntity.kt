@@ -18,6 +18,4 @@ data class EventEntity(
     val eventRepeat: String,
     val eventPaymentType: String,
     val creatorUserId: Int // Foreign key link to User
-
 )
-

@@ -15,15 +15,12 @@ import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
 class CreateGroupFragment : Fragment() {
-
     private var _binding: FragmentCreateEventBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var groupCreationViewModel: GroupCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentCreateEventBinding.inflate(inflater, container, false)
         return binding.root
@@ -32,18 +29,14 @@ class CreateGroupFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCreateEventBinding.bind(view)
-
         groupCreationViewModel = (activity as GroupCreationActivity).groupCreationViewModel
-
         val activity = requireActivity() as? GroupCreationActivity
         activity?.showStepIndicator(false)
         activity?.updateTopBarForFragment(0)
-
         setOnClickListener()
     }
 
     private fun setOnClickListener() {
-
         binding.btnCreateGroupContinue.setOnClickListener {
             groupCreationViewModel.creatorUserId = SessionManager.getUserId(requireContext())
             Log.e(
@@ -55,7 +48,6 @@ class CreateGroupFragment : Fragment() {
                 SelelctCategoryGroupFragment()
             )
         }
-
     }
 
     override fun onDestroyView() {

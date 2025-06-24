@@ -11,7 +11,6 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 
 object DropdownUtils {
-
     fun setupDropdown(
         context: Context,
         anchorView: AutoCompleteTextView,
@@ -28,30 +27,31 @@ object DropdownUtils {
             items
         ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = convertView ?: LayoutInflater.from(context).inflate(itemLayoutRes, parent, false)
+                val view = convertView ?: LayoutInflater.from(context)
+                    .inflate(itemLayoutRes, parent, false)
                 val itemText = getItem(position)
                 view.findViewById<TextView>(textViewId).text = itemText
                 return view
             }
 
-            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+            override fun getDropDownView(
+                position: Int,
+                convertView: View?,
+                parent: ViewGroup
+            ): View {
                 return getView(position, convertView, parent)
             }
         }
-
         anchorView.apply {
             setAdapter(adapter)
             setDropDownBackgroundResource(dropdownBgColorRes)
-
             setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) showDropDown()
             }
-
             setOnClickListener {
                 adapter.filter.filter(null)
                 showDropDown()
             }
-
             setOnItemClickListener { parent, _, position, _ ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 onItemSelected(selectedItem)

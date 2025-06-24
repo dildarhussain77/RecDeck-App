@@ -15,29 +15,22 @@ import com.example.recdeckapp.utils.loadInitialFragment
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
 class GroupCreationActivity : BaseActivity() {
-
-
     private lateinit var binding: ActivityGroupCreationBinding
 
     //ViewModel shared between all fragments
     lateinit var groupCreationViewModel: GroupCreationViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityGroupCreationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.stepIndicator.initializeSteps(3)
-
         groupCreationViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(GroupCreationViewModel::class.java)
-
         StatusBarUtils.setLightStatusBar(this, R.color.white_light)
         setOnClickListener()
         setupBackPressHandler()
-
         val startFromSecond = intent.getBooleanExtra("startFromSecondFragment", false)
         if (savedInstanceState == null) {
             if (startFromSecond) {
@@ -54,12 +47,10 @@ class GroupCreationActivity : BaseActivity() {
         }
     }
 
-
     private fun setOnClickListener() {
         binding.ivBackGroupCreate.setOnClickListener {
             handleBackPress()
         }
-
         binding.tvCreateGroupCancel.setOnClickListener {
             AlertDialogUtils.showCancelDialog(
                 this,
@@ -102,10 +93,8 @@ class GroupCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvGroupDetail.text = getString(R.string.stringCreateGroup)
                 binding.tvSteps.text = getString(R.string.stringStep1)
-
             }
 
             2 -> { // Third Fragment
@@ -113,10 +102,8 @@ class GroupCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvGroupDetail.text = getString(R.string.stringCreateGroup)
                 binding.tvSteps.text = getString(R.string.stringStep2)
-
             }
 
             3 -> { // fourth Fragment
@@ -124,7 +111,6 @@ class GroupCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvGroupDetail.text = getString(R.string.stringCreateGroup)
                 binding.tvSteps.text = getString(R.string.stringStep3)
             }
@@ -147,5 +133,4 @@ class GroupCreationActivity : BaseActivity() {
             handleBackPress()
         }
     }
-
 }

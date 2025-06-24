@@ -12,170 +12,160 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_cross_black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!-- Title -->
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stringSelectDate"
-        android:textSize="@dimen/_14ssp"
         android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringSelectDate"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivCross" />
-
     <!-- Month Navigation -->
     <LinearLayout
         android:id="@+id/monthNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/_4sdp"
         android:layout_marginTop="@dimen/_16sdp"
         android:gravity="center_vertical"
-        app:layout_constraintTop_toBottomOf="@+id/tvDialogTitle"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvDialogTitle">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnPrevMonth"
             android:layout_width="@dimen/_21sdp"
             android:layout_height="@dimen/_21sdp"
             android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_chevron_left"
-             />
+            android:src="@drawable/ic_chevron_left" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCurrentMonth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/stringMonthYear"
-            android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/nunito_bold"
+            android:gravity="center"
+            android:text="@string/stringMonthYear"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_15ssp" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btnNextMonth"
             android:layout_width="@dimen/_21sdp"
             android:layout_height="@dimen/_21sdp"
             android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_chevron_right"
-            />
-
+            android:src="@drawable/ic_chevron_right" />
     </LinearLayout>
-
     <!-- Week Days Header -->
     <LinearLayout
         android:id="@+id/weekDaysHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_13sdp"
-        app:layout_constraintTop_toBottomOf="@+id/monthNavigation"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/monthNavigation">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="@string/s"
-            android:textSize="@dimen/_14ssp"
             android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
+            android:text="@string/s"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_14ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
             android:text="@string/m"
-            android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/nunito_regular"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_14ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
             android:text="@string/t"
-            android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/nunito_regular"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_14ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
             android:text="@string/w"
-            android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/nunito_regular"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_14ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
             android:text="@string/t"
-            android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/nunito_regular"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_14ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
+            android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
             android:text="@string/f"
-            android:textSize="@dimen/_14ssp"
-            android:fontFamily="@font/nunito_regular"
             android:textColor="@color/black"
-            android:gravity="center" />
+            android:textSize="@dimen/_14ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="@string/s"
-            android:textSize="@dimen/_14ssp"
             android:fontFamily="@font/nunito_regular"
+            android:gravity="center"
+            android:text="@string/s"
             android:textColor="@color/black"
-            android:gravity="center" />
-
+            android:textSize="@dimen/_14ssp" />
     </LinearLayout>
-
     <!-- Calendar Grid -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/weekDaysHeader"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/weekDaysHeader" />
     <!-- Done Button -->
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSelectDate"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:text="@string/stringDone"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_13ssp"
-        android:fontFamily="@font/nunito_bold"
         android:background="@drawable/bg_button"
         android:backgroundTint="@color/primary_main"
-        app:layout_constraintTop_toBottomOf="@+id/calendarRecyclerView"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringDone"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@+id/calendarRecyclerView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

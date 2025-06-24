@@ -9,9 +9,7 @@
     tools:context=".ui.activities.LoginActivity">
 
     <androidx.fragment.app.FragmentContainerView
-    android:id="@+id/signupFragmentContainer"
+        android:id="@+id/signupFragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

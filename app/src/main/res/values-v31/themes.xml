@@ -7,6 +7,5 @@
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_app_logo_splash_12</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/primary_main</item>
         <item name="postSplashScreenTheme">@style/Theme.RecDeckApp</item>
-
     </style>
 </resources>

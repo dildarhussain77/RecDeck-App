@@ -9,7 +9,6 @@
     android:paddingTop="@dimen/_13sdp"
     tools:context=".ui.fragments.createGroup.CreateGroupFragment">
 
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivCreateEvent"
         android:layout_width="@dimen/_133sdp"
@@ -64,6 +63,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEventCreateDesc" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

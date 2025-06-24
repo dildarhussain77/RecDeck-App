@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:paddingHorizontal="@dimen/_13sdp"
     android:layout_height="match_parent"
     android:background="@color/white_light"
-
+    android:paddingHorizontal="@dimen/_13sdp"
     tools:context=".ui.activities.SignupActivity">
-
 
     <ProgressBar
         android:id="@+id/pgBarSucess"
@@ -21,33 +19,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivBackArrowSignUpSuccess"
         android:layout_width="@dimen/_34sdp"
         android:layout_height="@dimen/_34sdp"
-        android:src="@drawable/ic_back_arrow"
-
         android:layout_marginTop="@dimen/_22sdp"
-        android:padding="@dimen/_3sdp"
         android:clickable="true"
+        android:contentDescription="Back"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:contentDescription="Back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"  />
-
-
-
+        android:padding="@dimen/_3sdp"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignSucessfulUpContinue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/btnSignSucessfulUpContinue">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/signUpSuccessfulTickLogo"
@@ -57,8 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/signup_successful_tick"
-            />
+            app:srcCompat="@drawable/signup_successful_tick" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSignUpSucessfulHeading"
@@ -81,18 +72,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_12sdp"
             android:fontFamily="@font/nunito_regular"
-            android:text="@string/stringVerifySuccessful"
             android:gravity="center"
+            android:text="@string/stringVerifySuccessful"
             android:textColor="@color/light_grey"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSignUpSucessfulHeading" />
-
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -111,6 +97,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.recdeckapp.databinding.FragmentIntro2Binding
 
 class IntroFragment2 : Fragment() {
-
     private var _binding: FragmentIntro2Binding? = null
     private val binding get() = _binding!!
 
@@ -31,11 +30,9 @@ class IntroFragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentIntro2Binding.inflate(inflater, container, false)
-
         arguments?.let {
             binding.profileImage.setImageResource(it.getInt("mainImage"))
         }
-
         return binding.root
     }
 

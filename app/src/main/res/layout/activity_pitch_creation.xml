@@ -9,7 +9,6 @@
     android:paddingTop="@dimen/_13sdp"
     tools:context=".ui.activities.PitchCreationActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clCreatePitchBar"
         android:layout_width="match_parent"
@@ -84,7 +83,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSteps" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.fragment.app.FragmentContainerView
@@ -95,5 +93,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clCreatePitchBar" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

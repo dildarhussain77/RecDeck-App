@@ -20,9 +20,7 @@ class GroupListAdapter(
 ) :
     RecyclerView.Adapter<GroupListAdapter.GroupViewHolder>() {
     private var selectedGroupId = preselectedGroupId
-
     val groupList = groupList2.toMutableList() // Internally mutable
-
     fun removeGroup(group: GroupEntity): Int {
         val index = groupList.indexOfFirst { it.groupId == group.groupId }
         if (index != -1) {
@@ -33,7 +31,6 @@ class GroupListAdapter(
 
     inner class GroupViewHolder(val binding: ItemGroupInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(group: GroupEntity) {
             with(binding) {
                 tvGroupName.text = group.groupName
@@ -42,33 +39,26 @@ class GroupListAdapter(
                     .load(group.imageUrl)
                     .placeholder(R.drawable.ic_image)
                     .into(ivGroupImage)
-
                 if (group.isGroupAvailable) {
                     Log.e("CLICK", "ADAPTER: 57")
                     tvNotAvailable.visibility = View.GONE
                     root.isEnabled = true
                     //root.alpha = 1.0f
-
                 } else {
                     Log.e("CLICK", "ADAPTER: 64")
                     tvNotAvailable.visibility = View.VISIBLE
                     root.isEnabled = false
                     //root.alpha = 0.5f
                 }
-
                 // Highlight selected group
                 root.isSelected = group.groupId == selectedGroupId
                 if (group.groupId == selectedGroupId) {
                     root.setBackgroundColor(
                         ContextCompat.getColor(root.context, R.color.primary_main)
                     )
-                    root.setBackground(
-                        ContextCompat.getDrawable(root.context, R.drawable.group_info_bg)
-                    )
+                    root.background = ContextCompat.getDrawable(root.context, R.drawable.group_info_bg)
                 } else {
-                    root.setBackground(
-                        ContextCompat.getDrawable(root.context, R.drawable.group_info_bg)
-                    )
+                    root.background = ContextCompat.getDrawable(root.context, R.drawable.group_info_bg)
                 }
                 root.setOnClickListener {
                     Log.e(
@@ -104,7 +94,6 @@ class GroupListAdapter(
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
         val group = groupList[position]
         holder.bind(group)
-
     }
 
     override fun getItemCount() = groupList.size

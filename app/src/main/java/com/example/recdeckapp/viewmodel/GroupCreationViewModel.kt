@@ -22,7 +22,6 @@ class GroupCreationViewModel(application: Application) : AndroidViewModel(applic
     var imageUrl: String? = null
     var creatorUserId: Int = -1
     var selectedInterests: List<InterestEntity> = emptyList()
-
     fun insertGroupToRoom(onResult: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -80,6 +79,4 @@ class GroupCreationViewModel(application: Application) : AndroidViewModel(applic
             onDeleted()
         }
     }
-
-
 }

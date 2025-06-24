@@ -19,15 +19,13 @@ import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.PitchCreationViewModel
 
 class SelectCategoryPitchFragment : Fragment() {
-
     private var _binding: FragmentSelectCategoryPitchBinding? = null
     private val binding get() = _binding!!
     private lateinit var cardAdapter: CardAdapterIntrest
     private lateinit var pitchCreationViewModel: PitchCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentSelectCategoryPitchBinding.inflate(inflater, container, false)
         return binding.root
@@ -36,24 +34,19 @@ class SelectCategoryPitchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSelectCategoryPitchBinding.bind(view)
-
         pitchCreationViewModel = (activity as PitchCreationActivity).pitchCreationViewModel
-
         val activity = requireActivity() as? PitchCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(1) // example: if it's step 2
         activity?.updateTopBarForFragment(0)
         setOnClickListener()
-
         // Sample data
         val itemList = InterestItemsProvider.getDefaultInterestItems()
-
         // Initialize adapter
         cardAdapter = CardAdapterIntrest(
             items = itemList,
             context = requireContext()
         )
-
         cardAdapter.setOnSelectionChangedListener { selectedItems ->
 //
             pitchCreationViewModel.selectedInterests = selectedItems.map {
@@ -73,7 +66,6 @@ class SelectCategoryPitchFragment : Fragment() {
     }
 
     private fun setOnClickListener() {
-
         binding.btnSelectCategoryPitchContinue.setOnClickListener {
             pitchCreationViewModel.creatorUserId = SessionManager.getUserId(requireContext())
             Log.e(
@@ -86,7 +78,6 @@ class SelectCategoryPitchFragment : Fragment() {
             )
         }
     }
-
 
     private fun updateSelectionCounter(count: Int) {
         // Optional: Update a counter or text that shows how many items are selected
@@ -101,11 +92,9 @@ class SelectCategoryPitchFragment : Fragment() {
         super.onResume()
         // Restore previously selected interests from ViewModel
         val selectedInterests = pitchCreationViewModel.selectedInterests.map { it.name }
-
         cardAdapter.items.forEach { item ->
             item.isSelected = selectedInterests.contains(item.title)
         }
-
         cardAdapter.notifyDataSetChanged()
         updateSelectionCounter(pitchCreationViewModel.selectedInterests.size)
     }
@@ -115,5 +104,4 @@ class SelectCategoryPitchFragment : Fragment() {
         // Memory leak avoid karne ke liye binding null kar do
         _binding = null
     }
-
 }

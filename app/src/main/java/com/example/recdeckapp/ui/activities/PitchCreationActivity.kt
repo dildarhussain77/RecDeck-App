@@ -13,22 +13,18 @@ import com.example.recdeckapp.utils.loadInitialFragment
 import com.example.recdeckapp.viewmodel.PitchCreationViewModel
 
 class PitchCreationActivity : BaseActivity() {
-
     private lateinit var binding: ActivityPitchCreationBinding
 
     //ViewModel shared between all fragments
     lateinit var pitchCreationViewModel: PitchCreationViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPitchCreationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         pitchCreationViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(PitchCreationViewModel::class.java)
-
         StatusBarUtils.setLightStatusBar(this, R.color.white_light)
         setOnClickListener()
         binding.stepIndicator.initializeSteps(4)
@@ -77,7 +73,6 @@ class PitchCreationActivity : BaseActivity() {
                 binding.tvCreatePitchCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvSteps.text = getString(R.string.stringStep1)
             }
 
@@ -95,7 +90,6 @@ class PitchCreationActivity : BaseActivity() {
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
                 binding.tvSteps.text = getString(R.string.stringStep3)
-
             }
 
             3 -> { // fourth Fragment

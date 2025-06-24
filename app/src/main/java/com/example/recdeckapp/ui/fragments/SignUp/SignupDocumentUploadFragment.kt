@@ -24,36 +24,29 @@ import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.SignupDataViewModel
 
 class SignupDocumentUploadFragment : BaseMediaFragment() {
-
     private var _binding: FragmentSignupDocumentUploadBinding? = null
     private val binding get() = _binding!!
-
     private var etIdPassNum = false
     private lateinit var signupDataViewModel: SignupDataViewModel
     private val selectedFiles = mutableListOf<Uri>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSignupDocumentUploadBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         signupDataViewModel = (activity as SignupActivity).signupDataViewModel
         binding.tvUploadDocsHeading.visibility = View.GONE
-
         BackPressHelper.handleBackPress(this, binding.ivBackArrowAttachDocs)
         setupFieldListeners()  // Set up text listeners to update the button state
         setOnClickListener()
         setFieldFocusListeners()
-
     }
 
     private fun setOnClickListener() {
-
         binding.uploadLayout.setOnClickListener {
             if (selectedFiles.size >= 2) {
                 Toast.makeText(
@@ -69,11 +62,9 @@ class SignupDocumentUploadFragment : BaseMediaFragment() {
                 showFilePicker = true
             )
         }
-
         // Initially disable the continue button
         binding.btnAttachDocsContinue.isEnabled = false
         binding.btnAttachDocsContinue.alpha = 0.5f
-
         binding.btnAttachDocsContinue.setOnClickListener {
             signupDataViewModel.idOrPassport = binding.etIdPassNum.text.toString()
             // Store the URI as string - it will be null if no file is selected
@@ -122,7 +113,6 @@ class SignupDocumentUploadFragment : BaseMediaFragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 // Check fields and update button state
                 updateButtonState()
@@ -130,7 +120,6 @@ class SignupDocumentUploadFragment : BaseMediaFragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etIdPassNum.addTextChangedListener(textWatcher)
     }
 
@@ -168,7 +157,6 @@ class SignupDocumentUploadFragment : BaseMediaFragment() {
             } else {
                 // When field loses focus, validate and set appropriate background
                 validateFieldOnFocusLost(view)
-
             }
         }
     }
@@ -196,7 +184,6 @@ class SignupDocumentUploadFragment : BaseMediaFragment() {
 
     override fun onResume() {
         super.onResume()
-
         if (selectedFiles.isNotEmpty()) {
             binding.fileListContainer.removeAllViews()
             selectedFiles.forEach { uri ->

@@ -9,7 +9,6 @@ import com.example.recdeckapp.databinding.ItemSliderBinding
 
 class SliderAdapter(private val images: List<Any>) :
     RecyclerView.Adapter<SliderAdapter.SliderViewHolder>() {
-
     inner class SliderViewHolder(val binding: ItemSliderBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -21,7 +20,6 @@ class SliderAdapter(private val images: List<Any>) :
     override fun onBindViewHolder(holder: SliderViewHolder, position: Int) {
         val item = images[position]
         val context = holder.itemView.context
-
         when (item) {
             is Int -> {
                 // Drawable resource

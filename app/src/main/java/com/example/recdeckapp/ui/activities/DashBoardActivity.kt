@@ -16,17 +16,12 @@ import com.example.recdeckapp.utils.StatusBarUtils
 import com.example.recdeckapp.utils.loadInitialFragment
 
 class DashBoardActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityDashBoardBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         StatusBarUtils.setLightStatusBar(this, R.color.bg_grey)
-
         binding = ActivityDashBoardBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val role = SessionManager.getUserRole(this)
         if (role == "ORGANIZER") {
             binding.clMyBookings.visibility = View.GONE
@@ -34,13 +29,11 @@ class DashBoardActivity : AppCompatActivity() {
             binding.clMyBookings.visibility = View.VISIBLE
         }
         setupBottomNavigation()
-
         // Load the first fragment when activity is created
         if (savedInstanceState == null) {
             loadInitialFragment(binding.dashBoardFragmentContainer.id, FragmentEvents())
         }
     }
-
 
     private fun setupBottomNavigation() {
         val defaultColor = ContextCompat.getColor(this, R.color.black)
@@ -48,7 +41,6 @@ class DashBoardActivity : AppCompatActivity() {
             this,
             R.color.primary_main
         ) // Change to your desired selected color
-
         // Map of layout id to Pair of ImageView & TextView
         val navItems = listOf(
             Triple(binding.clEvents, binding.ivEvents, binding.tvEvents),
@@ -57,7 +49,6 @@ class DashBoardActivity : AppCompatActivity() {
             Triple(binding.clChats, binding.ivChats, binding.tvChats),
             Triple(binding.clGroups, binding.ivGroups, binding.tvGroups)
         )
-
         // Map icons (default & selected)
         val iconsMap = mapOf(
             binding.clEvents to Pair(R.drawable.ic_events, R.drawable.ic_events_selected),
@@ -82,12 +73,10 @@ class DashBoardActivity : AppCompatActivity() {
         }
         // Initial selection
         selectItem(R.id.clEvents)
-
         // Set up click listeners
         navItems.forEach { (layout, _, _) ->
             layout.setOnClickListener {
                 selectItem(layout.id)
-
                 val fragment = when (layout) {
                     binding.clEvents -> FragmentEvents()
                     binding.clMyBookings -> FragmentBookings()
@@ -96,13 +85,10 @@ class DashBoardActivity : AppCompatActivity() {
                     binding.clGroups -> FragmentGroups()
                     else -> null
                 }
-
                 fragment?.let {
                     loadInitialFragment(binding.dashBoardFragmentContainer.id, it)
                 }
             }
         }
     }
-
-
 }

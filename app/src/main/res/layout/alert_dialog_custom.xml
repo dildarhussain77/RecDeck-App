@@ -1,124 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_16sdp"
     android:background="@drawable/dialog_background"
-    >
+    android:padding="@dimen/_16sdp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivCross"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_cross_black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_alert"
         android:layout_marginTop="@dimen/_9sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_alert"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAlerDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stringAlert"
         android:layout_marginTop="@dimen/_7sdp"
-        android:textSize="@dimen/_17ssp"
         android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringAlert"
         android:textColor="@color/primary_main"
-        app:layout_constraintTop_toBottomOf="@+id/ivAlert"
+        android:textSize="@dimen/_17ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/ivAlert" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAlerDialogMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/stringAlertMessage"
-        android:textSize="@dimen/_12ssp"
-        android:fontFamily="@font/nunito_regular"
         android:layout_marginTop="@dimen/_7sdp"
-        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringAlertMessage"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogTitle"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogTitle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogMessage"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogMessage">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnNo"
             android:layout_width="0dp"
             android:layout_height="@dimen/_34sdp"
-            app:layout_constraintWidth_percent="0.48"
-            android:text="@string/stringNo"
-            android:textAllCaps="false"
+            android:background="@drawable/bg_button_outline"
             android:clickable="true"
             android:focusable="true"
-            android:background="@drawable/bg_button_outline"
-            android:textSize="@dimen/_13ssp"
             android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringNo"
+            android:textAllCaps="false"
             android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintWidth_percent="0.48" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnYes"
             android:layout_width="0dp"
             android:layout_height="@dimen/_34sdp"
-            app:layout_constraintWidth_percent="0.48"
-            android:text="@string/stringYes"
-            android:textAllCaps="false"
-            android:clickable="true"
-            android:focusable="true"
             android:background="@drawable/bg_button_outline"
             android:backgroundTint="@color/primary_main"
-            android:textSize="@dimen/_13ssp"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/nunito_regular"
+            android:text="@string/stringYes"
+            android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintWidth_percent="0.48" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnAlertContinue"
             android:layout_width="0dp"
             android:layout_height="@dimen/_34sdp"
-            android:text="@string/stringBtnContinue"
-            android:textAllCaps="false"
-            android:clickable="true"
-            android:focusable="true"
-            android:visibility="gone"
             android:background="@drawable/bg_button_outline"
             android:backgroundTint="@color/primary_main"
-            android:textSize="@dimen/_13ssp"
+            android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/nunito_semi_bold"
+            android:text="@string/stringBtnContinue"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/_13ssp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
-
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class FilterBottomSheet : BottomSheetDialogFragment() {
     private var _binding: FilterBottomSheetBinding? = null
     private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -22,7 +21,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         isCancelable = false //Prevents closing on outside tap/back press
         setOnClickListener()
     }
@@ -44,7 +42,6 @@ class FilterBottomSheet : BottomSheetDialogFragment() {
         bottomSheet?.let {
             val behavior = BottomSheetBehavior.from(it)
             behavior.state = BottomSheetBehavior.STATE_EXPANDED
-
             // Optional: Make it skip collapsed state completely if you want
             behavior.skipCollapsed = true
         }

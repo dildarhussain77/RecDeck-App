@@ -8,9 +8,9 @@
         android:id="@+id/tvCommonDropdown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/_11ssp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/nunito_regular"
         android:ellipsize="end"
-        android:maxLines="1"/>
+        android:fontFamily="@font/nunito_regular"
+        android:maxLines="1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11ssp" />
 </LinearLayout>

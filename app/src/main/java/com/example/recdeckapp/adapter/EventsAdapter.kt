@@ -9,10 +9,8 @@ import com.example.recdeckapp.data.entities.EventType
 import com.example.recdeckapp.databinding.ItemEventsBinding
 
 class EventsAdapter(
-
     private val items: List<EventType>,
     private val onItemClick: (EventType) -> Unit,
-
 ) : RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
     private var selectedItem = 0 // Initially select first item
 
@@ -26,12 +24,9 @@ class EventsAdapter(
                         binding.root.context, R.color.white
                     )
                 )
-
                 val color = ContextCompat.getColor(itemView.context, R.color.primary_main)
                 binding.cvPromo.setCardBackgroundColor(color)
-
             } else {
-
                 binding.tvEventName.setTextColor(
                     ContextCompat.getColor(
                         binding.root.context, R.color.black
@@ -39,8 +34,6 @@ class EventsAdapter(
                 )
                 val color = ContextCompat.getColor(itemView.context, R.color.white)
                 binding.cvPromo.setCardBackgroundColor(color)
-
-
             }
             binding.root.setOnClickListener {
                 selectedItem = position

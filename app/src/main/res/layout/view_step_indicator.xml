@@ -57,4 +57,3 @@
         android:layout_weight="1"
         android:background="@drawable/bg_step_unfilled" />
 </LinearLayout>
-

@@ -10,11 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ProfileViewModel(application: Application) : AndroidViewModel(application) {
-
     private val userDao = AppDatabase.getDatabase(application).userDao()
-
     val userLiveData = MutableLiveData<UserEntity>()
-
     fun getUserData(userId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val user = userDao.getUserById(userId)

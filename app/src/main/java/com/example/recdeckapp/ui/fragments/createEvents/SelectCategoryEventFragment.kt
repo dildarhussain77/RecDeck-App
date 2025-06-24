@@ -19,15 +19,13 @@ import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.EventCreationViewModel
 
 class SelectCategoryEventFragment : Fragment() {
-
     private var _binding: FragmentSelectCategoryEventBinding? = null
     private val binding get() = _binding!!
     private lateinit var cardAdapter: CardAdapterIntrest
     private lateinit var eventCreationViewModel: EventCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentSelectCategoryEventBinding.inflate(inflater, container, false)
         return binding.root
@@ -36,14 +34,12 @@ class SelectCategoryEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         eventCreationViewModel = (activity as EventCreationActivity).eventCreationViewModel
-
         // Show the step indicator
         val activity = requireActivity() as? EventCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(1)
         activity?.updateTopBarForFragment(0)
         setupClickListeners()
-
         // Sample data
         val itemList = InterestItemsProvider.getDefaultInterestItems()
         // Initialize adapter
@@ -60,14 +56,12 @@ class SelectCategoryEventFragment : Fragment() {
                     iconResId = it.imageResource
                 )
             }
-
             updateSelectionCounter(selectedItems.size)
         }
         binding.rvSelectCategoryEvent.layoutManager =
             GridLayoutManager(requireContext(), 2) // 2 columns
         binding.rvSelectCategoryEvent.adapter = cardAdapter
     }
-
 
     private fun setupClickListeners() {
         binding.btnSelectCategoryEventContinue.setOnClickListener {
@@ -94,27 +88,21 @@ class SelectCategoryEventFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         Log.d(
             "EditingCheck",
             "onResume - selectedInterests from ViewModel = ${eventCreationViewModel.selectedInterests.map { it.name }}"
         )
-
         if (::cardAdapter.isInitialized) {
             val selectedInterests = eventCreationViewModel.selectedInterests.map { it.name }
-
             cardAdapter.items.forEach { item ->
                 item.isSelected = selectedInterests.contains(item.title)
             }
-
             cardAdapter.notifyDataSetChanged()
             updateSelectionCounter(eventCreationViewModel.selectedInterests.size)
-
             Log.d(
                 "EditingCheck",
                 "onResume - selectedInterests from ViewModel = ${eventCreationViewModel.selectedInterests.map { it.name }}"
             )
-
         } else {
             Log.w("SelectCategoryEvent", "cardAdapter not initialized yet in onResume()")
         }

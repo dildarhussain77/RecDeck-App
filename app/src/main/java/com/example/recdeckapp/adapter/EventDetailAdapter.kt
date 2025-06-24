@@ -21,22 +21,17 @@ import com.example.recdeckapp.utils.statusTextColor
 class EventDetailAdapter(
     private val eventType: EventType, private val onEventImageClick: (Event) -> Unit
 ) :
-
     ListAdapter<Event, EventDetailAdapter.ViewHolder>(DiffCallback()) {
-
     inner class ViewHolder(val binding: ItemEventDetailBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         @SuppressLint("SetTextI18n")
         fun bind(event: Event) = with(binding) {
             Glide.with(itemView.context).load(event.imageResId).skipMemoryCache(false)
                 .into(ivEventImage)
-
             tvEventName.text = event.name
             tvEventDate.text = "${event.date}, ${event.time}"
             tvEventPrice.text = event.price
             tvAttendeesStrength.text = "${event.totalAttendees} Attending"
-
             val imageViews = listOf(ivAttendeeOne, ivAttendeeTwo, ivAttendeeThree, ivAttendeeFour)
             imageViews.forEach { it.visibility = View.GONE }
             event.attendees.take(4).forEachIndexed { index, attendee ->
@@ -49,7 +44,6 @@ class EventDetailAdapter(
             icSaveEvent.setImageResource(
                 if (eventType == EventType.SAVED_EVENTS) R.drawable.ic_saved
                 else R.drawable.ic_un_saved
-
             )
             // Use extension functions to handle status
             if (eventType.shouldShowStatus()) {
@@ -62,15 +56,11 @@ class EventDetailAdapter(
             } else {
                 tvEventStatus.visibility = View.GONE
             }
-
-
             ///moving to event detail activity
             ivEventImage.setOnClickListener {
                 onEventImageClick(event)
             }
-
         }
-
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Event>() {

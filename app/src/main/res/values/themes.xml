@@ -1,15 +1,11 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.RecDeckApp" parent="Theme.Material3.Light.NoActionBar">
-         Customize your light theme here.
-         <item name="colorPrimary">@color/primary_main</item>
+        Customize your light theme here.
+        <item name="colorPrimary">@color/primary_main</item>
         <item name="colorSecondary">@color/primary_main</item>
         <item name="colorControlActivated">@color/primary_main</item>
     </style>
 
     <style name="Theme.RecDeckApp" parent="Base.Theme.RecDeckApp" />
-
-
-
-
 </resources>

@@ -1,75 +1,74 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_16sdp"
     android:background="@drawable/dialog_background"
     android:backgroundTint="@color/white_light"
-    android:gravity="center">
+    android:gravity="center"
+    android:padding="@dimen/_16sdp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivAlert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_alert"
         android:layout_marginTop="@dimen/_9sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_alert"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvAlerDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stringPermissionNeeded"
         android:layout_marginTop="@dimen/_7sdp"
-        android:textSize="@dimen/_17ssp"
         android:fontFamily="@font/nunito_bold"
+        android:text="@string/stringPermissionNeeded"
         android:textColor="@color/primary_main"
-        app:layout_constraintTop_toBottomOf="@+id/ivAlert"
+        android:textSize="@dimen/_17ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/ivAlert" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/stringPermissionDesc"
-        android:textSize="@dimen/_12ssp"
         android:layout_marginTop="@dimen/_9sdp"
-        android:textAlignment="center"
         android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringPermissionDesc"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogTitle"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvAlerDialogTitle" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="@dimen/_13sdp"
-        app:layout_constraintTop_toBottomOf="@+id/tvMessage"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMessage">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvGoToSetting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stringGoToSetting"
+            android:layout_marginEnd="@dimen/_22sdp"
             android:fontFamily="@font/nunito_bold"
-            android:textSize="@dimen/_13ssp"
+            android:text="@string/stringGoToSetting"
             android:textColor="@color/primary_main"
-            android:layout_marginEnd="@dimen/_22sdp" />
+            android:textSize="@dimen/_13ssp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stringCancel"
             android:fontFamily="@font/nunito_bold"
-            android:textSize="@dimen/_13ssp"
-            android:textColor="@color/primary_main" />
+            android:text="@string/stringCancel"
+            android:textColor="@color/primary_main"
+            android:textSize="@dimen/_13ssp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

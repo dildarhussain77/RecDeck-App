@@ -23,16 +23,14 @@ import com.example.recdeckapp.utils.TextFieldDescUtils
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
 class GroupRulesFragment : BaseMediaFragment() {
-
     private var _binding: FragmentGroupRulesBinding? = null
     private val binding get() = _binding!!
     private var selectedFile: Uri? = null
     private var isValid = false
     private lateinit var groupCreationViewModel: GroupCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentGroupRulesBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,15 +39,12 @@ class GroupRulesFragment : BaseMediaFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGroupRulesBinding.bind(view)
-
         // Access the ViewModel from the Activity scope
         groupCreationViewModel = (activity as GroupCreationActivity).groupCreationViewModel
-
         setOnClickListener()
         setFieldFocusListeners()
         setupFieldListeners()
         updateButtonState()
-
         TextFieldDescUtils.setupDescWatcher(
             binding.etGroupRulesDesc,
             binding.tvDescCharCount,
@@ -58,18 +53,15 @@ class GroupRulesFragment : BaseMediaFragment() {
             //isDescValid = isValid
             //checkFormCompletion()
         }
-
         // Show the step indicator
         val activity = requireActivity() as? GroupCreationActivity
         activity?.showStepIndicator(true)
         // Step indicator pe current step set karo
         activity?.updateStepIndicator(3) // example: if it's step 2
         activity?.updateTopBarForFragment(3)
-
     }
 
     private fun setOnClickListener() {
-
         binding.uploadLayoutCreateGroup.setOnClickListener {
 //            if (selectedFile.size >= 2) {
 //                Toast.makeText(requireContext(), "more than 2 files can not be upload", Toast.LENGTH_SHORT).show()
@@ -81,29 +73,22 @@ class GroupRulesFragment : BaseMediaFragment() {
                 showFilePicker = false
             )
         }
-
         binding.btnGroupRulesContinue.alpha = 0.5f
         binding.btnGroupRulesContinue.setOnClickListener {
-
             if (validateAllFields()) {
-
                 groupCreationViewModel.rules = binding.etGroupRulesDesc.text.toString()
                 groupCreationViewModel.imageUrl = selectedFile?.toString()
-
                 Log.d(
                     "GroupCreation",
                     "rules and image continueButtonHandling: 85 idddd=${groupCreationViewModel.creatorUserId}," +
                             " imageUrl = ${groupCreationViewModel.imageUrl}"
                 )
-
                 // Show loading
                 binding.pgBarGroupCreated.visibility = View.VISIBLE
                 binding.btnGroupRulesContinue.isEnabled = false
-
                 groupCreationViewModel.insertGroupToRoom { success ->
                     requireActivity().runOnUiThread {
                         binding.pgBarGroupCreated.visibility = View.GONE
-
                         if (success) {
                             AlertDialogUtils.showCancelDialog(
                                 requireContext(),
@@ -128,9 +113,7 @@ class GroupRulesFragment : BaseMediaFragment() {
                 Log.e("VALIDATE", "setOnClickListener: line 93")
                 (activity as? BaseActivity)?.showToast("Please Set Rules")
             }
-
         }
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -170,7 +153,6 @@ class GroupRulesFragment : BaseMediaFragment() {
                 binding.uploadLayoutCreateGroup.visibility = View.VISIBLE
             }
         }
-
         binding.uploadLayoutCreateGroup.visibility = View.GONE
     }
 
@@ -182,7 +164,6 @@ class GroupRulesFragment : BaseMediaFragment() {
             } else {
                 // When field loses focus, validate and set appropriate background
                 validateFieldOnFocusLost(view)
-
             }
         }
     }
@@ -212,7 +193,6 @@ class GroupRulesFragment : BaseMediaFragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate group Name
         val groupName = binding.etGroupRulesDesc.text.toString().trim()
         if (groupName.isEmpty()) {
@@ -220,8 +200,6 @@ class GroupRulesFragment : BaseMediaFragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
-
         return isAllValid
     }
 
@@ -233,16 +211,13 @@ class GroupRulesFragment : BaseMediaFragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etGroupRulesDesc.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {
@@ -253,10 +228,8 @@ class GroupRulesFragment : BaseMediaFragment() {
 
     private fun validateInputs(): Boolean {
         val groupRules = binding.etGroupRulesDesc.text.toString().trim()
-
         return groupRules.isNotEmpty()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

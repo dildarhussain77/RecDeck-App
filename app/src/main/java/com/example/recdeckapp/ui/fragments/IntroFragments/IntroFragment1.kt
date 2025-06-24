@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.recdeckapp.databinding.FragmentIntro1Binding
 
 class IntroFragment1 : Fragment() {
-
     private var _binding: FragmentIntro1Binding? = null
     private val binding get() = _binding!!
 
@@ -18,9 +17,7 @@ class IntroFragment1 : Fragment() {
         ): IntroFragment1 {
             val fragment = IntroFragment1()
             val bundle = Bundle().apply {
-
                 putInt("eventFrames", eventFrames)
-
             }
             fragment.arguments = bundle
             return fragment
@@ -36,11 +33,8 @@ class IntroFragment1 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         arguments?.let {
-
             binding.eventFrames.setImageResource(it.getInt("eventFrames"))
-
         }
     }
 

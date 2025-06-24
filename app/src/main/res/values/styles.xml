@@ -2,23 +2,18 @@
 <resources>
     <!-- Custom DatePicker Theme -->
     <style name="CustomDatePicker" parent="ThemeOverlay.Material3.MaterialCalendar">
-
         <!-- Header background and text color -->
         <item name="colorPrimary">@color/primary_main</item> <!-- Top heading background -->
         <item name="colorOnPrimary">@color/black</item>       <!-- Heading text color -->
-
         <!-- Selected day text and background color -->
         <item name="colorSecondaryContainer">@color/primary_main
         </item> <!-- Selected day background -->
         <item name="colorOnSecondaryContainer">@color/white_light
         </item>      <!-- Selected day text -->
-
         <!-- Day number color -->
         <item name="colorOnSurfaceVariant">@color/black</item> <!-- Day number text color -->
-
         <!-- Today text color -->
         <item name="colorPrimaryContainer">@color/primary_main</item> <!-- Today date text color -->
-
         <!-- Background color -->
         <item name="android:colorBackground">@color/white_light
         </item> <!-- Light/White background -->
@@ -28,8 +23,6 @@
         <item name="android:textSize">@dimen/_11ssp</item> <!-- Change the size as needed -->
         <item name="android:textColorHint">@color/light_grey</item>
     </style>
-
-
     <!-- Add these styles to your styles.xml -->
     <style name="MyCalendarViewStyle" parent="@android:style/Widget.CalendarView">
         <item name="android:showWeekNumber">false</item>
@@ -52,7 +45,6 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
-
     <!-- Add these colors to your colors.xml if missing -->
     <color name="calendar_unfocused">#888888</color>
     <color name="calendar_selected_bg">#E3F2FD</color>
@@ -63,8 +55,4 @@
         <item name="colorSecondary">@color/primary_main</item>
         <item name="colorPrimary">@color/black</item> <!-- button text color -->
     </style>
-
-
 </resources>
-
-

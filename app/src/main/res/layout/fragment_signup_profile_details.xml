@@ -12,12 +12,12 @@
         android:id="@+id/ivBackArrowSignUp2"
         android:layout_width="@dimen/_34sdp"
         android:layout_height="@dimen/_34sdp"
-        android:src="@drawable/ic_back_arrow"
         android:layout_marginStart="@dimen/_13sdp"
         android:layout_marginTop="@dimen/_22sdp"
         android:padding="@dimen/_3sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"  />
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,8 +31,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_115sdp"
-            >
+            android:layout_marginTop="@dimen/_115sdp">
             <!-- Profile Picture with Camera Icon -->
             <RelativeLayout
                 android:id="@+id/relativeLayoutProfileSignUp2"
@@ -40,31 +39,25 @@
                 android:layout_height="@dimen/_75sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-
-                >
-
+                app:layout_constraintTop_toTopOf="parent">
                 <!-- Circle Avatar -->
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profilePictureSignUp2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_user_profile"
                     android:layout_centerInParent="true"
                     android:scaleType="centerCrop"
-                    />
-
+                    android:src="@drawable/ic_user_profile" />
                 <!-- Camera Icon -->
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/cameraIconSignUp2"
                     android:layout_width="@dimen/_27sdp"
                     android:layout_height="@dimen/_27sdp"
-                    android:layout_alignBottom="@id/profilePictureSignUp2"
                     android:layout_alignEnd="@id/profilePictureSignUp2"
-                    android:src="@drawable/ic_camera"
-                    android:padding="4dp" />
+                    android:layout_alignBottom="@id/profilePictureSignUp2"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_camera" />
             </RelativeLayout>
-
             <!-- Title -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSetProfileHeading2"
@@ -88,21 +81,18 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSetProfileHeading2" >
-
+                app:layout_constraintTop_toBottomOf="@+id/tvSetProfileHeading2">
                 <!-- Date of Birth -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDateOfBirthSignUp2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:fontFamily="@font/nunito_bold"
                     android:text="@string/stringDateOfBirth"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <RelativeLayout
                     android:id="@+id/relativeLayoutDoBSignUp2"
@@ -118,28 +108,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_39sdp"
                         android:background="@drawable/bg_edit_text"
+                        android:cursorVisible="false"
                         android:fontFamily="@font/nunito_regular"
                         android:hint="@string/stringDoBformatHintSignUp2"
                         android:inputType="none"
+                        android:longClickable="false"
                         android:paddingHorizontal="@dimen/_10sdp"
                         android:textColor="@color/black"
                         android:textColorHint="@color/light_grey"
-                        android:textSize="@dimen/_11ssp"
-                        android:cursorVisible="false"
-                        android:longClickable="false"
-                        />
+                        android:textSize="@dimen/_11ssp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivToggleDoBCalenderSignUp2"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_24sdp"
-                        android:layout_marginEnd="@dimen/_8sdp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
                         android:padding="@dimen/_4sdp"
                         android:src="@drawable/ic_calendar" />
                 </RelativeLayout>
-
                 <!-- Gender -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvGenderSignUp2"
@@ -157,121 +145,108 @@
                     android:id="@+id/genderAutoTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="@dimen/_6sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvGenderSignUp2"
                     android:hint=""
-                    app:hintEnabled="false">
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGenderSignUp2">
 
                     <AutoCompleteTextView
                         android:id="@+id/autoCompleteGender"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_39sdp"
                         android:background="@drawable/bg_edit_text"
-                        android:hint="@string/stringSelectGender"
-                        android:textColorHint="@color/light_grey"
-                        android:textColor="@color/black"
-                        android:fontFamily="@font/nunito_regular"
-                        android:paddingHorizontal="@dimen/_9sdp"
-                        android:textSize="@dimen/_11ssp"
-                        android:inputType="none"
-                        android:focusable="true"
                         android:clickable="true"
                         android:drawableEnd="@drawable/ic_arrow_down"
-
-                        />
+                        android:focusable="true"
+                        android:fontFamily="@font/nunito_regular"
+                        android:hint="@string/stringSelectGender"
+                        android:inputType="none"
+                        android:paddingHorizontal="@dimen/_9sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="@dimen/_11ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clSignupFacilityProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_22sdp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvSetProfileHeading2">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvDescSignUp2"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clSignupFacilityProfile"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/stringDescriptions"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_11ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_22sdp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDescSignUp2">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etDescSignUp2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColorHint="@color/light_grey"
-                    android:padding="@dimen/_13sdp"
-                    android:maxLength="600"
-                    android:fontFamily="@font/nunito_regular"
-                    android:textSize="@dimen/_11ssp"
-                    android:textColor="@color/black"
-                    android:gravity="start"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/stringDescWriteHere"
-                    android:inputType="textMultiLine"
-                    android:lines="5"
-                    android:maxLines="10"/>
+                app:layout_constraintTop_toBottomOf="@+id/tvSetProfileHeading2">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvDescCharCount"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvDescSignUp2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/nunito_regular"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/stringDescriptions"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_6sdp"
-                    android:text="@string/stringCharactersLimit"
-                    android:textColor="@color/light_grey"
-                    android:textAlignment="textEnd"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescSignUp2">
 
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etDescSignUp2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_edit_text"
+                        android:fontFamily="@font/nunito_regular"
+                        android:gravity="start"
+                        android:hint="@string/stringDescWriteHere"
+                        android:inputType="textMultiLine"
+                        android:lines="5"
+                        android:maxLength="600"
+                        android:maxLines="10"
+                        android:padding="@dimen/_13sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/light_grey"
+                        android:textSize="@dimen/_11ssp" />
 
-
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDescCharCount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="@string/stringCharactersLimit"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/_10ssp" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUpForm2Continue"
         android:layout_width="0dp"
         android:layout_height="@dimen/_38sdp"
-        android:layout_marginTop="@dimen/_155sdp"
-        android:background="@drawable/bg_button"
         android:layout_marginHorizontal="@dimen/_13sdp"
+        android:layout_marginTop="@dimen/_155sdp"
         android:layout_marginBottom="@dimen/_18sdp"
+        android:background="@drawable/bg_button"
         android:backgroundTint="@color/primary_main"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/stringBtnContinue"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/_11ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

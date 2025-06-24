@@ -12,7 +12,6 @@ class CalendarAdapter(
     private var dates: List<CalendarDate>,
     private val onDateClick: (CalendarDate) -> Unit
 ) : RecyclerView.Adapter<CalendarAdapter.DateViewHolder>() {
-
     private var selectedPosition = -1
 
     data class CalendarDate(
@@ -25,10 +24,8 @@ class CalendarAdapter(
 
     inner class DateViewHolder(private val binding: ItemCalendarDateBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(date: CalendarDate, position: Int) {
             binding.tvDate.text = if (date.day == 0) "" else date.day.toString()
-
             // Set visibility and clickability
             if (date.day == 0) {
                 binding.tvDate.alpha = 0f
@@ -37,13 +34,11 @@ class CalendarAdapter(
             } else {
                 binding.root.isClickable = true
                 binding.tvDate.isEnabled = !date.isPast
-
                 // Reset background to ensure selector works
                 binding.tvDate.background = ContextCompat.getDrawable(
                     binding.root.context,
                     R.drawable.bg_date_selector
                 )
-
                 // Set text color based on month and selection
                 when {
                     position == selectedPosition -> {
@@ -86,29 +81,21 @@ class CalendarAdapter(
                         binding.tvDate.isSelected = false
                     }
                 }
-
                 binding.tvDate.alpha = if (date.isCurrentMonth) 1f else 0.5f
             }
-
             binding.root.setOnClickListener {
                 if (date.day != 0 && !date.isPast) {
                     val oldPosition = selectedPosition
                     selectedPosition = position
-
                     // Notify changes for smooth animation
                     if (oldPosition != -1) notifyItemChanged(oldPosition)
                     notifyItemChanged(selectedPosition)
-
                     onDateClick(date)
                 }
             }
-
             //itemView.isEnabled = !date.isPast
             itemView.alpha = if (date.isPast) 0.4f else 1.0f
-
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
@@ -123,7 +110,6 @@ class CalendarAdapter(
     }
 
     override fun getItemCount(): Int = dates.size
-
     fun updateDates(newDates: List<CalendarDate>) {
         dates = newDates
         selectedPosition = -1
@@ -137,11 +123,9 @@ class CalendarAdapter(
                     date.calendar.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) &&
                     date.isCurrentMonth
         }
-
         if (position != -1) {
             val oldPosition = selectedPosition
             selectedPosition = position
-
             if (oldPosition != -1) notifyItemChanged(oldPosition)
             notifyItemChanged(selectedPosition)
         }

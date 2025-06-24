@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_light"
     android:paddingHorizontal="@dimen/_13sdp"
     android:paddingTop="@dimen/_13sdp"
-    android:background="@color/white_light"
     tools:context=".ui.activities.NotificationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,20 +16,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBackNotification"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_23sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/ic_back_arrow"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:clickable="true"
             android:focusable="true"
-
-            />
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvNotification"
@@ -42,20 +40,16 @@
             android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="@+id/ivBackNotification"
             app:layout_constraintStart_toEndOf="@+id/ivBackNotification"
-            app:layout_constraintTop_toTopOf="@+id/ivBackNotification"
-
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivBackNotification" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNotifications"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_23sdp"
-        app:layout_constraintTop_toBottomOf="@+id/clNotificationBar"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/clNotificationBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,28 +18,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class EventCreationActivity : BaseActivity() {
-
     private lateinit var binding: ActivityEventCreationBinding
 
     //ViewModel shared between all fragments
     lateinit var eventCreationViewModel: EventCreationViewModel
     private var isEditing = false
     private var eventIdToEdit = -1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEventCreationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.stepIndicator.initializeSteps(6)
-
         // Initialize ViewModel first
         eventCreationViewModel = ViewModelProvider(
             this, ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(EventCreationViewModel::class.java)
-
         handleIntent()
         setupUI()
     }
@@ -55,7 +49,6 @@ class EventCreationActivity : BaseActivity() {
         StatusBarUtils.setLightStatusBar(this, R.color.white_light)
         setOnClickListener()
         setupBackPressHandler()
-
         if (isEditing && eventIdToEdit != -1) {
             loadEventForEditing()
         } else {
@@ -68,9 +61,6 @@ class EventCreationActivity : BaseActivity() {
 
     private fun loadEventForEditing() {
         binding.pgBarEventCreation.visibility = View.VISIBLE
-
-
-
         lifecycleScope.launch {
             try {
                 // Load event data first
@@ -81,7 +71,6 @@ class EventCreationActivity : BaseActivity() {
                     "EditingCheck",
                     "Activity received loaded interests = ${eventCreationViewModel.selectedInterests.map { it.name }}"
                 )
-
                 withContext(Dispatchers.Main) {
                     if (loaded != null) {
                         // pop back stack
@@ -89,7 +78,6 @@ class EventCreationActivity : BaseActivity() {
                             null,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
                         )
-
                         // Now open the fragment AFTER interests are surely set
                         loadInitialFragment(
                             binding.EventCreationFragmentContainer.id,
@@ -99,7 +87,6 @@ class EventCreationActivity : BaseActivity() {
                         showToast("Failed to load event")
                     }
                 }
-
             } catch (e: Exception) {
                 showToast("Error loading event data")
             } finally {
@@ -108,12 +95,10 @@ class EventCreationActivity : BaseActivity() {
         }
     }
 
-
     private fun setOnClickListener() {
         binding.ivBackEventCreate.setOnClickListener {
             handleBackPress()
         }
-
         binding.tvCreateGroupCancel.setOnClickListener {
             AlertDialogUtils.showCancelDialog(
                 this,
@@ -124,7 +109,6 @@ class EventCreationActivity : BaseActivity() {
             )
         }
     }
-
 
     // EventCreationActivity.kt
     fun updateStepIndicator(step: Int) {
@@ -139,7 +123,6 @@ class EventCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvEventDetail.text = getString(R.string.stringCreateEvent)
                 binding.tvSteps.text = getString(R.string.stringStep1)
             }
@@ -149,10 +132,8 @@ class EventCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvEventDetail.text = getString(R.string.stringCreateEvent)
                 binding.tvSteps.text = getString(R.string.stringStep2)
-
             }
 
             2 -> { // Third Fragment
@@ -160,10 +141,8 @@ class EventCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvEventDetail.text = getString(R.string.stringCreateEvent)
                 binding.tvSteps.text = getString(R.string.stringStep3)
-
             }
 
             3 -> { // fourth Fragment
@@ -171,7 +150,6 @@ class EventCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvEventDetail.text = getString(R.string.stringCreateEvent)
                 binding.tvSteps.text = getString(R.string.stringStep4)
             }
@@ -181,7 +159,6 @@ class EventCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvEventDetail.text = getString(R.string.stringCreateEvent)
                 binding.tvSteps.text = getString(R.string.stringStep5)
             }
@@ -191,7 +168,6 @@ class EventCreationActivity : BaseActivity() {
                 binding.tvCreateGroupCancel.visibility = View.VISIBLE
                 binding.tvSteps.visibility = View.VISIBLE
                 binding.stepIndicator.visibility = View.VISIBLE
-
                 binding.tvEventDetail.text = getString(R.string.stringCreateEvent)
                 binding.tvSteps.text = getString(R.string.stringStep6)
             }

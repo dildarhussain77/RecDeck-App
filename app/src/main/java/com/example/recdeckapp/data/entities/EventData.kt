@@ -13,6 +13,7 @@ data class Event(
 data class Attendee(
     val drawableResId: Int
 )
+
 enum class EventType(val displayName: String) {
     MY_EVENTS("My Events"),
     SAVED_EVENTS("Save Events"),

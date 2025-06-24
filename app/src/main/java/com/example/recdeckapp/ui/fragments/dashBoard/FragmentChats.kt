@@ -15,15 +15,11 @@ import com.example.recdeckapp.utils.AlertDialogUtils
 import com.example.recdeckapp.utils.SessionManager
 import com.example.recdeckapp.viewmodel.EventCreationViewModel
 
-
 class FragmentChats : Fragment() {
-
     private var _binding: FragmentChatsBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var eventListAdapter: EventListAdapter
     private lateinit var eventCreationViewModel: EventCreationViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         eventCreationViewModel = ViewModelProvider(this).get(EventCreationViewModel::class.java)
@@ -31,7 +27,7 @@ class FragmentChats : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentChatsBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,9 +36,7 @@ class FragmentChats : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentChatsBinding.bind(view)
-
         loadEventList()
-
         eventListAdapter = EventListAdapter(
             onItemClick = {
             },
@@ -103,5 +97,4 @@ class FragmentChats : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }

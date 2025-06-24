@@ -8,7 +8,5 @@
         android:width="1dp"
         android:color="#DDDDDD" />
     <!-- Rounded corners -->
-
     <corners android:radius="@dimen/_16sdp" />
-
 </shape>

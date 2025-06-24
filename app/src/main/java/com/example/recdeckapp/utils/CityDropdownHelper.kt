@@ -15,10 +15,8 @@ class CityDropdownHelper(
     private val cityAutoComplete: AutoCompleteTextView
 ) {
     private var currentAdapter: ArrayAdapter<City>? = null
-
     fun updateCities(cities: List<String>) {
         val cityList = cities.map { City(it) }
-
         val adapter = object : ArrayAdapter<City>(
             context, R.layout.city_dropdown, R.id.cityNameTextView, cityList
         ) {
@@ -29,11 +27,14 @@ class CityDropdownHelper(
                 return view
             }
 
-            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+            override fun getDropDownView(
+                position: Int,
+                convertView: View?,
+                parent: ViewGroup
+            ): View {
                 return getView(position, convertView, parent)
             }
         }
-
         cityAutoComplete.setAdapter(adapter)
         cityAutoComplete.setOnClickListener { cityAutoComplete.showDropDown() }
         currentAdapter = adapter

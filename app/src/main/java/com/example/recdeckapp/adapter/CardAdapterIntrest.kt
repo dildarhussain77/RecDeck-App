@@ -15,9 +15,7 @@ import com.google.android.material.card.MaterialCardView
 class CardAdapterIntrest(
     var items: List<CardItemIntrests>,
     private val context: Context,
-
-    ) : RecyclerView.Adapter<CardAdapterIntrest.CardViewHolder>() {
-
+) : RecyclerView.Adapter<CardAdapterIntrest.CardViewHolder>() {
     private var onSelectionChangedListener: ((List<CardItemIntrests>) -> Unit)? = null
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,26 +32,21 @@ class CardAdapterIntrest(
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val item = items[position]
-
         holder.imageView.setImageResource(item.imageResource)
         holder.titleText.text = item.title
-
         updateCardAppearance(holder.cardView, item.isSelected)
-
         holder.cardView.setOnClickListener {
             item.isSelected = !item.isSelected
             updateCardAppearance(holder.cardView, item.isSelected)
-
             // Notify ViewModel through listener
             onSelectionChangedListener?.invoke(getSelectedItems())
-
             notifyItemChanged(position)
         }
     }
 
     private fun updateCardAppearance(cardView: MaterialCardView, isSelected: Boolean) {
         if (isSelected) {
-            cardView.setStrokeColor(ContextCompat.getColor(context, R.color.primary_main))
+            cardView.strokeColor = ContextCompat.getColor(context, R.color.primary_main)
             cardView.strokeWidth =
                 context.resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._1sdp)
         } else {
@@ -62,10 +55,7 @@ class CardAdapterIntrest(
     }
 
     override fun getItemCount(): Int = items.size
-
     fun getSelectedItems(): List<CardItemIntrests> = items.filter { it.isSelected }
-
-
     fun setOnSelectionChangedListener(listener: (List<CardItemIntrests>) -> Unit) {
         this.onSelectionChangedListener = listener
     }

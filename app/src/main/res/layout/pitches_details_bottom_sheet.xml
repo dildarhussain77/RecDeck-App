@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:backgroundTint="@color/white_light"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/rounded_top"
+    android:backgroundTint="@color/white_light"
     android:padding="@dimen/_15sdp">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clCloseAndBackBar"
@@ -18,28 +17,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <!-- Close Icon -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivClose"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:src="@drawable/ic_close"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <!-- Close Icon -->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBackArrowPitchesDetails"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:src="@drawable/ic_back_arrow"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvPitchDetails"
@@ -54,200 +48,187 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clCloseAndBackBar" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_132sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingStart="40dp"
-            android:paddingEnd="40dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchDetails" />
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_132sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchDetails" />
 
-        <LinearLayout
-            android:id="@+id/dotsContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+    <LinearLayout
+        android:id="@+id/dotsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:fontFamily="@font/nunito_semi_bold"
-            android:text="@string/stringPitchesName"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dotsContainer" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="@string/stringPitchesName"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dotsContainer" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:singleLine="true"
+        android:text="@string/stringPitchesPrice"
+        android:textColor="@color/primary_main"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPitchTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvPitchTitle" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_semi_bold"
-            android:singleLine="true"
-            android:text="@string/stringPitchesPrice"
-            android:textColor="@color/primary_main"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvPitchTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvPitchTitle" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringDescPitch"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchTitle"
+        tools:layout_editor_absoluteX="19dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchDes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/nunito_regular"
-            android:text="@string/stringDescPitch"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_9sdp"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchTitle"
-            tools:layout_editor_absoluteX="19dp" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchTimingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringPitchTiming"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchDes" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchTiming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/grey_color"
+        android:fontFamily="@font/nunito_regular"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/stringTimePitch"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPitchTimingLabel" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchTimingLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/nunito_regular"
-            android:text="@string/stringPitchTiming"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_9sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchDes" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchCapacityLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringPitchCapacity"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchDes" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchTiming"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:background="@drawable/bg_skip_button"
-            android:backgroundTint="@color/grey_color"
-            android:fontFamily="@font/nunito_regular"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="@dimen/_6sdp"
-            android:text="@string/stringTimePitch"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPitchTimingLabel" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchCapacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/grey_color"
+        android:fontFamily="@font/nunito_regular"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/_12_people"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPitchCapacityLabel" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchCapacityLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/nunito_regular"
-            android:text="@string/stringPitchCapacity"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_9sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchDes" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchLocationLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringLocationSignUp1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchTiming" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchCapacity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:background="@drawable/bg_skip_button"
-            android:backgroundTint="@color/grey_color"
-            android:fontFamily="@font/nunito_regular"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="@dimen/_6sdp"
-            android:text="@string/_12_people"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPitchCapacityLabel" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPitchLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/bg_skip_button"
+        android:backgroundTint="@color/bg_grey"
+        android:drawableStart="@drawable/ic_location"
+        android:drawablePadding="@dimen/_5sdp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="@string/location_name"
+        android:textColor="@color/primary_main"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchLocationLabel" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHostLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/stringFacilityOwner"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvPitchLocation"
+        tools:layout_editor_absoluteX="19dp" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchLocationLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/nunito_regular"
-            android:text="@string/stringLocationSignUp1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_9sdp"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchTiming"
-            />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivHost"
+        android:layout_width="@dimen/_38sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:backgroundTint="@color/primary_main"
+        android:src="@drawable/hockey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHostLabel" />
 
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPitchLocation"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:background="@drawable/bg_skip_button"
-            android:backgroundTint="@color/bg_grey"
-            android:drawableStart="@drawable/ic_location"
-            android:drawablePadding="@dimen/_5sdp"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:paddingVertical="@dimen/_6sdp"
-            android:text="@string/location_name"
-            android:textColor="@color/primary_main"
-            android:textSize="@dimen/_9sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchLocationLabel" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvHostLabel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nunito_regular"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="@string/stringFacilityOwner"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_9sdp"
-            app:layout_constraintTop_toBottomOf="@+id/tvPitchLocation"
-            tools:layout_editor_absoluteX="19dp" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/ivHost"
-            android:layout_width="@dimen/_38sdp"
-            android:layout_height="@dimen/_38sdp"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:src="@drawable/hockey"
-            android:backgroundTint="@color/primary_main"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHostLabel" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvHostName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:fontFamily="@font/nunito_regular"
-            android:text="@string/john_deo"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHost"
-            app:layout_constraintStart_toEndOf="@+id/ivHost"
-            app:layout_constraintTop_toTopOf="@+id/ivHost" />
-
-
-
-
-
-
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvHostName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:text="@string/john_deo"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHost"
+        app:layout_constraintStart_toEndOf="@+id/ivHost"
+        app:layout_constraintTop_toTopOf="@+id/ivHost" />
 </androidx.constraintlayout.widget.ConstraintLayout>

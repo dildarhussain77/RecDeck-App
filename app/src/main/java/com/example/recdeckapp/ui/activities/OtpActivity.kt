@@ -13,26 +13,18 @@ import com.example.recdeckapp.R
 import com.example.recdeckapp.databinding.ActivityOtpBinding
 
 class OtpActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityOtpBinding
-
     private lateinit var countDownTimer: CountDownTimer
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         window.statusBarColor = ContextCompat.getColor(this, R.color.white_light)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
-
         binding = ActivityOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         // Access PinView using binding
         val otpPinView = binding.otpPinView
-
         // Set listener to check if PinView is filled or not
         otpPinView.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(
@@ -72,11 +64,8 @@ class OtpActivity : AppCompatActivity() {
                 // Optional: Handle after text changed
             }
         })
-
         // Start the countdown timer
         startCountDownTimer()
-
-
         // Resend OTP Button Click
         binding.tvResendClick.setOnClickListener {
             //resetOtpInputs()
@@ -93,7 +82,6 @@ class OtpActivity : AppCompatActivity() {
     private fun startCountDownTimer() {
         // Resend button hidden while countdown is active
         binding.tvResendClick.visibility = View.INVISIBLE
-
         // Create a countdown timer for 60 seconds with 1-second intervals
         countDownTimer = object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -101,7 +89,6 @@ class OtpActivity : AppCompatActivity() {
                 val seconds = (millisUntilFinished / 1000).toInt()
                 val minutes = seconds / 60
                 val remainingSeconds = seconds % 60
-
                 // Format time in MM:SS format
                 val timeLeft = String.format("%02d:%02d", minutes, remainingSeconds)
                 binding.tvOtpTimer.text = timeLeft
@@ -121,5 +108,4 @@ class OtpActivity : AppCompatActivity() {
         super.onDestroy()
         countDownTimer.cancel()
     }
-
 }

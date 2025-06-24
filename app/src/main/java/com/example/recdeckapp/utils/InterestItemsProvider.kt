@@ -5,7 +5,6 @@ import com.example.recdeckapp.data.entities.CardItemIntrests
 import com.example.recdeckapp.data.roomDatabase.entities.CommonEntities.InterestEntity
 
 object InterestItemsProvider {
-
     fun getDefaultInterestItems(): List<CardItemIntrests> = listOf(
         CardItemIntrests(1, R.drawable.basket_ball, "BasketBall"),
         CardItemIntrests(2, R.drawable.table_tennis, "Table Tennis"),
@@ -31,7 +30,4 @@ object InterestItemsProvider {
         InterestEntity(9, "Golf", R.drawable.golf),
         InterestEntity(10, "Swimming pool", R.drawable.swimming_pool)
     )
-
-
-
 }

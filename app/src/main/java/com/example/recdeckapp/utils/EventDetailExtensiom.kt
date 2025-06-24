@@ -3,7 +3,6 @@ package com.example.recdeckapp.utils
 import com.example.recdeckapp.R
 import com.example.recdeckapp.data.entities.EventType
 
-
 fun EventType.shouldShowStatus(): Boolean {
     return this == EventType.JOINED_EVENTS || this == EventType.CANCELED_EVENTS
 }

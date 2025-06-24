@@ -21,24 +21,19 @@ object FileDisplayUtils {
         val fileName = getFileName(context, uri) ?: "Unknown"
         val fileSize = getFileSize(context, uri)
         val fileType = context.contentResolver.getType(uri) ?: "Unknown"
-
         val fileBinding = ItemFileSignupBinding.inflate(
             LayoutInflater.from(context),
             container,
             false
         )
-
-
         fileBinding.tvFileName.text = fileName
         fileBinding.tvFileName.isSelected = true
         fileBinding.tvFileSize.text = fileSize
-
         when {
             fileType.startsWith("image/") -> displayImage(context, uri, fileBinding.ivFileIcon)
             fileType == "application/pdf" -> displayPdf(context, uri, fileBinding.ivFileIcon)
             else -> fileBinding.ivFileIcon.setImageResource(R.drawable.ic_file)
         }
-
         fileBinding.removeLayout.setOnClickListener {
             AlertDialogUtils.showCancelDialog(
                 context,
@@ -49,7 +44,6 @@ object FileDisplayUtils {
                 }
             )
         }
-
         container.addView(fileBinding.root)
         return fileBinding  // Return the binding
     }

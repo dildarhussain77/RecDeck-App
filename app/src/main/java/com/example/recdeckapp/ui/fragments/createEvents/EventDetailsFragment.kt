@@ -19,7 +19,6 @@ import com.example.recdeckapp.utils.TimePickerUtils
 import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.EventCreationViewModel
 
-
 class EventDetailsFragment : Fragment() {
     private var _binding: FragmentEventDetailsBinding? = null
     private val binding get() = _binding!!
@@ -29,10 +28,9 @@ class EventDetailsFragment : Fragment() {
     private var endHour: Int = -1
     private var endMinute: Int = -1
     private lateinit var eventCreationViewModel: EventCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentEventDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,16 +39,12 @@ class EventDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentEventDetailsBinding.bind(view)
-
         // Access the ViewModel from the Activity scope
         eventCreationViewModel = (activity as EventCreationActivity).eventCreationViewModel
-
-
         val activity = requireActivity() as? EventCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(2)
         activity?.updateTopBarForFragment(1)
-
         binding.etSelectDate.showSoftInputOnFocus = false
         binding.etStartTime.showSoftInputOnFocus = false
         binding.etEndTime.showSoftInputOnFocus = false
@@ -58,7 +52,6 @@ class EventDetailsFragment : Fragment() {
         setFieldFocusListeners()
         setupFieldListeners()
         updateButtonState()
-
         if (eventCreationViewModel.isEditing) {
             // Pre-populate fields with existing data
             binding.etEventName.setText(eventCreationViewModel.eventName)
@@ -67,21 +60,17 @@ class EventDetailsFragment : Fragment() {
             binding.etStartTime.setText(eventCreationViewModel.eventStartTime)
             binding.etEndTime.setText(eventCreationViewModel.eventEndTime)
         }
-
     }
 
     private fun setOnClickListener() {
-
         binding.etSelectDate.setOnClickListener {
             CustomDatePickerDialog.show(
                 context = requireContext(),
                 onDateSelected = { formattedDate, rawMillis ->
                     // Do whatever you want with the date
                     binding.etSelectDate.setText(formattedDate)
-
                 }
             )
-
         }
         // Set up your click listeners
         binding.etStartTime.setOnClickListener {
@@ -92,7 +81,6 @@ class EventDetailsFragment : Fragment() {
         }
         binding.btnEventDetailContinue.alpha = 0.5f
         binding.btnEventDetailContinue.setOnClickListener {
-
             val isValid = validateAllFields()
             Log.e("VALIDATE", "validateAllFields() returned: $isValid")
             // Validate all fields before proceeding
@@ -104,7 +92,6 @@ class EventDetailsFragment : Fragment() {
                 eventCreationViewModel.eventDate = binding.etSelectDate.text.toString().trim()
                 eventCreationViewModel.eventStartTime = binding.etStartTime.text.toString().trim()
                 eventCreationViewModel.eventEndTime = binding.etEndTime.text.toString().trim()
-
                 Log.e(
                     "EventCreation",
                     "Group Details continue ButtonHandling: 118 eventName=${eventCreationViewModel.eventName}, " +
@@ -134,7 +121,6 @@ class EventDetailsFragment : Fragment() {
         }
     }
 
-
     private fun setFieldFocusListeners() {
         val fields = listOf(
             binding.etEventName,
@@ -143,7 +129,6 @@ class EventDetailsFragment : Fragment() {
 //            binding.etStartTime,
 //            binding.etEndTime
         )
-
         for (field in fields) {
             field.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
@@ -151,27 +136,19 @@ class EventDetailsFragment : Fragment() {
                     view.background =
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
                     Log.d("FocusDebug", " field focus changed: $hasFocus")
-
                     if (view.id == R.id.etSelectDate) {
                         CustomDatePickerDialog.show(
                             context = requireContext(),
                             onDateSelected = { formattedDate, rawMillis ->
                                 // Do whatever you want with the date
                                 binding.etSelectDate.setText(formattedDate)
-
                             }
                         )
                     }
-
                     if (view.id == R.id.etStartTime) {
-
                     }
-
                     if (view.id == R.id.etEndTime) {
-
-
                     }
-
                 } else {
                     // When field loses focus, validate and set appropriate background
                     validateFieldOnFocusLost(view)
@@ -182,7 +159,6 @@ class EventDetailsFragment : Fragment() {
 
     private fun validateFieldOnFocusLost(view: View) {
         when (view.id) {
-
             R.id.etEventName -> {
                 val eventName = binding.etEventName.text.toString().trim()
                 if (eventName.isEmpty()) {
@@ -242,7 +218,6 @@ class EventDetailsFragment : Fragment() {
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
                 }
             }
-
         }
     }
 
@@ -250,7 +225,6 @@ class EventDetailsFragment : Fragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate group Name
         val EventName = binding.etEventName.text.toString().trim()
         if (EventName.isEmpty()) {
@@ -258,36 +232,30 @@ class EventDetailsFragment : Fragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val noOfEventMem = binding.etNoOfEventMem.text.toString().trim()
         if (noOfEventMem.isEmpty()) {
             binding.etNoOfEventMem.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val selectDateEvent = binding.etSelectDate.text.toString().trim()
         if (selectDateEvent.isEmpty()) {
             binding.etSelectDate.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val startTime = binding.etStartTime.text.toString().trim()
         if (startTime.isEmpty()) {
             binding.etStartTime.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val endTime = binding.etEndTime.text.toString().trim()
         if (endTime.isEmpty()) {
             binding.etEndTime.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
-
         return isAllValid
     }
 
@@ -303,20 +271,17 @@ class EventDetailsFragment : Fragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etEventName.addTextChangedListener(textWatcher)
         binding.etNoOfEventMem.addTextChangedListener(textWatcher)
         binding.etSelectDate.addTextChangedListener(textWatcher)
         binding.etStartTime.addTextChangedListener(textWatcher)
         binding.etEndTime.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {
@@ -332,8 +297,6 @@ class EventDetailsFragment : Fragment() {
         val selectDateEvent = binding.etSelectDate.text.toString().trim()
         val startTime = binding.etNoOfEventMem.text.toString().trim()
         val endTime = binding.etSelectDate.text.toString().trim()
-
-
         return EventName.isNotEmpty() &&
                 noOfEventMem.isNotEmpty() &&
                 selectDateEvent.isNotEmpty() &&
@@ -346,7 +309,6 @@ class EventDetailsFragment : Fragment() {
         // Check if image is already selected and show it again
         setFieldFocusListeners()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

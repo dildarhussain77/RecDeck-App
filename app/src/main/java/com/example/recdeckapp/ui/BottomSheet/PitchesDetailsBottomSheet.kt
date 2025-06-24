@@ -26,21 +26,15 @@ import kotlin.math.abs
 import kotlin.math.min
 
 class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
-
     private var _binding: PitchesDetailsBottomSheetBinding? = null
     private val binding get() = _binding!!
-
 
     // for auto scroll
     private val autoScrollHandler = Handler(Looper.getMainLooper())
     private val autoScrollDelay: Long = 2500 // 3 seconds
     private var autoScrollRunnable: Runnable? = null
-
     private var selectedPitch: PitchEntity? = null
-
-
     private lateinit var pitchCreationViewModel: PitchCreationViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pitchCreationViewModel =
@@ -51,23 +45,19 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = PitchesDetailsBottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         isCancelable = false //Prevents closing on outside tap/back press
         setOnClickListener()
-
         //setUpManualScrollAdapter()
-
         Log.d("PitchDebug", "BottomSheet onViewCreated")
         selectedPitch?.let {
             Log.d("PitchDebug", "Manual bind: ${it.pitchName}")
-
             bindPitchData(it)
         }
     }
@@ -81,16 +71,13 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
         binding.tvPitchDes.text = pitch.pitchDescription
         binding.tvPitchTiming.text = "${pitch.pitchStartTime} - ${pitch.pitchEndTime}"
         binding.tvHostName.text = pitch.pitchFacilityName
-
         // If you’re using Glide for image loading:
         Glide.with(requireContext())
             .load(pitch.pitchFacilityImageUrl)
             .placeholder(R.drawable.ic_image)
             .into(binding.ivHost)
-
         setUpAutoScrollAdapter(pitch.pitchDocPaths)
     }
-
 
     private fun setOnClickListener() {
         binding.ivClose.setOnClickListener {
@@ -100,7 +87,6 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
             dismiss() // Properly closes the BottomSheet
         }
     }
-
 
     private fun setUpAutoScrollAdapter(imageUris: List<String>) {
         val adapter = SliderAdapter(imageUris)
@@ -115,7 +101,6 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
         }
         binding.viewPager.clipToPadding = false
         binding.viewPager.clipChildren = false
-
         val compositePageTransformer = CompositePageTransformer().apply {
             addTransformer(MarginPageTransformer(20))
             addTransformer { page, position ->
@@ -124,25 +109,20 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
             }
         }
         binding.viewPager.setPageTransformer(compositePageTransformer)
-
         setupDots(imageUris.size)
         setCurrentDot(0)
-
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 setCurrentDot(position)
             }
         })
-
         if (imageUris.size > 1) {
             startAutoScroll()
         }
     }
 
-
     private fun startAutoScroll() {
         val itemCount = binding.viewPager.adapter?.itemCount ?: return
-
         autoScrollRunnable = object : Runnable {
             override fun run() {
                 val nextItem = (binding.viewPager.currentItem + 1) % itemCount
@@ -150,7 +130,6 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
                 autoScrollHandler.postDelayed(this, autoScrollDelay)
             }
         }
-
         autoScrollHandler.postDelayed(autoScrollRunnable!!, autoScrollDelay)
     }
 
@@ -159,7 +138,6 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
             autoScrollHandler.removeCallbacks(it)
         }
     }
-
 
     private fun setupDots(count: Int) {
         binding.dotsContainer.removeAllViews()
@@ -185,7 +163,6 @@ class PitchesDetailsBottomSheet : BottomSheetDialogFragment() {
             dot.background = ContextCompat.getDrawable(requireContext(), drawable)
         }
     }
-
 
     override fun onStart() {
         super.onStart()

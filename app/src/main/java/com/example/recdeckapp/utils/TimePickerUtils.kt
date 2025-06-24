@@ -8,7 +8,6 @@ import com.example.recdeckapp.ui.activities.BaseActivity
 import java.util.Calendar
 
 object TimePickerUtils {
-
     fun attachTimePickers(
         context: Context,
         startEditText: EditText,
@@ -19,9 +18,7 @@ object TimePickerUtils {
         var startMinute = -1
         var endHour = -1
         var endMinute = -1
-
         fun toMinutes(h: Int, m: Int) = if (h == -1) -1 else h * 60 + m
-
         startEditText.setOnClickListener {
             showTimePicker(
                 context,
@@ -33,26 +30,22 @@ object TimePickerUtils {
             ) { hour, minute, formatted ->
                 val newStart = toMinutes(hour, minute)
                 val currentEnd = toMinutes(endHour, endMinute)
-
                 if (endHour == -1 || newStart <= currentEnd - 60) {
                     startHour = hour
                     startMinute = minute
                     startEditText.setText(formatted)
-
                     // Clear invalid end
                     if (endHour != -1 && newStart > currentEnd - 60) {
                         endHour = -1
                         endMinute = -1
                         endEditText.setText("")
                     }
-
                     onTimesUpdated(startHour, startMinute, endHour, endMinute)
                 } else {
                     (context as? BaseActivity)?.showToast("Start time must be at least 1 hour before end time")
                 }
             }
         }
-
         endEditText.setOnClickListener {
             showTimePicker(
                 context,
@@ -64,19 +57,16 @@ object TimePickerUtils {
             ) { hour, minute, formatted ->
                 val newEnd = toMinutes(hour, minute)
                 val currentStart = toMinutes(startHour, startMinute)
-
                 if (startHour == -1 || newEnd >= currentStart + 60) {
                     endHour = hour
                     endMinute = minute
                     endEditText.setText(formatted)
-
                     // Clear invalid start
                     if (startHour != -1 && newEnd < currentStart + 60) {
                         startHour = -1
                         startMinute = -1
                         startEditText.setText("")
                     }
-
                     onTimesUpdated(startHour, startMinute, endHour, endMinute)
                 } else {
                     (context as? BaseActivity)?.showToast("End time must be at least 1 hour after start time")
@@ -97,7 +87,6 @@ object TimePickerUtils {
         val calendar = Calendar.getInstance()
         var initialHour = calendar.get(Calendar.HOUR_OF_DAY)
         var initialMinute = calendar.get(Calendar.MINUTE)
-
         if (isStartTime && endHour != -1) {
             val maxStart = endHour * 60 + endMinute - 60
             initialHour = maxStart / 60
@@ -107,7 +96,6 @@ object TimePickerUtils {
             initialHour = minEnd / 60
             initialMinute = minEnd % 60
         }
-
         TimePickerDialog(
             context,
             R.style.CustomDatePickerDialog,

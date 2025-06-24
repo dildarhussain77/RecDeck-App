@@ -82,7 +82,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     private class DatabaseCallback(
         private val context: Context
-    ) : RoomDatabase.Callback() {
+    ) : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             CoroutineScope(Dispatchers.IO).launch {
@@ -94,7 +94,7 @@ abstract class AppDatabase : RoomDatabase() {
             super.onOpen(db)
             // Check if we need to repopulate interests when DB opens
             CoroutineScope(Dispatchers.IO).launch {
-                val database = AppDatabase.getDatabase(context)
+                val database = getDatabase(context)
                 val existingCount = database.userDao().getInterestsCount()
                 if (existingCount == 0) {
                     populateInitialInterests(context)
@@ -103,7 +103,7 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private suspend fun populateInitialInterests(context: Context) {
-            val database = AppDatabase.getDatabase(context)
+            val database = getDatabase(context)
             val defaultInterests = InterestItemsProvider.getDefaultInterestItemsAppDatabase()
             database.userDao().insertInterests(defaultInterests)
         }

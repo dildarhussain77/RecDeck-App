@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class EventCreationViewModel(application: Application) : AndroidViewModel(application) {
-
     private val eventDao = AppDatabase.getDatabase(application).eventDao()
 
     // Store fields
@@ -35,12 +34,9 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
     // variables to track editing state
     var isEditing: Boolean = false
     var currentEventId: Int = -1
-
-
     fun saveOrUpdateEvent(onResult: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-
                 val event = EventEntity(
                     eventId = if (isEditing) currentEventId else 0,
                     eventName = eventName,
@@ -56,8 +52,6 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
                     eventPaymentType = eventPaymentType,
                     creatorUserId = creatorUserId,
                 )
-
-
                 if (isEditing) {
                     // For update, we need to:
                     // 1. Update the event
@@ -67,13 +61,11 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
                     eventDao.deleteEventInterests(event.eventId)
                     val refs = selectedInterests.map {
                         EventInterestCrossRef(eventId = event.eventId, categoryId = it.categoryId)
-
                     }
                     Log.d(
                         "EventInsert",
                         "Inserting interests: ${refs.map { "${it.eventId}-${it.categoryId}" }}"
                     )
-
                     if (refs.isNotEmpty()) {
                         eventDao.insertEventInterestsCrossRef(refs)
                     }
@@ -127,18 +119,15 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
-
     //loadEventForEditing to properly handle loading state
     suspend fun loadEventForEditing(eventId: Int): EventWithInterests? {
         return withContext(Dispatchers.IO) {
             try {
                 val eventWithInterests = eventDao.getEventWithInterests(eventId)
-
                 Log.d(
                     "EventDebug",
                     "Interests loaded = ${eventWithInterests?.interests?.map { it.name }}"
                 )
-
                 eventWithInterests?.let {
                     withContext(Dispatchers.Main) {
                         isEditing = true
@@ -158,7 +147,6 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
                         selectedInterests = it.interests
                     }
                 }
-
                 return@withContext eventWithInterests
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -167,7 +155,6 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
         }
     }
 
-
     //to clear viewmodel state when done
     fun clearEditingState() {
         isEditing = false
@@ -175,4 +162,3 @@ class EventCreationViewModel(application: Application) : AndroidViewModel(applic
         // Clear all other fields if needed
     }
 }
-

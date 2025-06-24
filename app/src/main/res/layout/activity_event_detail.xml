@@ -6,10 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_grey"
-    tools:context=".ui.activities.EventDetailActivity"
-
-
-    >
+    tools:context=".ui.activities.EventDetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clActionBar"
@@ -19,9 +16,7 @@
         android:paddingHorizontal="@dimen/_13sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBack"
@@ -30,9 +25,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:src="@drawable/ic_back_arrow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvEventDetail"
@@ -45,21 +38,17 @@
             android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="@+id/ivBack"
             app:layout_constraintStart_toEndOf="@+id/ivBack"
-            app:layout_constraintTop_toTopOf="@+id/ivBack"
-
-            />
+            app:layout_constraintTop_toTopOf="@+id/ivBack" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     <ScrollView
         android:id="@+id/svEventDetail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scrollbars="none"
         android:paddingHorizontal="@dimen/_13sdp"
-        app:layout_constraintTop_toBottomOf="@id/clActionBar"
-        app:layout_constraintBottom_toTopOf="@id/clShareCancelFeature">
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/clShareCancelFeature"
+        app:layout_constraintTop_toBottomOf="@id/clActionBar">
 
         <LinearLayout
             android:id="@+id/llScrollContent"
@@ -105,18 +94,17 @@
 
             <include
                 android:id="@+id/layoutActionBar"
-                layout="@layout/event_info"/>
+                layout="@layout/event_info" />
         </LinearLayout>
     </ScrollView>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clShareCancelFeature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white_light"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_10sdp"
-        android:background="@color/white_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -159,7 +147,6 @@
             app:layout_constraintStart_toEndOf="@+id/tvEventCancel"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEventJoin"
             android:layout_width="0dp"
@@ -169,19 +156,16 @@
             android:backgroundTint="@color/primary_main"
             android:drawableStart="@drawable/ic_send"
             android:gravity="center"
-            android:visibility="gone"
             android:paddingHorizontal="@dimen/_25sdp"
             android:paddingVertical="@dimen/_10sdp"
             android:text="@string/join_event"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvEventShare"
             app:layout_constraintTop_toTopOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

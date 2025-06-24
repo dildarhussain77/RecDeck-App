@@ -14,18 +14,14 @@ import com.example.recdeckapp.utils.StatusBarUtils
 import com.example.recdeckapp.viewmodel.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityProfileBinding
     private lateinit var profileViewModel: ProfileViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         //ViewModel
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-
         StatusBarUtils.setLightStatusBar(this, R.color.bg_grey)
         setOnClickListener()
         setupBackPressHandler()
@@ -37,7 +33,6 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
         binding.tvLogOut.setOnClickListener {
-
             AlertDialogUtils.showCancelDialog(
                 this,
                 title = "Logout?",
@@ -50,7 +45,6 @@ class ProfileActivity : AppCompatActivity() {
                     this.finish()
                 },
             )
-
         }
         binding.clBecomeFacility.setOnClickListener {
             val intent = Intent(this@ProfileActivity, PitchCreationActivity::class.java)
@@ -61,15 +55,12 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun getUserData() {
         val userId = SessionManager.getUserId(this)
-
         //Fetch from Room
         profileViewModel.getUserData(userId)
-
         //Observe and bind data to views
         profileViewModel.userLiveData.observe(this) { user ->
             binding.tvProfileUserName.text = user.fullName
             binding.tvProfileUserRole.text = user.role
-
             Glide.with(this)
                 .load(user.profilePicPath) // handle null with placeholder if needed
                 .placeholder(R.drawable.img_hockey)

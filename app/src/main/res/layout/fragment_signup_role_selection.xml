@@ -12,13 +12,12 @@
         android:id="@+id/ivBackArrowUserType"
         android:layout_width="@dimen/_34sdp"
         android:layout_height="@dimen/_34sdp"
-        android:src="@drawable/ic_back_arrow"
         android:layout_marginStart="@dimen/_13sdp"
         android:layout_marginTop="@dimen/_22sdp"
         android:padding="@dimen/_3sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -64,62 +63,58 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_6sdp"
                 android:fontFamily="@font/nunito_regular"
-                android:text="@string/stringChooseUserType"
                 android:gravity="center"
+                android:text="@string/stringChooseUserType"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11ssp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvSignUp" />
 
             <LinearLayout
                 android:id="@+id/cardsLinearLayoutSignupPage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
                 android:layout_marginTop="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvChooseUserType"
-                >
-
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvChooseUserType">
                 <!-- Organizer Card -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardOrganizer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="@dimen/_13ssp"
-                    android:layout_marginEnd="@dimen/_4sdp"
-                    android:layout_marginStart="@dimen/_1sdp"
                     android:layout_marginVertical="@dimen/_1sdp"
-                    app:cardElevation="0dp"
-                    android:foreground="@drawable/bg_card_border"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_weight="1"
                     android:backgroundTint="@color/white_light"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:foreground="@drawable/bg_card_border"
+                    app:cardCornerRadius="@dimen/_13ssp"
+                    app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    >
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:paddingHorizontal="@dimen/_6sdp"
                         android:paddingTop="@dimen/_10sdp"
-                        android:paddingBottom="@dimen/_30sdp"
-                        android:gravity="center">
+                        android:paddingBottom="@dimen/_30sdp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/tickOrganizer"
-                            android:layout_gravity="end"
                             android:layout_width="@dimen/_16sdp"
                             android:layout_height="@dimen/_16sdp"
+                            android:layout_gravity="end"
                             android:layout_marginBottom="@dimen/_2sdp"
-                            android:tint="@color/grey_color"
                             android:src="@drawable/ic_tick_circle"
-                            />
+                            android:tint="@color/grey_color" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgOragnizerCardLogo"
@@ -132,50 +127,48 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="@dimen/_2sdp"
-                            android:text="@string/stringOrganiserCradTitile"
                             android:fontFamily="@font/nunito_bold"
-                            android:textSize="@dimen/_11ssp"
+                            android:gravity="center"
+                            android:text="@string/stringOrganiserCradTitile"
                             android:textColor="@color/black"
-                            android:gravity="center"/>
+                            android:textSize="@dimen/_11ssp" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tvOrganiserCardDesc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/stringOrganiserCradDesc"
-                            android:textSize="@dimen/_9ssp"
                             android:fontFamily="@font/nunito_regular"
+                            android:gravity="center"
+                            android:text="@string/stringOrganiserCradDesc"
                             android:textColor="@color/light_grey"
-                            android:gravity="center"/>
-
+                            android:textSize="@dimen/_9ssp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
                 <!-- Facility Card -->
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardFacility"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="@dimen/_1sdp"
                     android:layout_marginVertical="@dimen/_1sdp"
                     android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginEnd="@dimen/_1sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white_light"
+                    android:foreground="@drawable/bg_card_border"
                     app:cardCornerRadius="@dimen/_13sdp"
                     app:cardElevation="0dp"
-                    android:foreground="@drawable/bg_card_border"
-                    android:backgroundTint="@color/white_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:paddingHorizontal="@dimen/_6sdp"
                         android:paddingTop="@dimen/_10sdp"
-                        android:paddingBottom="@dimen/_30sdp"
-                        android:gravity="center">
+                        android:paddingBottom="@dimen/_30sdp">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/tickFacility"
@@ -183,43 +176,38 @@
                             android:layout_height="@dimen/_16sdp"
                             android:layout_gravity="end"
                             android:layout_marginBottom="@dimen/_2sdp"
-                            android:tint="@color/grey_color"
-                            android:src="@drawable/ic_tick_circle" />
-
+                            android:src="@drawable/ic_tick_circle"
+                            android:tint="@color/grey_color" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgFacilityCardLogo"
                             android:layout_width="@dimen/_28sdp"
                             android:layout_height="@dimen/_28sdp"
-                            android:src="@drawable/ic_facility"
-                            />
+                            android:src="@drawable/ic_facility" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tvFacilityCardTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="@dimen/_2sdp"
-                            android:text="@string/stringFacilityCradTitile"
                             android:fontFamily="@font/nunito_bold"
-                            android:textSize="@dimen/_11ssp"
+                            android:gravity="center"
+                            android:text="@string/stringFacilityCradTitile"
                             android:textColor="@color/black"
-                            android:gravity="center"/>
+                            android:textSize="@dimen/_11ssp" />
 
                         <TextView
                             android:id="@+id/tvFacilityCardDesc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/stringFacilityCradDesc"
-                            android:textSize="@dimen/_9ssp"
                             android:fontFamily="@font/nunito_regular"
+                            android:gravity="center"
+                            android:text="@string/stringFacilityCradDesc"
                             android:textColor="@color/light_grey"
-                            android:gravity="center"/>
-
+                            android:textSize="@dimen/_9ssp" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
             </LinearLayout>
-
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignUpUserSelectContinue"
@@ -236,7 +224,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardsLinearLayoutSignupPage" />
-
 
             <LinearLayout
                 android:id="@+id/llHaveAccount"
@@ -275,14 +262,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvHaveAccount"
                     app:layout_constraintTop_toTopOf="parent" />
-
             </LinearLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

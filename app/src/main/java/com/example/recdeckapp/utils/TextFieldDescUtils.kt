@@ -6,7 +6,6 @@ import android.widget.EditText
 import android.widget.TextView
 
 object TextFieldDescUtils {
-
     fun setupDescWatcher(
         editText: EditText,
         charCountTextView: TextView,
@@ -17,7 +16,6 @@ object TextFieldDescUtils {
             override fun afterTextChanged(s: Editable?) {
                 val currentLength = s?.length ?: 0
                 charCountTextView.text = "$currentLength/$maxLength " + "Characters"
-
                 val isValid = currentLength in 1..maxLength
                 onValidChanged?.invoke(isValid)
             }

@@ -10,17 +10,12 @@ import com.example.recdeckapp.databinding.ActivityNotificationBinding
 import com.example.recdeckapp.utils.StatusBarUtils
 
 class NotificationActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityNotificationBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         StatusBarUtils.setLightStatusBar(this, R.color.white_light)
-
         binding = ActivityNotificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setOnClickListener()
         setupRecyclerView()
     }
@@ -75,9 +70,7 @@ class NotificationActivity : AppCompatActivity() {
                 description = "Lorem ipsum dolor sit amet consectetur. Nulla ipsum quam placerat purus sapien pulvinar curabitur.",
                 dateTime = "12 May, 2024"
             ),
-
-            )
-
+        )
         val notificationAdapter = NotificationAdapter(dummyNotifications)
         binding.rvNotifications.apply {
             layoutManager = LinearLayoutManager(this@NotificationActivity)

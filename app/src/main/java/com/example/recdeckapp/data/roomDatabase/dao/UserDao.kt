@@ -29,9 +29,6 @@ interface UserDao {
     @Query("SELECT * FROM interests")
     suspend fun getAllInterests(): List<InterestEntity>
 
-    @Query("SELECT categoryId FROM interests")
-    suspend fun getAllInterestIds(): List<Int>
-
     @Query("SELECT COUNT(*) FROM interests")
     suspend fun getInterestsCount(): Int
 
@@ -54,28 +51,23 @@ interface UserDao {
     ) {
         // Insert user and get ID
         val userId = insertUser(user).toInt()
-
         // Insert role details
         organizerDetails?.let { insertOrganizerDetails(it.copy(userId = userId)) }
         facilityDetails?.let { insertFacilityDetails(it.copy(userId = userId)) }
-
         // Insert interests if any
         if (interests.isNotEmpty()) {
             // First check which interests don't exist yet
             val existingIds = getAllInterests().map { it.categoryId }
             val newInterests = interests.filter { !existingIds.contains(it.categoryId) }
-
             if (newInterests.isNotEmpty()) {
                 insertInterests(newInterests)
             }
-
             // Create cross-references (no duplicates)
             val existingRefs = getUserInterestCrossRefs(userId)
             val newRefs = interests.map { UserInterestCrossRef(userId, it.categoryId) }
                 .filter { newRef ->
                     !existingRefs.any { it.userId == newRef.userId && it.categoryId == newRef.categoryId }
                 }
-
             if (newRefs.isNotEmpty()) {
                 insertUserInterestCrossRefs(newRefs)
             }
@@ -91,10 +83,8 @@ interface UserDao {
     @Query("SELECT * FROM users WHERE userId = :id")
     suspend fun getUserById(id: Int): UserEntity?
 
-
     @Query("SELECT COUNT(*) FROM users WHERE email = :email")
     suspend fun emailExists(email: String): Int
-
 
     @Transaction
     @Query("SELECT * FROM users WHERE userId = :id")

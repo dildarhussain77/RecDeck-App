@@ -39,7 +39,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
             <!-- Profile Picture with Camera Icon -->
             <RelativeLayout
                 android:id="@+id/relativeLayoutFacilityProfile"
@@ -48,7 +47,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
                 <!-- Circle Avatar -->
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivFacilityProfilePicture"
@@ -57,7 +55,6 @@
                     android:layout_centerInParent="true"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_user_profile" />
-
                 <!-- Camera Icon -->
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/cameraIconPitch"
@@ -68,7 +65,6 @@
                     android:padding="4dp"
                     android:src="@drawable/ic_camera" />
             </RelativeLayout>
-
             <!-- Title -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSetProfileHeading2"
@@ -83,7 +79,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutFacilityProfile" />
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFacilityName"
@@ -115,10 +110,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvFacilityName" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -137,6 +129,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

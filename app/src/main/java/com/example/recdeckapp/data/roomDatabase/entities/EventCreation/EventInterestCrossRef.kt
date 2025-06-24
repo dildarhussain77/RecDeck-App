@@ -7,4 +7,3 @@ data class EventInterestCrossRef(
     val eventId: Int,
     val categoryId: Int
 )
-

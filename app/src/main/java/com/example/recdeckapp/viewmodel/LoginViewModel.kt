@@ -7,7 +7,6 @@ import com.example.recdeckapp.data.roomDatabase.entities.SignUp.UserEntity
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val userDao = AppDatabase.getDatabase(application).userDao()
-
     suspend fun loginUser(email: String, password: String): UserEntity? {
         return userDao.getUserByEmailAndPassword(email, password)
     }

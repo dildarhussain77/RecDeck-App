@@ -8,19 +8,16 @@ import com.example.recdeckapp.data.roomDatabase.entities.CommonEntities.Interest
 data class UserWithDetailsAndInterests(
     @Embedded
     val user: UserEntity,
-
     @Relation(
         parentColumn = "userId",
         entityColumn = "userId"
     )
     val organizerDetails: OrganizerDetailsEntity?, // null if not organizer
-
     @Relation(
         parentColumn = "userId",
         entityColumn = "userId"
     )
     val facilityDetails: FacilityDetailsEntity?, // null if not facility
-
     @Relation(
         parentColumn = "userId", // from UserEntity
         entity = InterestEntity::class,

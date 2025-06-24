@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginVertical="@dimen/_10sdp"
-    android:paddingHorizontal="@dimen/_10sdp"
-    android:paddingBottom="@dimen/_7sdp"
     android:background="@drawable/bg_card_border"
-    android:backgroundTint="@color/white_light">
+    android:backgroundTint="@color/white_light"
+    android:paddingHorizontal="@dimen/_10sdp"
+    android:paddingBottom="@dimen/_7sdp">
 
     <TextView
         android:id="@+id/tvEventDes"
@@ -18,9 +18,7 @@
         android:text="@string/stringEventFees"
         android:textColor="@color/black"
         android:textSize="@dimen/_9sdp"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvEventPrice"
@@ -31,9 +29,7 @@
         android:text="@string/sar_2_00_per_head"
         android:textColor="@color/primary_main"
         android:textSize="@dimen/_9sdp"
-        app:layout_constraintTop_toBottomOf="@+id/tvEventDes"
-
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvEventDes" />
 
     <TextView
         android:id="@+id/tvEventDateLabel"
@@ -45,7 +41,6 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_9sdp"
         app:layout_constraintTop_toBottomOf="@+id/tvEventPrice" />
-
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEventDate"
@@ -65,7 +60,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEventDateLabel" />
 
-
     <TextView
         android:id="@+id/tvEventHost"
         android:layout_width="match_parent"
@@ -82,8 +76,8 @@
         android:layout_width="@dimen/_38sdp"
         android:layout_height="@dimen/_38sdp"
         android:layout_marginTop="@dimen/_7sdp"
-        android:src="@drawable/hockey"
         android:backgroundTint="@color/primary_main"
+        android:src="@drawable/hockey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEventHost" />
 
@@ -150,7 +144,6 @@
             app:layout_constraintStart_toEndOf="@+id/ivAttendeeTwo"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivAttendeeFour"
             android:layout_width="@dimen/_23sdp"
@@ -160,7 +153,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivAttendeeThree"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAttendeesStrength"
@@ -178,12 +170,8 @@
             android:textSize="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivAttendeeFour"
-            app:layout_constraintTop_toTopOf="parent"
-
-
-            />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <TextView
         android:id="@+id/tvEventFeeLabel"
@@ -200,7 +188,6 @@
         android:id="@+id/tvTotalFee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="@dimen/_7sdp"
         android:background="@drawable/bg_skip_button"
         android:backgroundTint="@color/bg_grey"
@@ -212,8 +199,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEventFeeLabel"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvEventFeeLabel" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvTotalPerPersonFee"
@@ -229,13 +215,9 @@
         android:text="@string/sar_2_00_per_head"
         android:textColor="@color/black"
         android:textSize="@dimen/_10sdp"
-        app:layout_constraintStart_toEndOf="@+id/tvTotalFee"
-        app:layout_constraintTop_toTopOf="@+id/tvTotalFee"
         app:layout_constraintBottom_toBottomOf="@+id/tvTotalFee"
-
-        />
-
-
+        app:layout_constraintStart_toEndOf="@+id/tvTotalFee"
+        app:layout_constraintTop_toTopOf="@+id/tvTotalFee" />
 
     <TextView
         android:id="@+id/tvAttendeesLimitLabel"
@@ -263,9 +245,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAttendeesLimitLabel"
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/tvAttendeesLimitLabel" />
 
     <TextView
         android:id="@+id/tvEventCancelLabel"
@@ -282,7 +262,6 @@
         android:id="@+id/tvCancelDiscount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="@dimen/_7sdp"
         android:background="@drawable/bg_skip_button"
         android:backgroundTint="@color/red"
@@ -294,8 +273,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEventCancelLabel"
-        />
+        app:layout_constraintTop_toBottomOf="@id/tvEventCancelLabel" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCancelTime"
@@ -311,11 +289,9 @@
         android:text="@string/_1_hours_before_event"
         android:textColor="@color/white"
         android:textSize="@dimen/_10sdp"
-        app:layout_constraintStart_toEndOf="@+id/tvCancelDiscount"
-        app:layout_constraintTop_toTopOf="@+id/tvCancelDiscount"
         app:layout_constraintBottom_toBottomOf="@+id/tvCancelDiscount"
-        />
-
+        app:layout_constraintStart_toEndOf="@+id/tvCancelDiscount"
+        app:layout_constraintTop_toTopOf="@+id/tvCancelDiscount" />
 
     <TextView
         android:id="@+id/tvEventTypeLabel"
@@ -332,7 +308,6 @@
         android:id="@+id/tvEventType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="@dimen/_5sdp"
         android:background="@drawable/bg_skip_button"
         android:backgroundTint="@color/bg_grey"
@@ -344,9 +319,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvEventTypeLabel"
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/tvEventTypeLabel" />
 
     <TextView
         android:id="@+id/tvEventLocationLabel"
@@ -358,7 +331,6 @@
         android:textColor="@color/black"
         android:textSize="@dimen/_9sdp"
         app:layout_constraintTop_toBottomOf="@+id/tvEventType" />
-
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvEventLocation"
@@ -389,7 +361,6 @@
         android:textSize="@dimen/_9sdp"
         app:layout_constraintTop_toBottomOf="@+id/tvEventLocation" />
 
-
     <TextView
         android:id="@+id/tvGroupTitle"
         android:layout_width="wrap_content"
@@ -403,13 +374,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGroupDetailLabel" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clGroupMembers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_7sdp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGroupTitle">
 
@@ -428,7 +397,6 @@
             android:layout_height="@dimen/_23sdp"
             android:layout_marginStart="@dimen/_minus10sdp"
             android:src="@drawable/swimming_pool"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivMemberOne"
             app:layout_constraintTop_toTopOf="parent" />
@@ -443,7 +411,6 @@
             app:layout_constraintStart_toEndOf="@+id/ivMemberTwo"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivMemberFour"
             android:layout_width="@dimen/_23sdp"
@@ -453,7 +420,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivMemberThree"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvMembersStrength"
@@ -471,8 +437,6 @@
             android:textSize="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivMemberFour"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,15 +21,11 @@ import com.example.recdeckapp.viewmodel.EventCreationViewModel
 import com.example.recdeckapp.viewmodel.PitchCreationViewModel
 
 class FragmentPitches : Fragment() {
-
     private var _binding: FragmentPitchesBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var pitchesListAdapter: PitchesListAdapter
     private lateinit var eventCreationViewModel: EventCreationViewModel
     private lateinit var pitchCreationViewModel: PitchCreationViewModel
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pitchCreationViewModel = ViewModelProvider(this).get(PitchCreationViewModel::class.java)
@@ -38,7 +34,7 @@ class FragmentPitches : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentPitchesBinding.inflate(inflater, container, false)
         return binding.root
@@ -47,40 +43,31 @@ class FragmentPitches : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPitchesBinding.bind(view)
-
         setOnClickListener()
         loadUserPitches()
-
-
     }
 
     private fun loadUserPitches() {
         val userId = SessionManager.getUserId(requireContext())
         eventCreationViewModel.getUsedPitchIds { usedIds ->
-
             pitchCreationViewModel.getAllUserPitches(userId) { allPitches ->
-
                 val updatedPitches = allPitches.map { pitch ->
-
                     if (usedIds.contains(pitch.pitchId) &&
                         (!eventCreationViewModel.isEditing || pitch.pitchId != eventCreationViewModel.pitchId)
                     ) {
                         pitch.copy(isPitchAvailable = false)
                     } else pitch
                 }
-
                 requireActivity().runOnUiThread {
                     pitchesListAdapter = PitchesListAdapter(
                         pitchList2 = updatedPitches,
                         preselectedPitchId = if (eventCreationViewModel.isEditing)
                             eventCreationViewModel.pitchId else -1,
                         onItemClick = { selectedPitch ->
-
                         },
                         onDetailClick = { selectedPitch ->
                             Log.d("PitchDebug", "Selected pitch: ${selectedPitch.pitchName}")
                             pitchCreationViewModel.setSelectedPitch(selectedPitch)
-
                             val sheet = PitchesDetailsBottomSheet()
                             sheet.setSelectedPitchManually(selectedPitch)
                             sheet.show(parentFragmentManager, "PitchesDetails")
@@ -93,11 +80,9 @@ class FragmentPitches : Fragment() {
                                     "This pitch is already assigned to an event and cannot be deleted.",
                                     Toast.LENGTH_SHORT
                                 ).show()
-
                                 (activity as? BaseActivity)?.showToast("This pitch is already assigned to an event and cannot be deleted.")
                                 return@PitchesListAdapter
                             }
-
                             AlertDialogUtils.showCancelDialog(
                                 requireContext(),
                                 message = "Are you sure you want to delete this pitch?",
@@ -113,7 +98,6 @@ class FragmentPitches : Fragment() {
                             )
                         }
                     )
-
                     binding.rvPitchesList.apply {
                         layoutManager = LinearLayoutManager(requireContext())
                         adapter = pitchesListAdapter
@@ -122,13 +106,10 @@ class FragmentPitches : Fragment() {
                 }
             }
         }
-
     }
 
     private fun setOnClickListener() {
-
         binding.tvCreatePitch.setOnClickListener {
-
             pitchCreationViewModel.creatorUserId = SessionManager.getUserId(requireContext())
             Log.e(
                 "PitchCreation",
@@ -140,7 +121,6 @@ class FragmentPitches : Fragment() {
             )
             val intent = Intent(requireContext(), PitchCreationActivity::class.java)
             startActivity(intent)
-
         }
     }
 
@@ -154,10 +134,8 @@ class FragmentPitches : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         if (::pitchesListAdapter.isInitialized) {
             pitchesListAdapter.updateSelectedPitch(eventCreationViewModel.pitchId)
-
             val selectedIndex = pitchesListAdapter.pitchList.indexOfFirst {
                 it.pitchId == eventCreationViewModel.pitchId
             }

@@ -19,13 +19,11 @@ import com.example.recdeckapp.viewmodel.EventCreationViewModel
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
 class FragmentGroups : Fragment() {
-
     private var _binding: FragmentGroupsBinding? = null
     private val binding get() = _binding!!
     private lateinit var groupListAdapter: GroupListAdapter
     private lateinit var groupCreationViewModel: GroupCreationViewModel
     private lateinit var eventCreationViewModel: EventCreationViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         groupCreationViewModel = ViewModelProvider(this).get(GroupCreationViewModel::class.java)
@@ -34,7 +32,7 @@ class FragmentGroups : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentGroupsBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,31 +41,24 @@ class FragmentGroups : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGroupsBinding.bind(view)
-
         setOnClickListener()
         loadUserGroups()
     }
 
     private fun loadUserGroups() {
-
         val userId = SessionManager.getUserId(requireContext())
-
         eventCreationViewModel.getUsedGroupIds { usedGroupIds ->
-
             groupCreationViewModel.getAllUserGroups(userId) { groups ->
                 Log.d("FragmentGroups", "Received ${groups.size} groups")
-
                 val updatedGroups = groups.map { group ->
                     group.copy(isGroupAvailable = group.groupId !in usedGroupIds)
                 }
-
                 requireActivity().runOnUiThread {
                     groupListAdapter = GroupListAdapter(
                         groupList2 = updatedGroups,
                         onItemClick = {
                         },
                         onDeleteClick = { selectedGroup ->
-
                             if (!selectedGroup.isGroupAvailable) {
                                 Log.d("PitchDebugs", "INSIDE IF BLOCK — Pitch unavailable")
                                 Toast.makeText(
@@ -75,7 +66,6 @@ class FragmentGroups : Fragment() {
                                     "This Group is already assigned to an event and cannot be deleted.",
                                     Toast.LENGTH_SHORT
                                 ).show()
-
                                 //(activity as? BaseActivity)?.showToast("This pitch is already assigned to an event and cannot be deleted.")
                                 return@GroupListAdapter
                             }
@@ -95,20 +85,15 @@ class FragmentGroups : Fragment() {
                         }
                     )
                     checkEmptyState()
-
                     binding.rvGroupList.adapter = groupListAdapter
                     binding.rvGroupList.layoutManager = LinearLayoutManager(requireContext())
-
                 }
             }
         }
-
     }
 
     private fun setOnClickListener() {
-
         binding.tvCreateGroup.setOnClickListener {
-
             groupCreationViewModel.creatorUserId = SessionManager.getUserId(requireContext())
             Log.e(
                 "GroupCreation",
@@ -121,7 +106,6 @@ class FragmentGroups : Fragment() {
             val intent = Intent(requireContext(), GroupCreationActivity::class.java)
             intent.putExtra("startFromSecondFragment", true)
             startActivity(intent)
-
         }
     }
 

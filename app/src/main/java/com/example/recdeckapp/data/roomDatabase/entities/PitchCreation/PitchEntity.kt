@@ -3,7 +3,6 @@ package com.example.recdeckapp.data.roomDatabase.entities.PitchCreation
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "pitches")
 data class PitchEntity(
     @PrimaryKey(autoGenerate = true)

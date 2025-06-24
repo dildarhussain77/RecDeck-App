@@ -78,11 +78,11 @@
                 android:fontFamily="@font/nunito_regular"
                 android:hint="@string/login_username_email_hint"
                 android:inputType="textEmailAddress"
+                android:maxLength="50"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:textColor="@color/black"
                 android:textColorHint="@color/light_grey"
                 android:textSize="@dimen/_11ssp"
-                android:maxLength="50"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvEmailAddress" />
@@ -91,11 +91,11 @@
                 android:id="@+id/tvEmailError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/red"
                 android:layout_marginTop="@dimen/_6sdp"
-                app:fontFamily="@font/nunito_regular"
+                android:textColor="@color/red"
                 android:textSize="@dimen/_10ssp"
                 android:visibility="gone"
+                app:fontFamily="@font/nunito_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etLoginEmail" />
 
@@ -124,11 +124,11 @@
                     android:id="@+id/etLoginPassword"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_39sdp"
-                    android:maxLength="20"
                     android:background="@drawable/bg_edit_text"
                     android:fontFamily="@font/nunito_regular"
                     android:hint="@string/enter_your_password"
                     android:inputType="textPassword"
+                    android:maxLength="20"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/light_grey"
@@ -140,26 +140,22 @@
                     android:layout_height="@dimen/_24sdp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:padding="@dimen/_4sdp"
                     android:src="@drawable/ic_visibility" />
             </RelativeLayout>
-
             <!-- Password Error Message -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPasswordError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                app:fontFamily="@font/nunito_regular"
                 android:layout_marginTop="@dimen/_6sdp"
+                android:textColor="@color/red"
                 android:textSize="@dimen/_10ssp"
                 android:visibility="gone"
+                app:fontFamily="@font/nunito_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayoutPass" />
-
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvForgotPass"
@@ -188,7 +184,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvForgotPass" />
-
 
             <LinearLayout
                 android:id="@+id/llHaveAccount"
@@ -227,14 +222,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/tvHaveAccount"
                     app:layout_constraintTop_toTopOf="parent" />
-
             </LinearLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

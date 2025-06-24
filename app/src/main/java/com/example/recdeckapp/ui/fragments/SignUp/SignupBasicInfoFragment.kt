@@ -41,10 +41,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
-
     private var _binding: FragmentSignupBasicInfoBinding? = null
     private val binding get() = _binding!!
-
     private var isTickSelected = false
     private var isValid = false
     private lateinit var passwordToggleHelper: PasswordToggleHelper
@@ -69,10 +67,8 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         signupDataViewModel = (activity as SignupActivity).signupDataViewModel
         Log.e("SignUp", "selected role:${signupDataViewModel.selectedRole}")
-
         BackPressHelper.handleBackPress(this, binding.ivBackArrowSignUp1)
         setupCountryDropdown()
         setupCityDropdown()
@@ -84,7 +80,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
     }
 
     private fun setOnClickListener() {
-
         //Toggle Passwords
         passwordToggleHelper =
             PasswordToggleHelper(binding.etSignUp1Password, binding.ivTogglePasswordSignUp1)
@@ -92,20 +87,16 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.etSignUp1ConfirmPassword,
             binding.ivToggleConfirmPasswordSignUp
         )
-
         binding.ivTogglePasswordSignUp1.setOnClickListener {
             passwordToggleHelper.toggle()
         }
         binding.ivToggleConfirmPasswordSignUp.setOnClickListener {
             confirmPasswordToggleHelper.toggle()
         }
-
         // Initially disable the continue button
         //binding.btnSignUpForm1Continue.isEnabled = false
         binding.btnSignUpForm1Continue.alpha = 0.5f
-
         binding.btnSignUpForm1Continue.setOnClickListener {
-
             // Validate all fields before proceeding
             if (validateAllFields()) {
                 // Send data to ViewModel
@@ -114,7 +105,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                 signupDataViewModel.password = binding.etSignUp1Password.text.toString().trim()
                 signupDataViewModel.country = binding.countryAutoComplete.text.toString().trim()
                 signupDataViewModel.city = binding.cityAutoComplete.text.toString().trim()
-
                 Log.e(
                     "SignupProfile",
                     "Basic Info continueButtonHandling: 99 fullName=${signupDataViewModel.fullName}, " +
@@ -123,24 +113,20 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                             "country = ${signupDataViewModel.country}," +
                             "city = ${signupDataViewModel.city}"
                 )
-
                 (activity as FragmentActivity).switchFragment(
                     R.id.signupFragmentContainer,
                     SignupProfileDetailsFragment()
                 )
-
             } else {
                 //(activity as? BaseActivity)?.showToast("Please fill are Req")
             }
         }
-
     }
 
     private fun validateAllFields(): Boolean {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate Full Name
         val fullName = binding.etFullNameSignUp1.text.toString().trim()
         if (fullName.isEmpty()) {
@@ -151,7 +137,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.etFullNameSignUp1.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
         }
-
         // Validate Email
         val email = binding.etSignUp1Email.text.toString().trim()
         if (email.isEmpty()) {
@@ -172,7 +157,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.etSignUp1Email.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
         }
-
         // 4. Update the email field listeners
         binding.etSignUp1Email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -184,7 +168,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
-
         binding.etSignUp1Email.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 val email = binding.etSignUp1Email.text.toString().trim()
@@ -201,7 +184,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                 }
             }
         }
-
         // Validate Password
         val password = binding.etSignUp1Password.text.toString().trim()
         if (password.isEmpty()) {
@@ -217,7 +199,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.etSignUp1Password.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
         }
-
         // Validate Confirm Password
         val confirmPassword = binding.etSignUp1ConfirmPassword.text.toString().trim()
         if (confirmPassword.isEmpty()) {
@@ -235,7 +216,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.etSignUp1ConfirmPassword.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
         }
-
         // Validate Country
         val country = binding.countryAutoComplete.text.toString().trim()
         if (country.isEmpty()) {
@@ -246,7 +226,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.countryAutoComplete.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
         }
-
         // Validate City
         val city = binding.cityAutoComplete.text.toString().trim()
         if (city.isEmpty()) {
@@ -257,17 +236,14 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.cityAutoComplete.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
         }
-
         // Validate Terms & Conditions
         if (!isTickSelected) {
             isAllValid = false
         }
-
         // Show general error message if any field is invalid
         if (!isAllValid) {
             (activity as? BaseActivity)?.showToast("Please fill all required fields correctly")
         }
-
         return isAllValid
     }
 
@@ -303,11 +279,9 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context)
                     .inflate(R.layout.country_dropdown_item, parent, false)
-
                 val country = getItem(position) ?: return view
                 view.findViewById<ImageView>(R.id.flagImageView).setImageResource(country.flagResId)
                 view.findViewById<TextView>(R.id.countryNameTextView).text = country.name
-
                 return view
             }
 
@@ -319,16 +293,12 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                 return getView(position, convertView, parent)
             }
         }
-
         binding.countryAutoComplete.setAdapter(adapter)
-
         binding.countryAutoComplete.setOnClickListener {
             binding.countryAutoComplete.showDropDown()
         }
-
         binding.countryAutoComplete.setOnItemClickListener { _, _, position, _ ->
             val selectedCountry = adapter.getItem(position) ?: return@setOnItemClickListener
-
             val circularFlag = getCircularDrawable(selectedCountry.flagResId, 60, 14)
             binding.countryAutoComplete.setCompoundDrawablesWithIntrinsicBounds(
                 circularFlag,
@@ -338,7 +308,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             )
             binding.countryAutoComplete.setText(selectedCountry.name, false)
             updateCitiesDropdown(selectedCountry.cities)
-
             // Reset country field background when valid selection is made
             binding.countryAutoComplete.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
@@ -349,7 +318,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
         val drawable = ContextCompat.getDrawable(requireContext(), drawableRes) as? BitmapDrawable
             ?: return null
         val bitmap = drawable.bitmap
-
         val scaledBitmap = Bitmap.createScaledBitmap(bitmap, size, size, false)
         val output = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(output)
@@ -357,13 +325,10 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             isAntiAlias = true
             shader = BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP)
         }
-
         val radius = size / 2f
         canvas.drawCircle(radius, radius, radius, paint)
-
         val circularDrawable = BitmapDrawable(resources, output)
         val insetDrawable = InsetDrawable(circularDrawable, margin)
-
         return insetDrawable
     }
 
@@ -376,10 +341,8 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context)
                     .inflate(R.layout.city_dropdown, parent, false)
-
                 val city = getItem(position) ?: return view
                 view.findViewById<TextView>(R.id.cityNameTextView).text = city.name
-
                 return view
             }
 
@@ -391,7 +354,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                 return getView(position, convertView, parent)
             }
         }
-
         binding.cityAutoComplete.apply {
             setAdapter(adapter)
             setDropDownBackgroundResource(R.color.white_light)
@@ -408,7 +370,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
 
     private fun updateCitiesDropdown(cities: List<String>) {
         val cityObjects = cities.map { City(it) }
-
         val adapter = object : ArrayAdapter<City>(
             requireContext(), R.layout.city_dropdown,
             R.id.cityNameTextView,
@@ -417,7 +378,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context)
                     .inflate(R.layout.city_dropdown, parent, false)
-
                 val city = getItem(position) ?: return view
                 view.findViewById<TextView>(R.id.cityNameTextView).text = city.name
                 return view
@@ -431,7 +391,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                 return getView(position, convertView, parent)
             }
         }
-
         binding.cityAutoComplete.setAdapter(adapter)
         adapter.notifyDataSetChanged()
         binding.cityAutoComplete.setText("", false)
@@ -462,25 +421,21 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
             binding.countryAutoComplete,
             binding.cityAutoComplete
         )
-
         for (field in fields) {
             field.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
                     // When field gains focus, set to focused background
                     view.background =
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
-
                     if (view.id == R.id.cityAutoComplete) {
                         (view as? AutoCompleteTextView)?.showDropDown()
                     }
                     if (view.id == R.id.countryAutoComplete) {
                         (view as? AutoCompleteTextView)?.showDropDown()
                     }
-
                 } else {
                     // When field loses focus, validate and set appropriate background
                     validateFieldOnFocusLost(view)
-
                 }
             }
         }
@@ -591,14 +546,12 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etFullNameSignUp1.addTextChangedListener(textWatcher)
         binding.etSignUp1Email.addTextChangedListener(textWatcher)
         binding.etSignUp1Password.addTextChangedListener(textWatcher)
@@ -610,7 +563,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
     private fun validatePasswords(): Boolean {
         val password = binding.etSignUp1Password.text.toString().trim()
         val confirmPassword = binding.etSignUp1ConfirmPassword.text.toString().trim()
-
         if (confirmPassword.isEmpty()) {
             binding.etSignUp1ConfirmPassword.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
@@ -645,13 +597,11 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
         val confirmPassword = binding.etSignUp1ConfirmPassword.text.toString().trim()
         val country = binding.countryAutoComplete.text.toString().trim()
         val city = binding.cityAutoComplete.text.toString().trim()
-
         val isEmailValid = if (email.isNotEmpty() && isValidEmail(email)) {
             runBlocking { signupDataViewModel.isEmailAvailable(email) }
         } else {
             false
         }
-
         return fullName.isNotEmpty() &&
                 email.isNotEmpty() &&
                 isValidEmail(email) &&
@@ -669,8 +619,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
         super.onResume()
         // Re-setup the dropdowns to ensure they're properly initialized
         setupCountryDropdown()
-
-
         // Restore country selection with flag
         binding.countryAutoComplete.text?.toString()?.let { selectedCountryName ->
             countries().find { it.name == selectedCountryName }?.let { country ->
@@ -681,10 +629,8 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_arrow_down),
                     null
                 )
-
                 val currentCity = binding.cityAutoComplete.text?.toString()
                 updateCitiesDropdown(country.cities)
-
                 currentCity?.takeIf { city ->
                     country.cities.any { it == city }
                 }?.let { validCity ->
@@ -692,7 +638,6 @@ class SignupBasicInfoFragment : Fragment(R.layout.fragment_signup_basic_info) {
                 }
             }
         }
-
         // Restore tick state
         if (isTickSelected) {
             binding.icTick.setImageResource(R.drawable.ic_tick_selected)

@@ -25,7 +25,6 @@ class PitchCreationViewModel(application: Application) : AndroidViewModel(applic
     var selectedInterests: List<InterestEntity> = emptyList()
     var pitchIdPass: String = ""
     var pitchDocPaths: List<String> = emptyList()
-
     fun addDocumentPath(path: String) {
         pitchDocPaths = pitchDocPaths + path
     }
@@ -33,7 +32,6 @@ class PitchCreationViewModel(application: Application) : AndroidViewModel(applic
     fun removeDocumentPath(path: String) {
         pitchDocPaths = pitchDocPaths.filter { it != path }
     }
-
 
     fun insertPitchToRoom(onResult: (Boolean) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -76,7 +74,6 @@ class PitchCreationViewModel(application: Application) : AndroidViewModel(applic
     }
 
     val selectedPitch = MutableLiveData<PitchEntity>()
-
     fun setSelectedPitch(pitch: PitchEntity) {
         selectedPitch.value = pitch
     }
@@ -88,6 +85,4 @@ class PitchCreationViewModel(application: Application) : AndroidViewModel(applic
             onDeleted()
         }
     }
-
-
 }

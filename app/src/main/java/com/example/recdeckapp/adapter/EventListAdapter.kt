@@ -12,12 +12,9 @@ class EventListAdapter(
     private val onItemClick: (EventEntity) -> Unit,
     private val onEditClick: (EventEntity) -> Unit,
     private val onDeleteClick: (EventEntity) -> Unit,
-
-    ) :
+) :
     RecyclerView.Adapter<EventListAdapter.EventViewHolder>() {
-
     private val eventList = mutableListOf<EventEntity>()
-
     fun submitList(newList: List<EventEntity>) {
         eventList.clear()
         eventList.addAll(newList)
@@ -31,7 +28,6 @@ class EventListAdapter(
         }
         return index
     }
-
 
     inner class EventViewHolder(val binding: ItemEventInfoBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -51,7 +47,6 @@ class EventListAdapter(
                 .load(event.eventImageUrl)
                 .placeholder(R.drawable.ic_image)
                 .into(ivEventImage)
-
             root.setOnClickListener {
                 onItemClick(event)
             }
@@ -65,6 +60,4 @@ class EventListAdapter(
     }
 
     override fun getItemCount() = eventList.size
-
 }
-

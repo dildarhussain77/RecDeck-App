@@ -8,11 +8,9 @@ import androidx.room.Transaction
 import com.example.recdeckapp.data.roomDatabase.entities.CommonEntities.InterestEntity
 import com.example.recdeckapp.data.roomDatabase.entities.GroupCreation.GroupEntity
 import com.example.recdeckapp.data.roomDatabase.entities.GroupCreation.GroupInterestCrossRef
-import com.example.recdeckapp.data.roomDatabase.entities.GroupCreation.GroupWithInterests
 
 @Dao
 interface GroupDao {
-
     @Insert
     suspend fun insertGroup(group: GroupEntity): Long
 
@@ -27,10 +25,6 @@ interface GroupDao {
         }
         insertGroupInterestsCrossRef(refs)
     }
-
-    @Transaction
-    @Query("SELECT * FROM groups WHERE creatorUserId = :userId")
-    suspend fun getGroupsCreatedByUser(userId: Int): List<GroupWithInterests>
 
     @Query("SELECT * FROM groups WHERE creatorUserId = :userId")
     suspend fun getAllGroupsByUser(userId: Int): List<GroupEntity>
@@ -48,6 +42,4 @@ interface GroupDao {
 
     @Query("DELETE FROM GroupInterestCrossRef WHERE groupId = :groupId")
     suspend fun deleteGroupInterests(groupId: Int)
-
-
 }

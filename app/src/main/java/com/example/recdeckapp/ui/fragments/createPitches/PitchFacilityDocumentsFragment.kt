@@ -26,10 +26,9 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
     private var isValid = false
     private val selectedFiles = mutableListOf<Uri>()
     private lateinit var pitchCreationViewModel: PitchCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentPitchFacilityDocumentsBinding.inflate(inflater, container, false)
         return binding.root
@@ -38,9 +37,7 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPitchFacilityDocumentsBinding.bind(view)
-
         pitchCreationViewModel = (activity as PitchCreationActivity).pitchCreationViewModel
-
         val activity = requireActivity() as? PitchCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(4)
@@ -49,11 +46,9 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
         setFieldFocusListeners()
         setupFieldListeners()
         updateButtonState()
-
     }
 
     private fun setOnClickListener() {
-
         binding.uploadLayoutFaciltyPitchIDPass.setOnClickListener {
             if (selectedFiles.size >= 3) {
                 (activity as? BaseActivity)?.showToast("more than 3 files can not be upload")
@@ -65,7 +60,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
                 showFilePicker = false
             )
         }
-
         binding.btnPitchFacilityDocumentsContinue.alpha = 0.5f
         binding.btnPitchFacilityDocumentsContinue.setOnClickListener {
             binding.btnPitchFacilityDocumentsContinue.isEnabled = false
@@ -79,11 +73,9 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
                 // Show loading
                 binding.pgBarPitchCreated.visibility = View.VISIBLE
                 binding.btnPitchFacilityDocumentsContinue.isEnabled = false
-
                 pitchCreationViewModel.insertPitchToRoom { success ->
                     requireActivity().runOnUiThread {
                         binding.pgBarPitchCreated.visibility = View.GONE
-
                         if (success) {
                             AlertDialogUtils.showCancelDialog(
                                 requireContext(),
@@ -104,7 +96,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
             } else {
                 (activity as? BaseActivity)?.showToast("Please fill all..")
             }
-
         }
     }
 
@@ -167,7 +158,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
         val fields = listOf(
             binding.etIdPassNum,
         )
-
         for (field in fields) {
             field.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
@@ -175,7 +165,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
                     view.background =
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
                     Log.d("FocusDebug", " field focus changed: $hasFocus")
-
                 } else {
                     // When field loses focus, validate and set appropriate background
                     validateFieldOnFocusLost(view)
@@ -186,7 +175,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
 
     private fun validateFieldOnFocusLost(view: View) {
         when (view.id) {
-
             R.id.etIdPassNum -> {
                 val text = binding.etIdPassNum.text.toString().trim()
                 if (text.isEmpty()) {
@@ -205,7 +193,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate pitch Name
         val passNumber = binding.etIdPassNum.text.toString().trim()
         if (passNumber.isEmpty()) {
@@ -213,7 +200,6 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         return isAllValid
     }
 
@@ -225,16 +211,13 @@ class PitchFacilityDocumentsFragment : BaseMediaFragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etIdPassNum.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {

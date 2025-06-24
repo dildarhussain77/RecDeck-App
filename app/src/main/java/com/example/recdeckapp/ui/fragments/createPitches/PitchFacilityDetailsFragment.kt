@@ -27,12 +27,10 @@ class PitchFacilityDetailsFragment : Fragment() {
     private var startMinute: Int = -1
     private var endHour: Int = -1
     private var endMinute: Int = -1
-
     private lateinit var pitchCreationViewModel: PitchCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentPitchFacilityDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,15 +39,11 @@ class PitchFacilityDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPitchFacilityDetailsBinding.bind(view)
-
         pitchCreationViewModel = (activity as PitchCreationActivity).pitchCreationViewModel
-
-
         val activity = requireActivity() as? PitchCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(2)
         activity?.updateTopBarForFragment(1)
-
         binding.etStartTime.showSoftInputOnFocus = false
         binding.etEndTime.showSoftInputOnFocus = false
         setOnClickListener()
@@ -57,7 +51,6 @@ class PitchFacilityDetailsFragment : Fragment() {
         setupFieldListeners()
         updateButtonState()
         TimePicker()
-
         TextFieldDescUtils.setupDescWatcher(
             binding.ettvFacilityDesc,
             binding.tvDescCharCount,
@@ -71,7 +64,6 @@ class PitchFacilityDetailsFragment : Fragment() {
     private fun setOnClickListener() {
         binding.btnFacilityDetailContinue.setOnClickListener {
             if (validateAllFields()) {
-
                 // Send data to ViewModel
                 pitchCreationViewModel.pitchName = binding.etPitchName.text.toString().trim()
                 pitchCreationViewModel.pitchStartTime = binding.etStartTime.text.toString().trim()
@@ -116,7 +108,6 @@ class PitchFacilityDetailsFragment : Fragment() {
 //            binding.etEndTime,
             binding.ettvFacilityDesc
         )
-
         for (field in fields) {
             field.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
@@ -124,17 +115,10 @@ class PitchFacilityDetailsFragment : Fragment() {
                     view.background =
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
                     Log.d("FocusDebug", " field focus changed: $hasFocus")
-
-
                     if (view.id == R.id.etStartTime) {
-
                     }
-
                     if (view.id == R.id.etEndTime) {
-
-
                     }
-
                 } else {
                     // When field loses focus, validate and set appropriate background
                     validateFieldOnFocusLost(view)
@@ -145,7 +129,6 @@ class PitchFacilityDetailsFragment : Fragment() {
 
     private fun validateFieldOnFocusLost(view: View) {
         when (view.id) {
-
             R.id.etPitchName -> {
                 val text = binding.etPitchName.text.toString().trim()
                 if (text.isEmpty()) {
@@ -193,7 +176,6 @@ class PitchFacilityDetailsFragment : Fragment() {
                         ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
                 }
             }
-
         }
     }
 
@@ -201,7 +183,6 @@ class PitchFacilityDetailsFragment : Fragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate group Name
         val pitchName = binding.etPitchName.text.toString().trim()
         if (pitchName.isEmpty()) {
@@ -209,29 +190,24 @@ class PitchFacilityDetailsFragment : Fragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val Desc = binding.ettvFacilityDesc.text.toString().trim()
         if (Desc.isEmpty()) {
             binding.ettvFacilityDesc.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val startTime = binding.etStartTime.text.toString().trim()
         if (startTime.isEmpty()) {
             binding.etStartTime.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val endTime = binding.etEndTime.text.toString().trim()
         if (endTime.isEmpty()) {
             binding.etEndTime.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
-
         return isAllValid
     }
 
@@ -246,19 +222,16 @@ class PitchFacilityDetailsFragment : Fragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etPitchName.addTextChangedListener(textWatcher)
         binding.ettvFacilityDesc.addTextChangedListener(textWatcher)
         binding.etStartTime.addTextChangedListener(textWatcher)
         binding.etEndTime.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {
@@ -273,19 +246,10 @@ class PitchFacilityDetailsFragment : Fragment() {
         val desc = binding.ettvFacilityDesc.text.toString().trim()
         val startTime = binding.etStartTime.text.toString().trim()
         val endTime = binding.etEndTime.text.toString().trim()
-
-
         return pitchName.isNotEmpty() &&
                 desc.isNotEmpty() &&
                 startTime.isNotEmpty() &&
                 endTime.isNotEmpty()
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        // Check if image is already selected and show it again
-        //setFieldFocusListeners()
     }
 
     override fun onDestroyView() {

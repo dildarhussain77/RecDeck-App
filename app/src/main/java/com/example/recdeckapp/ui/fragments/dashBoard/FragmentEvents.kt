@@ -23,52 +23,37 @@ import com.example.recdeckapp.viewmodel.EventsViewModel
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
 class FragmentEvents : Fragment(R.layout.events_fragment) {
-
     private var _binding: EventsFragmentBinding? = null
     private val binding get() = _binding!!
-
-
     private val viewModel: EventsViewModel by viewModels()
     private lateinit var categoryAdapter: EventsAdapter
     private lateinit var eventAdapter: EventDetailAdapter
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = EventsFragmentBinding.bind(view)
-
-
-
-
         setupAdapters()
         observeViewModel()
         setOnClickListener()
     }
 
     private fun setOnClickListener() {
-
         binding.ivProfile.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }
-
         binding.ivMenu.setOnClickListener {
             val role = SessionManager.getUserRole(requireContext())
             val userId = SessionManager.getUserId(requireContext())
             Log.e("role", "setOnClickListener: $role")
             Log.e("role", "setOnClickListener: $userId")
         }
-
-
         binding.ivNotification.setOnClickListener {
             val intent = Intent(requireContext(), NotificationActivity::class.java)
             startActivity(intent)
         }
-
         binding.ivFilter.setOnClickListener {
             showFilterBottomSheet()
         }
-
         binding.tvCreateEvent.setOnClickListener {
             val userId = SessionManager.getUserId(requireContext())
             handleEventCreationClick(userId)
@@ -76,7 +61,6 @@ class FragmentEvents : Fragment(R.layout.events_fragment) {
     }
 
     private val groupCreationViewModel: GroupCreationViewModel by viewModels()
-
     private fun handleEventCreationClick(userId: Int) {
         groupCreationViewModel.isGroupAlreadyCreated(userId) { isCreated ->
             if (isCreated) {
@@ -102,16 +86,13 @@ class FragmentEvents : Fragment(R.layout.events_fragment) {
         categoryAdapter = EventsAdapter(EventType.entries) {
             viewModel.selectEventType(it)
         }
-
         binding.rvEvents.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = categoryAdapter
         }
-
         // Observe selectedEventType and set up eventAdapter accordingly
         viewModel.selectedEventType.observe(viewLifecycleOwner) { selectedType ->
-
             //eventAdapter = EventDetailAdapter(selectedType)
             eventAdapter = EventDetailAdapter(selectedType) {
                 val intent = Intent(requireContext(), EventDetailActivity::class.java)
@@ -122,7 +103,6 @@ class FragmentEvents : Fragment(R.layout.events_fragment) {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = eventAdapter
             }
-
             // Also observe and submit updated data, observer to update view
             viewModel.selectedEvents.observe(viewLifecycleOwner) { events ->
                 eventAdapter.submitList(events)

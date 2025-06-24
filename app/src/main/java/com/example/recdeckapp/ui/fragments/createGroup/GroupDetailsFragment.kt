@@ -21,19 +21,15 @@ import com.example.recdeckapp.utils.TextFieldDescUtils
 import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 
-
 class GroupDetailsFragment : Fragment() {
-
     private var _binding: FragmentGroupDetailsBinding? = null
     private val binding get() = _binding!!
-
     private var isPublicOrPrivateSelected = false
     private var isValid = false
     private lateinit var groupCreationViewModel: GroupCreationViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentGroupDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,30 +38,23 @@ class GroupDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentGroupDetailsBinding.bind(view)
-
         // Access the ViewModel from the Activity scope
         groupCreationViewModel = (activity as GroupCreationActivity).groupCreationViewModel
-
         setOnClickListener()
         setupFieldFocusListeners()
         setupPublicOrPrivateDropdown()
         setupDescCharCount()
         setupFieldListeners()
         updateButtonState()
-
         // Show the step indicator
         val activity = requireActivity() as? GroupCreationActivity
         activity?.showStepIndicator(true)
-
         // Step indicator pe current step set karo
         activity?.updateStepIndicator(2) // example: if it's step 2
         activity?.updateTopBarForFragment(2)
-
     }
 
-
     private fun setOnClickListener() {
-
         binding.btnGroupDetailContinue.alpha = 0.5f
         binding.btnGroupDetailContinue.setOnClickListener {
             val isValid = validateAllFields()
@@ -73,7 +62,6 @@ class GroupDetailsFragment : Fragment() {
             // Validate all fields before proceeding
             if (validateAllFields()) {
                 Log.e("VALIDATE", "validateAllFields() returned: $isValid")
-
                 // Send data to ViewModel
                 groupCreationViewModel.groupName = binding.etGroupName.text.toString().trim()
                 groupCreationViewModel.memberLimit =
@@ -82,7 +70,6 @@ class GroupDetailsFragment : Fragment() {
                     binding.etCreateGroupDesc.text.toString().trim()
                 groupCreationViewModel.accessType =
                     binding.autoCompletePublicOrPrivate.text.toString().trim()
-
                 Log.e(
                     "GroupCreation",
                     "Group Details continue ButtonHandling: 84 groupName=${groupCreationViewModel.groupName}, " +
@@ -94,17 +81,14 @@ class GroupDetailsFragment : Fragment() {
                     "GroupCreation",
                     "setOnClickListener: ${groupCreationViewModel.creatorUserId}",
                 )
-
                 (activity as FragmentActivity).switchFragment(
                     R.id.GroupCreationFragmentContainer,
                     GroupRulesFragment()
                 )
-
             } else {
                 Log.e("VALIDATE", "setOnClickListener: line 93")
                 (activity as? BaseActivity)?.showToast("Please fill all fields")
             }
-
         }
     }
 
@@ -120,17 +104,14 @@ class GroupDetailsFragment : Fragment() {
             isPublicOrPrivateSelected = true
             //(activity as? BaseActivity)?.showToast("Selected: $selected")
         }
-
         // Prevent keyboard from showing
         binding.autoCompletePublicOrPrivate.inputType = InputType.TYPE_NULL
-
         // Add focus and click listeners here
         binding.autoCompletePublicOrPrivate.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 if (view.id == R.id.autoCompletePublicOrPrivate) {
                     (view as? AutoCompleteTextView)?.showDropDown()
                 }
-
                 view.background =
                     ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_focused)
             } else {
@@ -146,7 +127,6 @@ class GroupDetailsFragment : Fragment() {
             binding.autoCompletePublicOrPrivate,
             binding.etCreateGroupDesc,
         )
-
         for (field in fields) {
             field.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
@@ -156,7 +136,6 @@ class GroupDetailsFragment : Fragment() {
                 } else {
                     // When field loses focus, validate and set appropriate background
                     validateFieldOnFocusLost(view)
-
                 }
             }
         }
@@ -223,7 +202,6 @@ class GroupDetailsFragment : Fragment() {
         var isAllValid = true
         // Reset all field backgrounds first
         resetFieldBackgrounds()
-
         // Validate group Name
         val groupName = binding.etGroupName.text.toString().trim()
         if (groupName.isEmpty()) {
@@ -231,28 +209,24 @@ class GroupDetailsFragment : Fragment() {
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val noOfGroupMem = binding.etGroupName.text.toString().trim()
         if (noOfGroupMem.isEmpty()) {
             binding.etGroupName.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val autoCompletePublicOrPrivate = binding.etGroupName.text.toString().trim()
         if (autoCompletePublicOrPrivate.isEmpty()) {
             binding.etGroupName.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         val createGroupDesc = binding.etGroupName.text.toString().trim()
         if (createGroupDesc.isEmpty()) {
             binding.etGroupName.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_edit_text_error)
             isAllValid = false
         }
-
         return isAllValid
     }
 
@@ -263,7 +237,6 @@ class GroupDetailsFragment : Fragment() {
         binding.autoCompletePublicOrPrivate.background = normalBackground
         binding.etCreateGroupDesc.background = normalBackground
     }
-
 
     private fun setupDescCharCount() {
         TextFieldDescUtils.setupDescWatcher(
@@ -279,19 +252,16 @@ class GroupDetailsFragment : Fragment() {
     private fun setupFieldListeners() {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 updateButtonState()
             }
 
             override fun afterTextChanged(s: Editable?) {}
         }
-
         binding.etGroupName.addTextChangedListener(textWatcher)
         binding.etNoOfGroupMem.addTextChangedListener(textWatcher)
         binding.autoCompletePublicOrPrivate.addTextChangedListener(textWatcher)
         binding.etCreateGroupDesc.addTextChangedListener(textWatcher)
-
     }
 
     private fun updateButtonState() {
@@ -306,7 +276,6 @@ class GroupDetailsFragment : Fragment() {
         val noOfGroupMem = binding.etNoOfGroupMem.text.toString().trim()
         val autoCompletePublicOrPrivate = binding.autoCompletePublicOrPrivate.text.toString().trim()
         val createGroupDesc = binding.etCreateGroupDesc.text.toString().trim()
-
         return groupName.isNotEmpty() &&
                 noOfGroupMem.isNotEmpty() &&
                 autoCompletePublicOrPrivate.isNotEmpty() &&

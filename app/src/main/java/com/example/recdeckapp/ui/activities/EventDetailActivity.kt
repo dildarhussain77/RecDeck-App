@@ -10,30 +10,23 @@ import com.example.recdeckapp.utils.StatusBarUtils
 import com.example.recdeckapp.viewmodel.EventCreationViewModel
 
 class EventDetailActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityEventDetailBinding
-
     private lateinit var eventCreationViewModel: EventCreationViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         eventCreationViewModel =
             ViewModelProvider(this)[EventCreationViewModel::class.java]
-
         StatusBarUtils.setLightStatusBar(this, R.color.bg_grey)
-
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setOnClickListener()
         //bindPitchData(eventI)
     }
 
-
     private fun setOnClickListener() {
-
         binding.ivBack.setOnClickListener {
             finish()
         }
-
         binding.tvEventCancel.setOnClickListener {
             AlertDialogUtils.showCancelDialog(
                 this,
@@ -44,7 +37,6 @@ class EventDetailActivity : AppCompatActivity() {
             )
         }
     }
-
 //    private fun bindPitchData(event: EventEntity) {
 //        binding.tvEventName.text = event.eventName
 //        binding.tvEventDetail.text = event.eventDescription

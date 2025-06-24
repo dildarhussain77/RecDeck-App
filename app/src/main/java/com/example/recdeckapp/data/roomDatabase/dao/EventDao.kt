@@ -13,7 +13,6 @@ import com.example.recdeckapp.data.roomDatabase.entities.EventCreation.EventWith
 
 @Dao
 interface EventDao {
-
     @Insert
     suspend fun insertEvent(group: EventEntity): Long
 
@@ -42,7 +41,6 @@ interface EventDao {
     @Transaction
     @Query("SELECT * FROM events WHERE eventId = :eventId")
     suspend fun getEventWithInterests(eventId: Int): EventWithInterests?
-
 
     @Query("SELECT * FROM events WHERE creatorUserId = :userId")
     suspend fun getAllEventsByUser(userId: Int): List<EventEntity>

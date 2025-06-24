@@ -50,41 +50,34 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivNotification"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/ic_notification"
                 android:clickable="true"
                 android:focusable="true"
+                android:src="@drawable/ic_notification"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvBadgeCount"
                 android:layout_width="@dimen/_14sdp"
                 android:layout_height="@dimen/_14sdp"
-                android:text="88"
-                android:gravity="center"
                 android:background="@drawable/bg_red_circle"
+                android:fontFamily="@font/nunito_regular"
+                android:gravity="center"
+                android:text="88"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_7ssp"
-                android:fontFamily="@font/nunito_regular"
-                app:layout_constraintTop_toTopOf="@id/ivNotification"
-                app:layout_constraintStart_toStartOf="@id/ivNotification"
                 android:translationY="@dimen/_2sdp"
-
-                />
+                app:layout_constraintStart_toStartOf="@id/ivNotification"
+                app:layout_constraintTop_toTopOf="@id/ivNotification" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -95,8 +88,8 @@
         android:layout_marginEnd="@dimen/_8sdp"
         android:background="@drawable/bg_skip_button"
         android:backgroundTint="@color/white"
-        android:paddingVertical="@dimen/_7sdp"
         android:paddingHorizontal="@dimen/_7sdp"
+        android:paddingVertical="@dimen/_7sdp"
         app:layout_constraintEnd_toStartOf="@+id/ivFilter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clActionBar">
@@ -115,8 +108,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:autofillHints="@null"
             android:layout_marginStart="@dimen/_6sdp"
+            android:autofillHints="@null"
             android:background="@android:color/transparent"
             android:fontFamily="@font/nunito_semi_bold"
             android:hint="@string/search_events"
@@ -170,8 +163,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/item_event_detail"
-        app:layout_constraintTop_toBottomOf="@id/rvEvents" />
+        app:layout_constraintTop_toBottomOf="@id/rvEvents"
+        tools:listitem="@layout/item_event_detail" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvCreateEvent"
@@ -180,6 +173,8 @@
         android:layout_marginBottom="@dimen/_23sdp"
         android:background="@drawable/bg_skip_button"
         android:backgroundTint="@color/primary_main"
+        android:clickable="true"
+        android:focusable="true"
         android:fontFamily="@font/nunito_semi_bold"
         android:gravity="center"
         android:paddingHorizontal="@dimen/_13sdp"
@@ -187,10 +182,6 @@
         android:text="@string/create_event"
         android:textColor="@color/white"
         android:textSize="@dimen/_9sdp"
-        android:clickable="true"
-        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

@@ -21,11 +21,9 @@ import com.example.recdeckapp.viewmodel.GroupCreationViewModel
 class SelectGroupsEventFragment : Fragment() {
     private var _binding: FragmentSelectGroupsEventBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var groupListAdapter: GroupListAdapter
     private lateinit var groupCreationViewModel: GroupCreationViewModel
     private lateinit var eventCreationViewModel: EventCreationViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         groupCreationViewModel = ViewModelProvider(this).get(GroupCreationViewModel::class.java)
@@ -33,7 +31,7 @@ class SelectGroupsEventFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentSelectGroupsEventBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,16 +40,13 @@ class SelectGroupsEventFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSelectGroupsEventBinding.bind(view)
-
         eventCreationViewModel = (activity as EventCreationActivity).eventCreationViewModel
         val activity = requireActivity() as? EventCreationActivity
         activity?.showStepIndicator(true)
         activity?.updateStepIndicator(5)
         activity?.updateTopBarForFragment(4)
         val userId = SessionManager.getUserId(requireContext())
-
         eventCreationViewModel.getUsedGroupIds { usedGroupIds ->
-
             groupCreationViewModel.getAllUserGroups(userId) { groups ->
                 // 🛠 Step 3: Mark availability based on usage
                 val currentGroupId = eventCreationViewModel.groupId
@@ -82,10 +77,8 @@ class SelectGroupsEventFragment : Fragment() {
                         onDeleteClick = {},
                         shouldHideDeleteButton = true
                     )
-
                     binding.rvGroupList.adapter = groupListAdapter
                     binding.rvGroupList.layoutManager = LinearLayoutManager(requireContext())
-
                     // Scroll to selected group if editing
                     if (eventCreationViewModel.isEditing && eventCreationViewModel.groupId != -1) {
                         val selectedIndex =
@@ -96,10 +89,7 @@ class SelectGroupsEventFragment : Fragment() {
                     }
                 }
             }
-
         }
-
-
     }
 
     override fun onDestroyView() {

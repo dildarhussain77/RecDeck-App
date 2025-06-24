@@ -20,15 +20,13 @@ import com.example.recdeckapp.utils.switchFragment
 import com.example.recdeckapp.viewmodel.SignupDataViewModel
 
 class SignupInterestSelectionFragment : Fragment(R.layout.fragment_signup_interest_selection) {
-
     private var _binding: FragmentSignupInterestSelectionBinding? = null
     private val binding get() = _binding!!
     private lateinit var cardAdapter: CardAdapterIntrest
     private lateinit var signupDataViewModel: SignupDataViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Initialize binding
         _binding = FragmentSignupInterestSelectionBinding.inflate(inflater, container, false)
         return binding.root
@@ -38,21 +36,15 @@ class SignupInterestSelectionFragment : Fragment(R.layout.fragment_signup_intere
         super.onViewCreated(view, savedInstanceState)
         // Initialize binding
         _binding = FragmentSignupInterestSelectionBinding.bind(view)
-
         signupDataViewModel = (activity as SignupActivity).signupDataViewModel
-
-
         BackPressHelper.handleBackPress(this, binding.ivBackArrowSignUp3)
         continueButtonHandling()
-
         // Sample data
         val itemList = InterestItemsProvider.getDefaultInterestItems()
-
         // Initialize adapter
         cardAdapter = CardAdapterIntrest(
             items = itemList,
             context = requireContext()
-
         )
         // Optional: Listen for selection changes
         cardAdapter.setOnSelectionChangedListener { selectedItems ->
@@ -64,12 +56,10 @@ class SignupInterestSelectionFragment : Fragment(R.layout.fragment_signup_intere
         binding.recyclerViewSignup.layoutManager =
             GridLayoutManager(requireContext(), 2) // 2 columns
         binding.recyclerViewSignup.adapter = cardAdapter
-
     }
 
     private fun continueButtonHandling() {
         binding.btnSignUpForm3Continue.setOnClickListener {
-
             val role = signupDataViewModel.selectedRole
             when (role) {
                 UserRole.ORGANIZER -> {
@@ -95,7 +85,6 @@ class SignupInterestSelectionFragment : Fragment(R.layout.fragment_signup_intere
                 "Interest continueButtonHandling: 65 interests:${signupDataViewModel.selectedInterests} ",
             )
         }
-
     }
 
     private fun updateSelectionCounter(count: Int) {
@@ -111,15 +100,12 @@ class SignupInterestSelectionFragment : Fragment(R.layout.fragment_signup_intere
         super.onResume()
         // Restore previously selected interests from ViewModel
         val selectedInterests = signupDataViewModel.selectedInterests.map { it.title }
-
         cardAdapter.items.forEach { item ->
             item.isSelected = selectedInterests.contains(item.title)
         }
-
         cardAdapter.notifyDataSetChanged()
         updateSelectionCounter(signupDataViewModel.selectedInterests.size)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,36 +1,28 @@
 package com.example.recdeckapp.ui.activities
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.example.recdeckapp.R
 import com.example.recdeckapp.adapter.IntroPagerAdapter
 import com.example.recdeckapp.databinding.ActivityIntroBinding
-import android.widget.LinearLayout
 import com.example.recdeckapp.utils.StatusBarUtils
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-
 
 class IntroActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityIntroBinding
     private lateinit var adapter: IntroPagerAdapter
     lateinit var introContent: List<Pair<String, String>>
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         // Show splash screen
 //        installSplashScreen()
-
         super.onCreate(savedInstanceState)
         StatusBarUtils.setLightStatusBar(this, R.color.white_light)
         binding = ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         introContent = listOf(
             Pair(
                 getString(R.string.string_intro_Fragment1_title),
@@ -44,18 +36,14 @@ class IntroActivity : AppCompatActivity() {
             )
         )
         updateTitleAndDescription(0)
-
         adapter = IntroPagerAdapter(this, this)
         binding.viewPager.adapter = adapter
-
         setupIndicators()
         setCurrentIndicator(0)
-
         binding.btnSkip.setOnClickListener {
             startActivity(Intent(this@IntroActivity, LoginActivity::class.java))
             finish()
         }
-
         binding.btnContinue.setOnClickListener {
             if (binding.viewPager.currentItem < adapter.itemCount - 1) {
                 binding.viewPager.currentItem += 1
@@ -64,16 +52,13 @@ class IntroActivity : AppCompatActivity() {
                 finish()
             }
         }
-
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 updateTitleAndDescription(position)
                 setCurrentIndicator(position)
-
                 binding.btnContinue.text =
                     if (position == adapter.itemCount - 1) "Get Started" else "Continue"
-
                 binding.btnSkip.visibility =
                     if (position == adapter.itemCount - 1) View.GONE else View.VISIBLE
             }
@@ -94,7 +79,6 @@ class IntroActivity : AppCompatActivity() {
             LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT
         )
         layoutParams.setMargins(8, 0, 8, 0)
-
         for (i in indicators.indices) {
             indicators[i] = ImageView(applicationContext)
             indicators[i]?.apply {
